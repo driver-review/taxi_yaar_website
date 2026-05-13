@@ -16,181 +16,333 @@
 html { scroll-behavior: smooth; }
 body { font-family: 'DM Sans', sans-serif; background: var(--off-white); color: var(--black); overflow-x: hidden; }
 
-/* NAV */
-nav { position: fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:0 48px; height:64px; background:rgba(248,247,244,0.92); backdrop-filter:blur(12px); border-bottom:1px solid rgba(15,110,110,0.1); }
-.logo { font-family:'Sora'; font-weight:800; font-size:22px; letter-spacing:-0.5px; text-decoration:none; }
-.logo .t { color:var(--black); } .logo .y { color:var(--teal); }
-.nav-links { display:flex; gap:28px; list-style:none; }
-.nav-links a { font-size:14px; color:var(--g600); text-decoration:none; transition:color 0.2s; }
-.nav-links a:hover { color:var(--teal); }
-.nav-cta { background:var(--teal); color:white; font-family:'DM Sans'; font-size:14px; font-weight:500; padding:9px 22px; border-radius:100px; border:none; cursor:pointer; text-decoration:none; transition:background 0.2s, transform 0.15s; }
-.nav-cta:hover { background:var(--teal-dark); transform:translateY(-1px); }
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px; height: 66px;
+  background: rgba(248,247,244,0.94); backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(15,110,110,0.1);
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-logo-icon { width: 36px; height: 36px; flex-shrink: 0; }
+.nav-logo-text { font-family: 'Sora'; font-weight: 800; font-size: 20px; letter-spacing: -0.5px; line-height: 1; }
+.nav-logo-text .t { color: var(--black); }
+.nav-logo-text .y { color: var(--teal); }
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a { font-size: 14px; color: var(--g600); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--teal); }
+.nav-cta {
+  background: var(--teal); color: white; font-family: 'DM Sans'; font-size: 14px; font-weight: 500;
+  padding: 9px 20px; border-radius: 100px; border: none; cursor: pointer;
+  text-decoration: none; transition: background 0.2s, transform 0.15s; white-space: nowrap;
+}
+.nav-cta:hover { background: var(--teal-dark); transform: translateY(-1px); }
+.hamburger {
+  display: none; flex-direction: column; gap: 5px; cursor: pointer;
+  background: none; border: none; padding: 4px;
+}
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--black); border-radius: 2px; transition: all 0.3s; }
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.mobile-menu {
+  display: none; position: fixed; top: 66px; left: 0; right: 0; z-index: 190;
+  background: rgba(248,247,244,0.98); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--g200); padding: 20px 24px;
+  flex-direction: column; gap: 4px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a { font-size: 16px; color: var(--g800); text-decoration: none; padding: 12px 0; border-bottom: 1px solid var(--g200); font-weight: 400; }
+.mobile-menu a:last-child { border-bottom: none; }
+.mobile-menu .m-cta { background: var(--teal); color: white; text-align: center; border-radius: 10px; padding: 14px; font-weight: 500; border-bottom: none; margin-top: 8px; }
 
-/* HERO */
-.hero { min-height:100vh; padding:100px 48px 80px; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; max-width:1240px; margin:0 auto; }
-.eyebrow { display:inline-flex; align-items:center; gap:7px; background:var(--teal-light); border:1px solid rgba(15,110,110,0.2); border-radius:100px; padding:5px 14px; font-size:11px; font-weight:500; color:var(--teal); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:22px; }
-.edot { width:5px; height:5px; border-radius:50%; background:var(--teal); }
-.h1 { font-family:'Sora'; font-weight:800; font-size:clamp(44px,5vw,66px); line-height:1.0; letter-spacing:-3px; margin-bottom:8px; }
-.h1 .accent { color:var(--teal); }
-.h1 .outline { -webkit-text-stroke:2px var(--teal); color:transparent; }
-.hero-sub { font-size:17px; font-weight:300; line-height:1.7; color:var(--g600); max-width:420px; margin:18px 0 32px; }
-.hero-sub strong { color:var(--black); font-weight:500; }
-.actions { display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
-.play-badge { display:inline-flex; align-items:center; gap:10px; background:var(--black); color:white; font-family:'DM Sans'; padding:10px 20px; border-radius:100px; text-decoration:none; transition:opacity 0.2s; }
-.play-badge:hover { opacity:0.85; }
-.hero-stats { display:flex; gap:36px; margin-top:40px; padding-top:36px; border-top:1px solid var(--g200); }
-.stat-n { font-family:'Sora'; font-size:24px; font-weight:700; letter-spacing:-1px; }
-.stat-n span { color:var(--teal); }
-.stat-l { font-size:12px; color:var(--g600); margin-top:2px; }
+/* ── HERO ── */
+.hero {
+  min-height: 100vh; padding: 100px 48px 80px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+  max-width: 1240px; margin: 0 auto;
+}
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--teal-light); border: 1px solid rgba(15,110,110,0.2);
+  border-radius: 100px; padding: 5px 14px; font-size: 11px; font-weight: 500;
+  color: var(--teal); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 20px;
+}
+.edot { width: 5px; height: 5px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
+.h1 { font-family: 'Sora'; font-weight: 800; font-size: clamp(38px, 5vw, 66px); line-height: 1.0; letter-spacing: -3px; margin-bottom: 8px; }
+.h1 .accent { color: var(--teal); }
+.h1 .outline { -webkit-text-stroke: 2px var(--teal); color: transparent; }
+.hero-sub { font-size: clamp(15px, 1.5vw, 17px); font-weight: 300; line-height: 1.7; color: var(--g600); max-width: 420px; margin: 18px 0 30px; }
+.hero-sub strong { color: var(--black); font-weight: 500; }
+.actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.play-badge {
+  display: inline-flex; align-items: center; gap: 10px; background: var(--black);
+  color: white; font-family: 'DM Sans'; padding: 10px 20px; border-radius: 100px;
+  text-decoration: none; transition: opacity 0.2s;
+}
+.play-badge:hover { opacity: 0.85; }
+.hero-stats { display: flex; gap: 32px; margin-top: 36px; padding-top: 32px; border-top: 1px solid var(--g200); flex-wrap: wrap; }
+.stat-n { font-family: 'Sora'; font-size: 22px; font-weight: 700; letter-spacing: -1px; }
+.stat-n span { color: var(--teal); }
+.stat-l { font-size: 11px; color: var(--g600); margin-top: 2px; }
 
-/* DRIVER CARD */
-.driver-card { background:var(--white); border-radius:22px; padding:24px; border:1px solid var(--g200); box-shadow:0 20px 60px rgba(0,0,0,0.08); animation:float 4s ease-in-out infinite; }
-@keyframes float { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-8px); } }
+/* ── DRIVER CARD ── */
+.driver-card {
+  background: var(--white); border-radius: 22px; padding: 22px;
+  border: 1px solid var(--g200); box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+  animation: float 4s ease-in-out infinite;
+}
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
-.hero-left > * { animation:fadeUp 0.55s ease both; }
-.eyebrow { animation-delay:0.1s; } .h1 { animation-delay:0.2s; } .hero-sub { animation-delay:0.3s; } .actions { animation-delay:0.4s; } .hero-stats { animation-delay:0.5s; }
-.hero-right .driver-card { animation:fadeUp 0.6s ease 0.25s both, float 4s ease-in-out 1s infinite; }
+.hero-left > * { animation: fadeUp 0.55s ease both; }
+.eyebrow{animation-delay:0.1s;} .h1{animation-delay:0.2s;} .hero-sub{animation-delay:0.3s;}
+.actions{animation-delay:0.4s;} .hero-stats{animation-delay:0.5s;}
+.hero-right .driver-card { animation: fadeUp 0.6s ease 0.25s both, float 4s ease-in-out 1.5s infinite; }
 
-.dc-head { display:flex; gap:14px; align-items:flex-start; margin-bottom:16px; }
-.dc-av { width:56px; height:56px; border-radius:50%; flex-shrink:0; background:linear-gradient(135deg,var(--teal),var(--teal-mid)); display:flex; align-items:center; justify-content:center; font-family:'Sora'; font-weight:800; font-size:20px; color:white; }
-.dc-name { font-family:'Sora'; font-size:17px; font-weight:700; letter-spacing:-0.3px; }
-.dc-car { font-size:12px; color:var(--g600); margin-top:3px; }
-.dc-badge { display:inline-flex; align-items:center; gap:4px; background:var(--teal-light); border:1px solid rgba(15,110,110,0.18); border-radius:100px; padding:3px 10px; font-size:10px; font-weight:500; color:var(--teal); margin-top:5px; }
-.dc-rating { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
-.dc-stars { color:#FFB800; font-size:15px; letter-spacing:1px; }
-.dc-rn { font-family:'Sora'; font-size:21px; font-weight:700; }
-.dc-rc { font-size:12px; color:var(--g600); }
-.cat-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:16px; }
-.cat-lbl { font-size:10px; color:var(--g600); margin-bottom:3px; display:flex; justify-content:space-between; }
-.cat-lbl span { font-weight:500; color:var(--black); }
-.cat-bar { height:3px; background:var(--g200); border-radius:100px; overflow:hidden; }
-.cat-fill { height:100%; border-radius:100px; background:var(--teal); }
-.photo-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin-bottom:14px; }
-.photo-thumb { aspect-ratio:4/3; border-radius:8px; overflow:hidden; position:relative; display:flex; align-items:center; justify-content:center; }
-.pt-label { position:absolute; bottom:3px; left:3px; background:rgba(15,110,110,0.82); color:white; font-size:8px; padding:2px 5px; border-radius:3px; }
-.dc-review { background:var(--off-white); border-radius:10px; padding:11px 13px; border-left:2px solid var(--teal); margin-bottom:12px; }
-.dc-rv-text { font-size:12px; color:var(--g800); font-style:italic; line-height:1.5; }
-.dc-rv-by { font-size:10px; color:var(--g400); margin-top:4px; }
-.call-btn { width:100%; background:var(--teal); color:white; border:none; padding:12px; border-radius:10px; font-family:'DM Sans'; font-size:14px; font-weight:500; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; transition:background 0.2s; }
-.call-btn:hover { background:var(--teal-dark); }
+.dc-head { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 14px; }
+.dc-av { width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0; background: linear-gradient(135deg,var(--teal),var(--teal-mid)); display: flex; align-items: center; justify-content: center; font-family: 'Sora'; font-weight: 800; font-size: 18px; color: white; }
+.dc-name { font-family: 'Sora'; font-size: 16px; font-weight: 700; letter-spacing: -0.3px; }
+.dc-car { font-size: 12px; color: var(--g600); margin-top: 3px; }
+.dc-badge { display: inline-flex; align-items: center; gap: 4px; background: var(--teal-light); border: 1px solid rgba(15,110,110,0.18); border-radius: 100px; padding: 2px 9px; font-size: 10px; font-weight: 500; color: var(--teal); margin-top: 5px; }
+.dc-rating { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.dc-stars { color: #FFB800; font-size: 14px; letter-spacing: 1px; }
+.dc-rn { font-family: 'Sora'; font-size: 20px; font-weight: 700; }
+.dc-rc { font-size: 11px; color: var(--g600); }
+.cat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+.cat-lbl { font-size: 10px; color: var(--g600); margin-bottom: 3px; display: flex; justify-content: space-between; }
+.cat-lbl span { font-weight: 500; color: var(--black); }
+.cat-bar { height: 3px; background: var(--g200); border-radius: 100px; overflow: hidden; }
+.cat-fill { height: 100%; border-radius: 100px; background: var(--teal); }
+.photo-strip { display: grid; grid-template-columns: repeat(4,1fr); gap: 5px; margin-bottom: 12px; }
+.photo-thumb { aspect-ratio: 4/3; border-radius: 7px; overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; }
+.pt-label { position: absolute; bottom: 3px; left: 3px; background: rgba(15,110,110,0.82); color: white; font-size: 8px; padding: 2px 5px; border-radius: 3px; }
+.dc-review { background: var(--off-white); border-radius: 9px; padding: 10px 12px; border-left: 2px solid var(--teal); margin-bottom: 12px; }
+.dc-rv-text { font-size: 11px; color: var(--g800); font-style: italic; line-height: 1.5; }
+.dc-rv-by { font-size: 10px; color: var(--g400); margin-top: 4px; }
+.call-btn { width: 100%; background: var(--teal); color: white; border: none; padding: 12px; border-radius: 10px; font-family: 'DM Sans'; font-size: 14px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s; }
+.call-btn:hover { background: var(--teal-dark); }
 
-/* SECTIONS */
-.sec { padding:80px 48px; }
-.sec-inner { max-width:1160px; margin:0 auto; }
-.sec-label { font-size:11px; font-weight:500; letter-spacing:4px; text-transform:uppercase; color:var(--orange); margin-bottom:14px; }
-.sec-h2 { font-family:'Sora'; font-weight:800; font-size:clamp(30px,3.5vw,46px); letter-spacing:-2px; line-height:1.05; color:var(--black); margin-bottom:40px; }
-.sec-h2-w { font-family:'Sora'; font-weight:800; font-size:clamp(30px,3.5vw,46px); letter-spacing:-2px; line-height:1.05; color:white; margin-bottom:40px; }
+/* ── SHARED SECTION STYLES ── */
+.sec { padding: 72px 48px; }
+.sec-inner { max-width: 1160px; margin: 0 auto; }
+.sec-label { font-size: 11px; font-weight: 500; letter-spacing: 4px; text-transform: uppercase; color: var(--orange); margin-bottom: 12px; }
+.sec-h2 { font-family: 'Sora'; font-weight: 800; font-size: clamp(28px,3.5vw,44px); letter-spacing: -2px; line-height: 1.05; color: var(--black); margin-bottom: 36px; }
+.sec-h2-w { font-family: 'Sora'; font-weight: 800; font-size: clamp(28px,3.5vw,44px); letter-spacing: -2px; line-height: 1.05; color: white; margin-bottom: 36px; }
 
-/* HOW */
-.steps { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
-.step { background:var(--white); border-radius:18px; padding:26px 22px; border:1px solid var(--g200); position:relative; overflow:hidden; }
-.step-bg { font-family:'Sora'; font-size:68px; font-weight:800; color:rgba(15,110,110,0.05); position:absolute; top:6px; right:12px; line-height:1; letter-spacing:-4px; }
-.step-icon { width:44px; height:44px; background:var(--teal-light); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:14px; }
-.step-title { font-family:'Sora'; font-size:16px; font-weight:700; margin-bottom:8px; letter-spacing:-0.3px; }
-.step-desc { font-size:13px; color:var(--g600); line-height:1.6; }
+/* ── HOW IT WORKS ── */
+.steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.step { background: var(--white); border-radius: 16px; padding: 24px 20px; border: 1px solid var(--g200); position: relative; overflow: hidden; }
+.step-bg { font-family: 'Sora'; font-size: 64px; font-weight: 800; color: rgba(15,110,110,0.05); position: absolute; top: 4px; right: 10px; line-height: 1; letter-spacing: -4px; }
+.step-icon { width: 42px; height: 42px; background: var(--teal-light); border-radius: 11px; display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 13px; }
+.step-title { font-family: 'Sora'; font-size: 15px; font-weight: 700; margin-bottom: 7px; }
+.step-desc { font-size: 13px; color: var(--g600); line-height: 1.6; }
 
-/* RATINGS */
-.sec-teal { padding:80px 48px; background:var(--teal); }
-.ratings-grid { max-width:1160px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
-.rc-list { display:flex; flex-direction:column; gap:10px; }
-.rc { display:flex; align-items:center; gap:12px; }
-.rc-icon { font-size:15px; width:20px; text-align:center; }
-.rc-name { font-size:13px; font-weight:500; color:rgba(255,255,255,0.9); width:96px; flex-shrink:0; }
-.rc-track { flex:1; height:4px; background:rgba(255,255,255,0.15); border-radius:100px; overflow:hidden; }
-.rc-fill { height:100%; border-radius:100px; background:rgba(255,255,255,0.8); }
-.rc-score { font-family:'Sora'; font-size:12px; font-weight:700; color:white; width:26px; text-align:right; }
-.dp-card { background:rgba(255,255,255,0.08); border-radius:18px; padding:22px; border:1px solid rgba(255,255,255,0.12); }
-.dp-top { display:flex; gap:12px; margin-bottom:16px; }
-.dp-av { width:48px; height:48px; border-radius:50%; background:rgba(255,255,255,0.18); display:flex; align-items:center; justify-content:center; font-family:'Sora'; font-size:18px; font-weight:800; color:white; }
-.dp-stats { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
-.dp-stat { background:rgba(255,255,255,0.07); border-radius:10px; padding:12px; }
-.dp-stat-n { font-family:'Sora'; font-size:20px; font-weight:800; color:white; }
-.dp-stat-l { font-size:11px; color:rgba(255,255,255,0.5); margin-top:2px; }
+/* ── RATINGS ── */
+.sec-teal { padding: 72px 48px; background: var(--teal); }
+.ratings-grid { max-width: 1160px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.rc-list { display: flex; flex-direction: column; gap: 9px; }
+.rc { display: flex; align-items: center; gap: 10px; }
+.rc-icon { font-size: 14px; width: 20px; text-align: center; }
+.rc-name { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.9); width: 92px; flex-shrink: 0; }
+.rc-track { flex: 1; height: 4px; background: rgba(255,255,255,0.15); border-radius: 100px; overflow: hidden; }
+.rc-fill { height: 100%; border-radius: 100px; background: rgba(255,255,255,0.8); }
+.rc-score { font-family: 'Sora'; font-size: 12px; font-weight: 700; color: white; width: 26px; text-align: right; }
+.dp-card { background: rgba(255,255,255,0.08); border-radius: 16px; padding: 20px; border: 1px solid rgba(255,255,255,0.12); }
+.dp-top { display: flex; gap: 12px; margin-bottom: 14px; }
+.dp-av { width: 46px; height: 46px; border-radius: 50%; background: rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center; font-family: 'Sora'; font-size: 17px; font-weight: 800; color: white; flex-shrink: 0; }
+.dp-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7px; }
+.dp-stat { background: rgba(255,255,255,0.07); border-radius: 9px; padding: 11px; }
+.dp-stat-n { font-family: 'Sora'; font-size: 18px; font-weight: 800; color: white; }
+.dp-stat-l { font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 2px; }
 
-/* BIDS */
-.bids-inner { max-width:1160px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
-.lowest-banner { background:var(--orange); color:white; border-radius:10px; padding:12px 16px; font-size:13px; display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
-.bid-stream { display:flex; flex-direction:column; gap:8px; }
-.bid-card { background:var(--white); border-radius:13px; padding:14px 16px; border:1px solid var(--g200); display:flex; align-items:center; gap:12px; transition:border-color 0.2s; }
-.bid-card:hover { border-color:var(--teal); }
-.bid-card.lowest { border-color:var(--orange); }
-.bid-av { width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Sora'; font-size:13px; font-weight:800; flex-shrink:0; }
-.bid-price { font-family:'Sora'; font-size:18px; font-weight:700; color:var(--teal); }
-.bid-low-tag { font-size:10px; color:var(--orange); background:var(--orange-light); padding:2px 7px; border-radius:100px; margin-top:2px; display:inline-block; }
+/* ── BIDS ── */
+.bids-inner { max-width: 1160px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.lowest-banner { background: var(--orange); color: white; border-radius: 10px; padding: 11px 14px; font-size: 13px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 7px; }
+.bid-stream { display: flex; flex-direction: column; gap: 7px; }
+.bid-card { background: var(--white); border-radius: 12px; padding: 13px 15px; border: 1px solid var(--g200); display: flex; align-items: center; gap: 12px; transition: border-color 0.2s; cursor: pointer; }
+.bid-card:hover { border-color: var(--teal); }
+.bid-card.lowest { border-color: var(--orange); }
+.bid-av { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Sora'; font-size: 13px; font-weight: 800; flex-shrink: 0; }
+.bid-price { font-family: 'Sora'; font-size: 17px; font-weight: 700; color: var(--teal); }
+.bid-low-tag { font-size: 10px; color: var(--orange); background: var(--orange-light); padding: 2px 7px; border-radius: 100px; margin-top: 2px; display: inline-block; }
 
-/* TRUST */
-.sec-black { padding:80px 48px; background:var(--black); }
-.trust-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; background:rgba(255,255,255,0.04); border-radius:14px; overflow:hidden; margin-top:44px; }
-.trust-item { background:#1a1a18; padding:26px 20px; }
-.ti-icon { font-size:22px; margin-bottom:12px; }
-.ti-title { font-family:'Sora'; font-size:15px; font-weight:700; color:white; margin-bottom:8px; }
-.ti-desc { font-size:12px; color:#888880; line-height:1.6; }
+/* ── TRUST ── */
+.sec-black { padding: 72px 48px; background: var(--black); }
+.trust-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; background: rgba(255,255,255,0.04); border-radius: 14px; overflow: hidden; margin-top: 40px; }
+.trust-item { background: #1a1a18; padding: 24px 20px; }
+.ti-icon { font-size: 20px; margin-bottom: 12px; }
+.ti-title { font-family: 'Sora'; font-size: 14px; font-weight: 700; color: white; margin-bottom: 7px; }
+.ti-desc { font-size: 12px; color: #888880; line-height: 1.6; }
 
-/* COMPARE */
-.compare-table { width:100%; border-collapse:collapse; margin-top:44px; }
-.compare-table th { background:rgba(255,255,255,0.04); padding:12px 18px; font-size:11px; font-weight:500; letter-spacing:2px; text-transform:uppercase; color:#666660; text-align:left; }
-.compare-table td { background:#1a1a18; padding:16px 18px; font-size:13px; color:#888880; border-top:1px solid rgba(255,255,255,0.04); }
-.compare-table tr.ours td { background:rgba(15,110,110,0.12); color:white; }
-.tick { color:var(--teal); } .cross { color:#444440; }
+/* ── COMPARE ── */
+.compare-table { width: 100%; border-collapse: collapse; margin-top: 40px; }
+.compare-table th { background: rgba(255,255,255,0.04); padding: 11px 16px; font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: #666660; text-align: left; }
+.compare-table td { background: #1a1a18; padding: 14px 16px; font-size: 13px; color: #888880; border-top: 1px solid rgba(255,255,255,0.04); }
+.compare-table tr.ours td { background: rgba(15,110,110,0.12); color: white; }
+.tick { color: var(--teal); } .cross { color: #444440; }
 
-/* DRIVERS */
-.driver-cta-inner { max-width:1160px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
-.feat-list { display:flex; flex-direction:column; gap:14px; margin:20px 0 28px; }
-.feat { display:flex; gap:14px; align-items:flex-start; }
-.feat-icon { width:38px; height:38px; border-radius:10px; background:var(--teal-light); display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
-.feat-title { font-size:14px; font-weight:500; margin-bottom:3px; }
-.feat-desc { font-size:12px; color:var(--g600); line-height:1.5; }
-.driver-dash { background:var(--white); border-radius:18px; padding:22px; border:1px solid var(--g200); }
-.dash-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:14px; }
-.dash-stat { background:var(--off-white); border-radius:10px; padding:12px; }
-.dash-n { font-family:'Sora'; font-size:21px; font-weight:800; color:var(--teal); }
-.dash-l { font-size:11px; color:var(--g600); margin-top:2px; }
+/* ── FOR DRIVERS ── */
+.driver-cta-inner { max-width: 1160px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.feat-list { display: flex; flex-direction: column; gap: 13px; margin: 18px 0 26px; }
+.feat { display: flex; gap: 13px; align-items: flex-start; }
+.feat-icon { width: 36px; height: 36px; border-radius: 9px; background: var(--teal-light); display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
+.feat-title { font-size: 14px; font-weight: 500; margin-bottom: 2px; }
+.feat-desc { font-size: 12px; color: var(--g600); line-height: 1.5; }
+.driver-dash { background: var(--white); border-radius: 16px; padding: 20px; border: 1px solid var(--g200); }
+.dash-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 9px; margin-bottom: 13px; }
+.dash-stat { background: var(--off-white); border-radius: 9px; padding: 12px; }
+.dash-n { font-family: 'Sora'; font-size: 20px; font-weight: 800; color: var(--teal); }
+.dash-l { font-size: 11px; color: var(--g600); margin-top: 2px; }
 
-/* CTA */
-.cta-bottom { padding:80px 48px; background:var(--teal); position:relative; overflow:hidden; text-align:center; }
-.cta-bottom::before { content:''; position:absolute; top:-80px; right:-80px; width:300px; height:300px; border-radius:50%; background:rgba(255,255,255,0.05); }
-.cta-bottom::after { content:''; position:absolute; bottom:-100px; left:-60px; width:360px; height:360px; border-radius:50%; background:rgba(255,107,53,0.1); }
-.cta-content { position:relative; z-index:2; max-width:600px; margin:0 auto; }
-.cta-h2 { font-family:'Sora'; font-weight:800; font-size:clamp(30px,4vw,50px); letter-spacing:-2px; color:white; margin-bottom:14px; line-height:1.05; }
-.cta-h2 .outline-w { -webkit-text-stroke:2px rgba(255,255,255,0.7); color:transparent; }
-.cta-btns { display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:36px; }
-.btn-white { display:inline-flex; align-items:center; gap:10px; background:white; color:var(--teal); font-family:'DM Sans'; font-size:15px; font-weight:500; padding:12px 26px; border-radius:100px; text-decoration:none; box-shadow:0 6px 24px rgba(0,0,0,0.15); transition:transform 0.15s; }
-.btn-white:hover { transform:translateY(-2px); }
-.btn-ghost-w { display:inline-flex; align-items:center; gap:8px; color:rgba(255,255,255,0.85); font-size:14px; text-decoration:none; border:1px solid rgba(255,255,255,0.3); padding:11px 22px; border-radius:100px; transition:background 0.2s; }
-.btn-ghost-w:hover { background:rgba(255,255,255,0.1); }
-.cta-nums { display:flex; align-items:center; justify-content:center; gap:28px; }
-.cn-n { font-family:'Sora'; font-size:22px; font-weight:800; color:white; }
-.cn-l { font-size:12px; color:rgba(255,255,255,0.5); margin-top:2px; }
-.cn-div { width:1px; height:32px; background:rgba(255,255,255,0.2); }
+/* ── CTA BOTTOM ── */
+.cta-bottom { padding: 72px 48px; background: var(--teal); position: relative; overflow: hidden; text-align: center; }
+.cta-bottom::before { content:''; position:absolute; top:-80px; right:-80px; width:280px; height:280px; border-radius:50%; background:rgba(255,255,255,0.05); }
+.cta-bottom::after { content:''; position:absolute; bottom:-100px; left:-60px; width:340px; height:340px; border-radius:50%; background:rgba(255,107,53,0.1); }
+.cta-content { position: relative; z-index: 2; max-width: 580px; margin: 0 auto; }
+.cta-logo-wrap { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 24px; }
+.cta-logo-icon { width: 52px; height: 52px; filter: brightness(0) invert(1); opacity: 0.9; }
+.cta-logo-text { font-family: 'Sora'; font-weight: 800; font-size: 28px; letter-spacing: -1px; color: white; }
+.cta-h2 { font-family: 'Sora'; font-weight: 800; font-size: clamp(28px,4vw,48px); letter-spacing: -2px; color: white; margin-bottom: 13px; line-height: 1.05; }
+.cta-h2 .outline-w { -webkit-text-stroke: 2px rgba(255,255,255,0.7); color: transparent; }
+.cta-btns { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+.btn-white { display: inline-flex; align-items: center; gap: 10px; background: white; color: var(--teal); font-family: 'DM Sans'; font-size: 15px; font-weight: 500; padding: 12px 24px; border-radius: 100px; text-decoration: none; box-shadow: 0 6px 24px rgba(0,0,0,0.15); transition: transform 0.15s; }
+.btn-white:hover { transform: translateY(-2px); }
+.btn-ghost-w { display: inline-flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.85); font-size: 14px; text-decoration: none; border: 1px solid rgba(255,255,255,0.3); padding: 11px 20px; border-radius: 100px; transition: background 0.2s; }
+.btn-ghost-w:hover { background: rgba(255,255,255,0.1); }
+.cta-nums { display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap; }
+.cn-n { font-family: 'Sora'; font-size: 22px; font-weight: 800; color: white; }
+.cn-l { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+.cn-div { width: 1px; height: 32px; background: rgba(255,255,255,0.2); }
 
-/* FOOTER */
-footer { background:var(--black); padding:36px 48px; }
-.footer-inner { max-width:1160px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; }
-.fl { font-family:'Sora'; font-size:18px; font-weight:800; }
-.fl .t { color:white; } .fl .y { color:var(--teal); }
-.fl-tag { font-size:11px; color:#555550; margin-top:3px; letter-spacing:2px; text-transform:uppercase; }
-.footer-links { display:flex; gap:24px; }
-.footer-links a { font-size:13px; color:#555550; text-decoration:none; transition:color 0.2s; }
-.footer-links a:hover { color:var(--teal); }
+/* ── FOOTER ── */
+footer { background: var(--black); padding: 36px 48px; }
+.footer-inner { max-width: 1160px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+.footer-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.footer-logo-icon { width: 32px; height: 32px; filter: brightness(0) invert(1); opacity: 0.8; }
+.fl { font-family: 'Sora'; font-size: 17px; font-weight: 800; }
+.fl .t { color: white; } .fl .y { color: var(--teal); }
+.fl-tag { font-size: 10px; color: #555550; margin-top: 2px; letter-spacing: 2px; text-transform: uppercase; }
+.footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+.footer-links a { font-size: 13px; color: #555550; text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--teal); }
 
-.btn-primary { display:inline-flex; align-items:center; gap:8px; background:var(--teal); color:white; font-family:'DM Sans'; font-size:15px; font-weight:500; padding:13px 26px; border-radius:100px; text-decoration:none; box-shadow:0 6px 24px rgba(15,110,110,0.25); transition:background 0.2s, transform 0.15s; }
-.btn-primary:hover { background:var(--teal-dark); transform:translateY(-2px); }
+.btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--teal); color: white; font-family: 'DM Sans'; font-size: 15px; font-weight: 500; padding: 12px 24px; border-radius: 100px; text-decoration: none; box-shadow: 0 6px 24px rgba(15,110,110,0.25); transition: background 0.2s, transform 0.15s; }
+.btn-primary:hover { background: var(--teal-dark); transform: translateY(-2px); }
+
+/* ── INLINE SVG LOGO ── */
+.logo-svg { display: block; }
+
+/* ════════════════════════════
+   RESPONSIVE — TABLET & MOBILE
+   ════════════════════════════ */
+
+/* Tablet: 768–1024px */
+@media (max-width: 1024px) {
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .hero { grid-template-columns: 1fr; gap: 40px; padding: 90px 24px 60px; min-height: auto; }
+  .hero-right { display: none; }
+  .hero-sub { max-width: 100%; }
+  .steps { grid-template-columns: 1fr 1fr; }
+  .ratings-grid { grid-template-columns: 1fr; gap: 40px; }
+  .bids-inner { grid-template-columns: 1fr; gap: 40px; }
+  .trust-grid { grid-template-columns: repeat(2,1fr); }
+  .driver-cta-inner { grid-template-columns: 1fr; gap: 40px; }
+  .driver-dash { display: none; }
+  .compare-table th:nth-child(n+4), .compare-table td:nth-child(n+4) { display: none; }
+  .sec { padding: 60px 24px; }
+  .sec-teal { padding: 60px 24px; }
+  .sec-black { padding: 60px 24px; }
+  .cta-bottom { padding: 60px 24px; }
+  footer { padding: 28px 24px; }
+}
+
+/* Mobile: up to 768px */
+@media (max-width: 768px) {
+  nav { padding: 0 20px; height: 60px; }
+  .mobile-menu { top: 60px; }
+  .nav-logo-text { font-size: 18px; }
+  .nav-logo-icon { width: 30px; height: 30px; }
+  .hero { padding: 80px 20px 48px; gap: 32px; }
+  .h1 { font-size: clamp(34px, 9vw, 48px); letter-spacing: -2px; }
+  .hero-stats { gap: 20px; }
+  .steps { grid-template-columns: 1fr; }
+  .trust-grid { grid-template-columns: 1fr 1fr; gap: 2px; }
+  .compare-table th:nth-child(n+3), .compare-table td:nth-child(n+3) { display: none; }
+  .compare-table { font-size: 12px; }
+  .compare-table th, .compare-table td { padding: 11px 12px; }
+  .cta-nums { gap: 16px; }
+  .cn-div { display: none; }
+  .footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .footer-links { gap: 16px; }
+  .sec { padding: 52px 20px; }
+  .sec-teal, .sec-black, .cta-bottom { padding: 52px 20px; }
+  footer { padding: 28px 20px; }
+  .dp-card { display: block; }
+}
+
+/* Small mobile: up to 480px */
+@media (max-width: 480px) {
+  .trust-grid { grid-template-columns: 1fr; }
+  .hero-stats { flex-wrap: wrap; gap: 16px; }
+  .hero-stats > div { min-width: 80px; }
+  .actions { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .play-badge { width: 100%; justify-content: center; }
+  .cta-btns { flex-direction: column; align-items: center; }
+  .btn-white, .btn-ghost-w { width: 100%; justify-content: center; }
+  .btn-primary { width: 100%; justify-content: center; }
+  .ratings-grid { grid-template-columns: 1fr; }
+  .dp-stats { grid-template-columns: 1fr 1fr 1fr; }
+  .sec-h2, .sec-h2-w { letter-spacing: -1px; }
+}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ── NAV ── -->
 <nav>
-  <a class="logo" href="#"><span class="t">Taxi</span><span class="y">Yaar</span></a>
+  <a class="nav-logo" href="#">
+    <svg class="nav-logo-icon logo-svg" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="500" height="500" rx="110" fill="#0F6E6E"/>
+      <rect x="60" y="268" width="380" height="148" rx="30" fill="#ffffff"/>
+      <path d="M100 268 L138 158 L362 158 L400 268Z" fill="#ffffff"/>
+      <rect x="148" y="100" width="204" height="68" rx="18" fill="#ffffff"/>
+      <text x="250" y="150" text-anchor="middle" font-size="42" font-weight="900" fill="#0F6E6E" font-family="sans-serif" letter-spacing="6">TAXI</text>
+      <rect x="118" y="168" width="90" height="80" rx="14" fill="#0F6E6E" opacity="0.9"/>
+      <rect x="292" y="168" width="90" height="80" rx="14" fill="#0F6E6E" opacity="0.9"/>
+      <line x1="250" y1="268" x2="250" y2="416" stroke="#0F6E6E" stroke-width="5" opacity="0.2"/>
+      <rect x="60" y="318" width="380" height="24" fill="#0F6E6E" opacity="0.12"/>
+      <circle cx="134" cy="418" r="52" fill="#ffffff" stroke="#0F6E6E" stroke-width="14"/>
+      <circle cx="134" cy="418" r="20" fill="#0F6E6E"/>
+      <circle cx="366" cy="418" r="52" fill="#ffffff" stroke="#0F6E6E" stroke-width="14"/>
+      <circle cx="366" cy="418" r="20" fill="#0F6E6E"/>
+      <ellipse cx="442" cy="310" rx="24" ry="18" fill="#0F6E6E" opacity="0.55"/>
+    </svg>
+    <div class="nav-logo-text"><span class="t">Taxi</span><span class="y">Yaar</span></div>
+  </a>
   <ul class="nav-links">
     <li><a href="#how">How it works</a></li>
     <li><a href="#ratings">Ratings</a></li>
     <li><a href="#drivers">For drivers</a></li>
   </ul>
-  <a href="https://play.google.com/store" class="nav-cta">Get on Google Play ↓</a>
+  <a href="https://play.google.com/store" class="nav-cta" id="navCta">Get on Google Play ↓</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-<!-- HERO -->
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#how" onclick="closeMenu()">How it works</a>
+  <a href="#ratings" onclick="closeMenu()">Ratings</a>
+  <a href="#bids" onclick="closeMenu()">Request a trip</a>
+  <a href="#drivers" onclick="closeMenu()">For drivers</a>
+  <a href="https://play.google.com/store" class="m-cta">▶ &nbsp;Download on Google Play</a>
+</div>
+
+<!-- ── HERO ── -->
 <section style="background:var(--off-white);">
 <div class="hero">
   <div class="hero-left">
@@ -208,12 +360,11 @@ footer { background:var(--black); padding:36px 48px; }
       <a href="#how" style="font-size:14px;color:var(--teal);text-decoration:none;font-weight:500;">See how it works →</a>
     </div>
     <div class="hero-stats">
-      <div><div class="stat-n">8<span>+</span></div><div class="stat-l">Rating categories per driver</div></div>
-      <div><div class="stat-n">100<span>%</span></div><div class="stat-l">Manually verified drivers</div></div>
-      <div><div class="stat-n">₹0</div><div class="stat-l">Platform commission</div></div>
+      <div><div class="stat-n">8<span>+</span></div><div class="stat-l">Rating categories</div></div>
+      <div><div class="stat-n">100<span>%</span></div><div class="stat-l">Manually verified</div></div>
+      <div><div class="stat-n">₹0</div><div class="stat-l">Commission</div></div>
     </div>
   </div>
-
   <div class="hero-right">
     <div class="driver-card">
       <div class="dc-head">
@@ -235,27 +386,27 @@ footer { background:var(--black); padding:36px 48px; }
         <div><div class="cat-lbl">Honesty <span>5.0</span></div><div class="cat-bar"><div class="cat-fill" style="width:100%"></div></div></div>
         <div><div class="cat-lbl">Cleanliness <span>4.7</span></div><div class="cat-bar"><div class="cat-fill" style="width:94%"></div></div></div>
       </div>
-      <div style="font-size:10px;font-weight:500;color:var(--g400);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:7px;">Car Photos · Admin Verified</div>
+      <div style="font-size:10px;font-weight:500;color:var(--g400);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;">Car Photos · Admin Verified</div>
       <div class="photo-strip">
         <div class="photo-thumb" style="background:#e8f4f4;">
-          <svg viewBox="0 0 60 40" width="42" fill="none"><rect x="5" y="13" width="50" height="18" rx="3" fill="#0F6E6E" opacity="0.7"/><path d="M10 13 C12 5 18 3 22 3 L38 3 C42 3 48 5 50 13Z" fill="#0a5a5a" opacity="0.8"/><circle cx="15" cy="31" r="6" fill="#222"/><circle cx="45" cy="31" r="6" fill="#222"/><rect x="48" y="9" width="7" height="6" rx="2" fill="#FFE580" opacity="0.9"/></svg>
+          <svg viewBox="0 0 60 40" width="40" fill="none"><rect x="5" y="13" width="50" height="18" rx="3" fill="#0F6E6E" opacity="0.7"/><path d="M10 13 C12 5 18 3 22 3 L38 3 C42 3 48 5 50 13Z" fill="#0a5a5a" opacity="0.8"/><circle cx="15" cy="31" r="6" fill="#222"/><circle cx="45" cy="31" r="6" fill="#222"/><rect x="48" y="9" width="7" height="6" rx="2" fill="#FFE580" opacity="0.9"/></svg>
           <div class="pt-label">Front</div>
         </div>
         <div class="photo-thumb" style="background:#f0f8f8;">
-          <svg viewBox="0 0 60 40" width="42" fill="none"><rect x="3" y="13" width="54" height="18" rx="3" fill="#0F6E6E" opacity="0.6"/><path d="M8 13 C10 5 16 3 20 3 L40 3 C44 3 50 5 52 13Z" fill="#0a5a5a" opacity="0.7"/><circle cx="12" cy="31" r="6" fill="#222"/><circle cx="48" cy="31" r="6" fill="#222"/></svg>
+          <svg viewBox="0 0 60 40" width="40" fill="none"><rect x="3" y="13" width="54" height="18" rx="3" fill="#0F6E6E" opacity="0.6"/><path d="M8 13 C10 5 16 3 20 3 L40 3 C44 3 50 5 52 13Z" fill="#0a5a5a" opacity="0.7"/><circle cx="12" cy="31" r="6" fill="#222"/><circle cx="48" cy="31" r="6" fill="#222"/></svg>
           <div class="pt-label">Side</div>
         </div>
         <div class="photo-thumb" style="background:#eaf0f0;">
-          <svg viewBox="0 0 60 40" width="42" fill="none"><rect x="8" y="7" width="44" height="28" rx="4" fill="#e8e8e0" opacity="0.9"/><rect x="12" y="11" width="16" height="12" rx="2" fill="#b0d0d0" opacity="0.8"/><rect x="32" y="11" width="16" height="12" rx="2" fill="#b0d0d0" opacity="0.8"/><rect x="12" y="25" width="36" height="6" rx="2" fill="#c0c0b8"/></svg>
+          <svg viewBox="0 0 60 40" width="40" fill="none"><rect x="8" y="7" width="44" height="28" rx="4" fill="#e8e8e0" opacity="0.9"/><rect x="12" y="11" width="16" height="12" rx="2" fill="#b0d0d0" opacity="0.8"/><rect x="32" y="11" width="16" height="12" rx="2" fill="#b0d0d0" opacity="0.8"/><rect x="12" y="25" width="36" height="6" rx="2" fill="#c0c0b8"/></svg>
           <div class="pt-label">Interior</div>
         </div>
         <div class="photo-thumb" style="background:#e4f2f2;">
-          <svg viewBox="0 0 60 40" width="42" fill="none"><rect x="5" y="9" width="50" height="24" rx="3" fill="#0F6E6E" opacity="0.5"/><rect x="10" y="15" width="40" height="12" rx="2" fill="rgba(255,255,255,0.1)"/></svg>
+          <svg viewBox="0 0 60 40" width="40" fill="none"><rect x="5" y="9" width="50" height="24" rx="3" fill="#0F6E6E" opacity="0.5"/><rect x="10" y="15" width="40" height="12" rx="2" fill="rgba(255,255,255,0.1)"/></svg>
           <div class="pt-label">Boot</div>
         </div>
       </div>
       <div class="dc-review">
-        <div class="dc-rv-text">"Never had a better driver. Innova always spotless, never a surprise toll charge. Wouldn't book anyone else."</div>
+        <div class="dc-rv-text">"Never had a better driver. Innova always spotless, never a surprise toll charge."</div>
         <div class="dc-rv-by">— Priya S. · 3 weeks ago</div>
       </div>
       <button class="call-btn">📞 &nbsp;Call Rajesh Directly</button>
@@ -264,18 +415,18 @@ footer { background:var(--black); padding:36px 48px; }
 </div>
 </section>
 
-<!-- HOW IT WORKS -->
+<!-- ── HOW IT WORKS ── -->
 <section class="sec" id="how" style="background:var(--off-white);">
 <div class="sec-inner">
   <div class="sec-label">How it works</div>
-  <h2 class="sec-h2" style="max-width:480px;margin-bottom:36px;">Two ways to find your driver</h2>
+  <h2 class="sec-h2" style="max-width:480px;margin-bottom:32px;">Two ways to find your driver</h2>
   <div class="steps">
     <div class="step"><div class="step-bg">1</div><div class="step-icon">🔍</div><div class="step-title">Browse verified drivers</div><p class="step-desc">Open the app, select your route. Scroll through verified driver profiles — 8-category ratings, real car photos, all past reviews. Take your time.</p></div>
-    <div class="step"><div class="step-bg">2</div><div class="step-icon">📋</div><div class="step-title">Or post a trip request</div><p class="step-desc">Share your route, date, and passenger count. Drivers bid with their price and a note. Compare bids side by side — profile and price together, always.</p></div>
-    <div class="step"><div class="step-bg">3</div><div class="step-icon">📞</div><div class="step-title">Pick, call, travel</div><p class="step-desc">Found someone you trust? Tap Call. Speak to them directly on your phone. Confirm pickup, agree price. No booking fee. No middleman. No surprises.</p></div>
+    <div class="step"><div class="step-bg">2</div><div class="step-icon">📋</div><div class="step-title">Post a trip request</div><p class="step-desc">Share your route, date, and passenger count. Drivers bid with their price and a note. Compare bids side by side — profile and price together, always.</p></div>
+    <div class="step"><div class="step-bg">3</div><div class="step-icon">📞</div><div class="step-title">Pick, call, travel</div><p class="step-desc">Found someone you trust? Tap Call. Speak to them directly on your phone. Confirm pickup, agree price. No booking fee. No middleman.</p></div>
   </div>
-  <div style="background:var(--white);border-radius:14px;padding:20px 24px;border:1px solid var(--g200);margin-top:16px;display:flex;align-items:center;gap:18px;">
-    <div style="font-size:22px;">💡</div>
+  <div style="background:var(--white);border-radius:14px;padding:18px 22px;border:1px solid var(--g200);margin-top:14px;display:flex;align-items:flex-start;gap:16px;">
+    <div style="font-size:20px;flex-shrink:0;margin-top:2px;">💡</div>
     <div>
       <div style="font-family:'Sora';font-size:14px;font-weight:700;margin-bottom:3px;">No in-app payments. No GPS tracking. No commission cut.</div>
       <div style="font-size:13px;color:var(--g600);line-height:1.6;">Intercity trips are planned in advance. You call the driver, agree on price, pay directly by cash or UPI. TaxiYaar owns the trust layer — not the transaction.</div>
@@ -284,13 +435,13 @@ footer { background:var(--black); padding:36px 48px; }
 </div>
 </section>
 
-<!-- RATINGS -->
+<!-- ── RATINGS ── -->
 <section class="sec-teal" id="ratings">
 <div class="ratings-grid">
   <div>
     <div class="sec-label" style="color:rgba(255,255,255,0.4);">8-Category Rating System</div>
-    <h2 class="sec-h2-w" style="margin-bottom:14px;">A star average<br>tells you nothing.</h2>
-    <p style="font-size:15px;color:rgba(255,255,255,0.65);line-height:1.7;margin-bottom:24px;">We rate every driver across 8 specific categories — because spending hours in a car with someone requires knowing exactly who they are, not a number out of 5.</p>
+    <h2 class="sec-h2-w" style="margin-bottom:13px;">A star average<br>tells you nothing.</h2>
+    <p style="font-size:15px;color:rgba(255,255,255,0.65);line-height:1.7;margin-bottom:22px;">We rate every driver across 8 specific categories — because spending hours in a car with someone requires knowing exactly who they are.</p>
     <div class="rc-list">
       <div class="rc"><div class="rc-icon">😊</div><div class="rc-name">Behaviour</div><div class="rc-track"><div class="rc-fill" style="width:96%"></div></div><div class="rc-score">4.8</div></div>
       <div class="rc"><div class="rc-icon">🛡️</div><div class="rc-name">Safety</div><div class="rc-track"><div class="rc-fill" style="width:98%"></div></div><div class="rc-score">4.9</div></div>
@@ -307,15 +458,15 @@ footer { background:var(--black); padding:36px 48px; }
       <div class="dp-top">
         <div class="dp-av">R</div>
         <div>
-          <div style="font-family:'Sora';font-size:16px;font-weight:700;color:white;">Rajesh Kumar</div>
+          <div style="font-family:'Sora';font-size:15px;font-weight:700;color:white;">Rajesh Kumar</div>
           <div style="font-size:12px;color:rgba(255,255,255,0.55);margin-top:2px;">Toyota Innova · Intercity Driver</div>
-          <div style="display:inline-flex;align-items:center;gap:3px;background:rgba(255,255,255,0.1);border-radius:100px;padding:3px 9px;font-size:10px;color:rgba(255,255,255,0.75);margin-top:5px;">✓ Aadhaar · DL · RC — Verified</div>
+          <div style="display:inline-flex;align-items:center;gap:3px;background:rgba(255,255,255,0.1);border-radius:100px;padding:3px 9px;font-size:10px;color:rgba(255,255,255,0.75);margin-top:5px;">✓ Aadhaar · DL · RC Verified</div>
         </div>
       </div>
-      <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:16px;line-height:1.6;font-style:italic;">"I believe a driver's job is to make the journey comfortable, not just get from A to B."</div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:14px;line-height:1.6;font-style:italic;">"I believe a driver's job is to make the journey comfortable, not just get from A to B."</div>
       <div class="dp-stats">
         <div class="dp-stat"><div class="dp-stat-n">4.9</div><div class="dp-stat-l">Overall rating</div></div>
-        <div class="dp-stat"><div class="dp-stat-n">142</div><div class="dp-stat-l">Verified reviews</div></div>
+        <div class="dp-stat"><div class="dp-stat-n">142</div><div class="dp-stat-l">Reviews</div></div>
         <div class="dp-stat" style="background:rgba(255,107,53,0.2);border:1px solid rgba(255,107,53,0.3);"><div class="dp-stat-n" style="color:#FF6B35;">5.0</div><div class="dp-stat-l">Honesty score</div></div>
       </div>
     </div>
@@ -323,24 +474,21 @@ footer { background:var(--black); padding:36px 48px; }
 </div>
 </section>
 
-<!-- BIDS -->
+<!-- ── BIDS ── -->
 <section class="sec" id="bids" style="background:var(--white);">
 <div class="bids-inner">
   <div>
     <div class="sec-label">Request Mode</div>
-    <h2 class="sec-h2" style="margin-bottom:14px;">Post your trip.<br>Drivers bid.<br>You choose trust.</h2>
-    <p style="font-size:15px;color:var(--g600);line-height:1.7;margin-bottom:20px;">Post your trip and let verified drivers come to you. Every bid shows their full profile alongside their price — so you never choose between a safe driver and a cheaper fare.</p>
-    <div style="background:var(--teal-light);border-radius:12px;padding:14px 18px;border:1px solid rgba(15,110,110,0.15);">
+    <h2 class="sec-h2" style="margin-bottom:13px;">Post your trip.<br>Drivers bid.<br>You choose trust.</h2>
+    <p style="font-size:15px;color:var(--g600);line-height:1.7;margin-bottom:18px;">Post your trip and let verified drivers come to you. Every bid shows their full profile alongside their price — so you never choose between a safe driver and a cheaper fare.</p>
+    <div style="background:var(--teal-light);border-radius:11px;padding:13px 17px;border:1px solid rgba(15,110,110,0.15);">
       <div style="font-size:13px;font-weight:500;color:var(--teal);margin-bottom:3px;">No expiry timers, no pressure.</div>
-      <div style="font-size:12px;color:var(--g600);line-height:1.55;">Your request stays open until you've found the right person. Take your time to read every profile.</div>
+      <div style="font-size:12px;color:var(--g600);line-height:1.55;">Your request stays open until you've found the right person.</div>
     </div>
   </div>
   <div>
     <div class="lowest-banner">
-      <div>
-        <div style="font-weight:500;font-size:13px;">3 drivers have bid · Lowest: ₹2,300</div>
-        <div style="font-size:11px;opacity:0.85;margin-top:2px;">Pick based on trust, not just price</div>
-      </div>
+      <div><div style="font-weight:500;font-size:13px;">3 drivers have bid · Lowest: ₹2,300</div><div style="font-size:11px;opacity:0.85;margin-top:2px;">Pick based on trust, not just price</div></div>
       <span>🏆</span>
     </div>
     <div class="bid-stream">
@@ -349,7 +497,7 @@ footer { background:var(--black); padding:36px 48px; }
         <div style="flex:1;">
           <div style="font-size:13px;font-weight:500;">Suresh Rawat</div>
           <div style="font-size:11px;color:var(--g600);"><span style="color:#FFB800;">★★★★☆</span> 4.5 · 51 reviews</div>
-          <div style="font-size:11px;color:var(--g600);font-style:italic;margin-top:2px;">"Can pick from any location"</div>
+          <div style="font-size:11px;color:var(--g600);font-style:italic;margin-top:1px;">"Can pick from any location"</div>
         </div>
         <div style="text-align:right;"><div class="bid-price">₹2,300</div><div class="bid-low-tag">Lowest bid</div></div>
       </div>
@@ -358,7 +506,7 @@ footer { background:var(--black); padding:36px 48px; }
         <div style="flex:1;">
           <div style="font-size:13px;font-weight:500;">Rajesh Kumar</div>
           <div style="font-size:11px;color:var(--g600);"><span style="color:#FFB800;">★★★★★</span> 4.9 · 142 reviews</div>
-          <div style="font-size:11px;color:var(--g600);font-style:italic;margin-top:2px;">"Innova, AC, music on request"</div>
+          <div style="font-size:11px;color:var(--g600);font-style:italic;margin-top:1px;">"Innova, AC, music on request"</div>
         </div>
         <div style="text-align:right;"><div class="bid-price">₹2,700</div></div>
       </div>
@@ -367,79 +515,81 @@ footer { background:var(--black); padding:36px 48px; }
         <div style="flex:1;">
           <div style="font-size:13px;font-weight:500;">Manoj Singh</div>
           <div style="font-size:11px;color:var(--g600);"><span style="color:#FFB800;">★★★★★</span> 4.7 · 89 reviews</div>
-          <div style="font-size:11px;color:var(--g600);font-style:italic;margin-top:2px;">"Ertiga, toll included"</div>
+          <div style="font-size:11px;color:var(--g600);font-style:italic;margin-top:1px;">"Ertiga, toll included"</div>
         </div>
         <div style="text-align:right;"><div class="bid-price">₹2,500</div></div>
       </div>
-      <div style="font-size:11px;color:var(--g400);text-align:center;margin-top:4px;">Tap any bid to open full driver profile before calling</div>
+      <div style="font-size:11px;color:var(--g400);text-align:center;margin-top:3px;">Tap any bid to view full driver profile</div>
     </div>
   </div>
 </div>
 </section>
 
-<!-- TRUST -->
+<!-- ── TRUST ── -->
 <section class="sec-black">
 <div style="max-width:1160px;margin:0 auto;">
   <div class="sec-label">Trust Infrastructure</div>
-  <h2 class="sec-h2-w" style="max-width:560px;margin-bottom:0;">Every driver is a person<br>you can genuinely trust.</h2>
+  <h2 class="sec-h2-w" style="max-width:520px;margin-bottom:0;">Every driver is a person<br>you can genuinely trust.</h2>
   <div class="trust-grid">
-    <div class="trust-item"><div class="ti-icon">🪪</div><div class="ti-title">Document verification</div><p class="ti-desc">Aadhaar, driving licence, and RC book reviewed by a human admin before any profile goes live. No automated approvals.</p></div>
-    <div class="trust-item"><div class="ti-icon">📸</div><div class="ti-title">4 verified car photos</div><p class="ti-desc">Front, side, interior, and boot — reviewed by our team. You see the exact car you'll spend hours in before you call.</p></div>
-    <div class="trust-item"><div class="ti-icon">⭐</div><div class="ti-title">Trip-verified reviews</div><p class="ti-desc">Reviews are only collected after confirmed trips. 142 reviews on a profile means 142 real journeys made.</p></div>
-    <div class="trust-item"><div class="ti-icon">🛡️</div><div class="ti-title">24-hour complaint handling</div><p class="ti-desc">Any verified complaint triggers an immediate admin review. Drivers suspended within 24 hours of a confirmed incident.</p></div>
+    <div class="trust-item"><div class="ti-icon">🪪</div><div class="ti-title">Document verification</div><p class="ti-desc">Aadhaar, driving licence, and RC book reviewed by a human admin. No automated approvals — ever.</p></div>
+    <div class="trust-item"><div class="ti-icon">📸</div><div class="ti-title">4 verified car photos</div><p class="ti-desc">Front, side, interior, and boot — reviewed by our team. See the exact car before you call.</p></div>
+    <div class="trust-item"><div class="ti-icon">⭐</div><div class="ti-title">Trip-verified reviews</div><p class="ti-desc">Reviews collected only after confirmed trips. 142 reviews means 142 real journeys made.</p></div>
+    <div class="trust-item"><div class="ti-icon">🛡️</div><div class="ti-title">24-hour complaint handling</div><p class="ti-desc">Any verified complaint triggers immediate admin review. Drivers suspended within 24 hours.</p></div>
   </div>
 </div>
 </section>
 
-<!-- COMPARE -->
+<!-- ── COMPARE ── -->
 <section class="sec-black" style="padding-top:0;">
 <div style="max-width:1160px;margin:0 auto;">
   <div class="sec-label">How we compare</div>
-  <table class="compare-table">
-    <thead>
-      <tr>
-        <th>Platform type</th>
-        <th>You choose your driver</th>
-        <th>Individual profiles</th>
-        <th>Deep category ratings</th>
-        <th>Driver bidding</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="ours">
-        <td><strong>TaxiYaar</strong></td>
-        <td><span class="tick">✓</span> Full choice</td>
-        <td><span class="tick">✓</span> Complete profile</td>
-        <td><span class="tick">✓</span> 8 categories</td>
-        <td><span class="tick">✓</span> Yes</td>
-      </tr>
-      <tr>
-        <td>Ride-hailing apps</td>
-        <td><span class="cross">✗</span> Random assignment</td>
-        <td><span class="cross">✗</span> None</td>
-        <td><span class="cross">✗</span> Basic stars only</td>
-        <td><span class="cross">✗</span> No</td>
-      </tr>
-      <tr>
-        <td>Bidding apps</td>
-        <td><span class="cross">✗</span> Limited</td>
-        <td><span class="cross">✗</span> Basic only</td>
-        <td><span class="cross">✗</span> Basic stars only</td>
-        <td style="color:#888880;">~ Yes</td>
-      </tr>
-      <tr>
-        <td>Agency-based apps</td>
-        <td><span class="cross">✗</span> Company assigns</td>
-        <td><span class="cross">✗</span> None</td>
-        <td><span class="cross">✗</span> None</td>
-        <td><span class="cross">✗</span> No</td>
-      </tr>
-    </tbody>
-  </table>
+  <div style="overflow-x:auto;">
+    <table class="compare-table" style="min-width:400px;">
+      <thead>
+        <tr>
+          <th>Platform type</th>
+          <th>You choose driver</th>
+          <th>Individual profiles</th>
+          <th>8-category ratings</th>
+          <th>Driver bidding</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="ours">
+          <td><strong>TaxiYaar</strong></td>
+          <td><span class="tick">✓</span> Full choice</td>
+          <td><span class="tick">✓</span> Complete</td>
+          <td><span class="tick">✓</span> Yes</td>
+          <td><span class="tick">✓</span> Yes</td>
+        </tr>
+        <tr>
+          <td>Ride-hailing apps</td>
+          <td><span class="cross">✗</span> Random</td>
+          <td><span class="cross">✗</span> None</td>
+          <td><span class="cross">✗</span> Stars only</td>
+          <td><span class="cross">✗</span> No</td>
+        </tr>
+        <tr>
+          <td>Bidding apps</td>
+          <td><span class="cross">✗</span> Limited</td>
+          <td><span class="cross">✗</span> Basic</td>
+          <td><span class="cross">✗</span> Stars only</td>
+          <td style="color:#888880;">~ Yes</td>
+        </tr>
+        <tr>
+          <td>Agency-based apps</td>
+          <td><span class="cross">✗</span> Assigned</td>
+          <td><span class="cross">✗</span> None</td>
+          <td><span class="cross">✗</span> None</td>
+          <td><span class="cross">✗</span> No</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 </section>
 
-<!-- FOR DRIVERS -->
+<!-- ── FOR DRIVERS ── -->
 <section class="sec" id="drivers" style="background:var(--off-white);">
 <div class="driver-cta-inner">
   <div>
@@ -448,38 +598,53 @@ footer { background:var(--black); padding:36px 48px; }
     <p style="font-size:15px;color:var(--g600);line-height:1.7;">The first platform built specifically for intercity drivers. Your profile is your business card. Your rating is your career.</p>
     <div class="feat-list">
       <div class="feat"><div class="feat-icon">📱</div><div><div class="feat-title">Your own profile</div><div class="feat-desc">Bio, car photos, availability — riders see the real you before choosing you.</div></div></div>
-      <div class="feat"><div class="feat-icon">🏆</div><div><div class="feat-title">Ratings bring more rides</div><div class="feat-desc">Higher rating means you appear first in browse results. Reviews are your reputation — permanent and portable.</div></div></div>
-      <div class="feat"><div class="feat-icon">💰</div><div><div class="feat-title">Zero commission</div><div class="feat-desc">You negotiate price directly with riders. What you earn stays with you — every rupee.</div></div></div>
+      <div class="feat"><div class="feat-icon">🏆</div><div><div class="feat-title">Ratings bring more rides</div><div class="feat-desc">Higher rating means you appear first. Reviews are your permanent reputation.</div></div></div>
+      <div class="feat"><div class="feat-icon">💰</div><div><div class="feat-title">Zero commission</div><div class="feat-desc">You negotiate price directly with riders. Every rupee you earn stays with you.</div></div></div>
     </div>
     <a href="#" class="btn-primary">Register as a driver →</a>
   </div>
   <div class="driver-dash">
-    <div style="font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--g400);margin-bottom:16px;">Driver Dashboard</div>
+    <div style="font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--g400);margin-bottom:14px;">Driver Dashboard</div>
     <div class="dash-stats">
       <div class="dash-stat"><div class="dash-n">4.9</div><div class="dash-l">Your rating</div></div>
       <div class="dash-stat"><div class="dash-n">142</div><div class="dash-l">Reviews</div></div>
       <div class="dash-stat"><div class="dash-n">3</div><div class="dash-l">Active bids</div></div>
     </div>
-    <div style="background:var(--off-white);border-radius:10px;padding:14px;margin-bottom:10px;">
-      <div style="font-size:11px;color:var(--g400);margin-bottom:6px;">New ride request · 2 min ago</div>
+    <div style="background:var(--off-white);border-radius:9px;padding:13px;margin-bottom:9px;">
+      <div style="font-size:11px;color:var(--g400);margin-bottom:5px;">New ride request · 2 min ago</div>
       <div style="font-size:14px;font-weight:500;">Delhi → Haridwar</div>
-      <div style="font-size:12px;color:var(--g600);margin-top:2px;">Sat 18 May · 6:00 AM · 2 passengers · Sedan/SUV</div>
-      <div style="display:flex;gap:8px;margin-top:10px;">
+      <div style="font-size:12px;color:var(--g600);margin-top:2px;">Sat 18 May · 6:00 AM · 2 passengers</div>
+      <div style="display:flex;gap:8px;margin-top:9px;">
         <button style="flex:1;background:var(--teal);color:white;border:none;padding:8px;border-radius:7px;font-family:'DM Sans';font-size:12px;font-weight:500;cursor:pointer;">Place bid</button>
         <button style="padding:8px 12px;border:1px solid var(--g200);background:transparent;border-radius:7px;font-size:12px;color:var(--g600);cursor:pointer;">Skip</button>
       </div>
     </div>
-    <div style="font-size:12px;color:var(--teal);text-align:center;padding:10px;background:var(--teal-light);border-radius:8px;">✓ Profile is live · 3 riders viewed it today</div>
+    <div style="font-size:12px;color:var(--teal);text-align:center;padding:9px;background:var(--teal-light);border-radius:8px;">✓ Profile is live · 3 riders viewed it today</div>
   </div>
 </div>
 </section>
 
-<!-- CTA -->
+<!-- ── CTA BOTTOM ── -->
 <section class="cta-bottom">
 <div class="cta-content">
-  <div style="font-size:10px;font-weight:500;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:14px;">The Airbnb for Intercity Drivers</div>
+  <div class="cta-logo-wrap">
+    <svg class="cta-logo-icon" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="500" height="500" rx="110" fill="white" opacity="0.9"/>
+      <rect x="60" y="268" width="380" height="148" rx="30" fill="#0F6E6E"/>
+      <path d="M100 268 L138 158 L362 158 L400 268Z" fill="#0F6E6E"/>
+      <rect x="148" y="100" width="204" height="68" rx="18" fill="#0F6E6E"/>
+      <text x="250" y="150" text-anchor="middle" font-size="42" font-weight="900" fill="white" font-family="sans-serif" letter-spacing="6">TAXI</text>
+      <rect x="118" y="168" width="90" height="80" rx="14" fill="white" opacity="0.9"/>
+      <rect x="292" y="168" width="90" height="80" rx="14" fill="white" opacity="0.9"/>
+      <circle cx="134" cy="418" r="52" fill="#0F6E6E" stroke="white" stroke-width="14"/>
+      <circle cx="134" cy="418" r="20" fill="white"/>
+      <circle cx="366" cy="418" r="52" fill="#0F6E6E" stroke="white" stroke-width="14"/>
+      <circle cx="366" cy="418" r="20" fill="white"/>
+    </svg>
+    <div class="cta-logo-text">TaxiYaar</div>
+  </div>
   <h2 class="cta-h2">Don't book a cab.<br>Book <span class="outline-w">Rajesh Kumar.</span></h2>
-  <p style="font-size:15px;color:rgba(255,255,255,0.7);margin-bottom:32px;line-height:1.6;">India's first platform where you choose the driver — not the other way around.</p>
+  <p style="font-size:15px;color:rgba(255,255,255,0.7);margin-bottom:28px;line-height:1.6;">India's first platform where you choose the driver — not the other way around.</p>
   <div class="cta-btns">
     <a href="https://play.google.com/store" class="btn-white">
       <span style="font-size:18px;">▶</span>
@@ -488,7 +653,7 @@ footer { background:var(--black); padding:36px 48px; }
         <div style="font-size:14px;font-weight:600;color:var(--teal);line-height:1.3;">Google Play</div>
       </div>
     </a>
-    <a href="#drivers" class="btn-ghost-w">List as a driver →</a>
+    <a href="#drivers" class="btn-ghost-w">Register as a driver →</a>
   </div>
   <div class="cta-nums">
     <div><div class="cn-n">100+</div><div class="cn-l">Verified drivers</div></div>
@@ -500,13 +665,24 @@ footer { background:var(--black); padding:36px 48px; }
 </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ── FOOTER ── -->
 <footer>
 <div class="footer-inner">
-  <div>
-    <div class="fl"><span class="t">Taxi</span><span class="y">Yaar</span></div>
-    <div class="fl-tag">Find · Trust · Travel</div>
-  </div>
+  <a class="footer-logo" href="#">
+    <svg class="footer-logo-icon" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="500" height="500" rx="110" fill="#0F6E6E"/>
+      <rect x="60" y="268" width="380" height="148" rx="30" fill="#ffffff"/>
+      <path d="M100 268 L138 158 L362 158 L400 268Z" fill="#ffffff"/>
+      <circle cx="134" cy="418" r="52" fill="#ffffff" stroke="#0F6E6E" stroke-width="14"/>
+      <circle cx="134" cy="418" r="20" fill="#0F6E6E"/>
+      <circle cx="366" cy="418" r="52" fill="#ffffff" stroke="#0F6E6E" stroke-width="14"/>
+      <circle cx="366" cy="418" r="20" fill="#0F6E6E"/>
+    </svg>
+    <div>
+      <div class="fl"><span class="t">Taxi</span><span class="y">Yaar</span></div>
+      <div class="fl-tag">Find · Trust · Travel</div>
+    </div>
+  </a>
   <div class="footer-links">
     <a href="#">About</a>
     <a href="#how">How it works</a>
@@ -521,5 +697,39 @@ footer { background:var(--black); padding:36px 48px; }
 </div>
 </footer>
 
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const navCta = document.getElementById('navCta');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  }
+
+  // Hide desktop CTA on mobile, show hamburger
+  function handleResize() {
+    if (window.innerWidth <= 1024) {
+      navCta.style.display = 'none';
+    } else {
+      navCta.style.display = 'inline-flex';
+      closeMenu();
+    }
+  }
+  handleResize();
+  window.addEventListener('resize', handleResize);
+
+  // Close menu on outside click
+  document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+      closeMenu();
+    }
+  });
+</script>
 </body>
 </html>
