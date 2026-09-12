@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms &amp; Conditions – TaxiYaar</title>
+<meta name="description" content="The rules for using TaxiYaar: how bookings, payment, cancellations and reviews work, and what TaxiYaar is and is not responsible for.">
+<link rel="canonical" href="https://taxiyaar.com/terms/">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    background: #F5F7F5;
+    color: #1a1a1a;
+    line-height: 1.7;
+  }
+
+  .bg-grid {
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(15,110,110,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15,110,110,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  header {
+    position: relative;
+    z-index: 10;
+    padding: 28px 48px;
+    border-bottom: 1px solid rgba(15,110,110,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(245,247,245,0.95);
+    backdrop-filter: blur(8px);
+  }
+
+  .logo {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 26px;
+    letter-spacing: -0.5px;
+    text-decoration: none;
+  }
+  .logo .taxi { color: #1a1a1a; }
+  .logo .yaar { color: #0F6E6E; }
+
+  .tagline {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.3);
+  }
+
+  main {
+    position: relative;
+    z-index: 10;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 60px 32px 100px;
+  }
+
+  .page-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #FF6B35;
+    margin-bottom: 14px;
+  }
+
+  h1 {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 42px;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    color: #0F6E6E;
+    margin-bottom: 10px;
+  }
+
+  .effective-date {
+    font-size: 13px;
+    color: rgba(0,0,0,0.4);
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid rgba(15,110,110,0.12);
+  }
+
+  .intro-box {
+    background: rgba(15,110,110,0.06);
+    border: 1px solid rgba(15,110,110,0.18);
+    border-radius: 14px;
+    padding: 22px 26px;
+    margin-bottom: 48px;
+    font-size: 15px;
+    color: #1a1a1a;
+    line-height: 1.7;
+  }
+
+  h2 {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    color: #1a1a1a;
+    margin-top: 44px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h2 .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #0F6E6E;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+
+  p { margin-bottom: 14px; font-size: 15px; color: #2a2a2a; }
+
+  ul {
+    margin: 10px 0 16px 0;
+    padding-left: 20px;
+  }
+
+  ul li {
+    font-size: 15px;
+    color: #2a2a2a;
+    margin-bottom: 8px;
+    padding-left: 6px;
+  }
+
+  ul li::marker { color: #0F6E6E; }
+
+  .highlight-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.07);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 10px;
+  }
+
+  .highlight-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .highlight-text strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1a1a1a;
+    margin-bottom: 2px;
+  }
+
+  .highlight-text span {
+    font-size: 13px;
+    color: rgba(0,0,0,0.5);
+    line-height: 1.5;
+  }
+
+  .no-sell-badge {
+    display: inline-block;
+    background: rgba(15,110,110,0.1);
+    border: 1px solid rgba(15,110,110,0.25);
+    color: #0F6E6E;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+
+  .contact-box {
+    background: #fff;
+    border: 1px solid rgba(15,110,110,0.18);
+    border-radius: 14px;
+    padding: 24px 28px;
+    margin-top: 48px;
+  }
+
+  .contact-box h2 { margin-top: 0; }
+
+  a { color: #0F6E6E; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  footer {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 28px;
+    border-top: 1px solid rgba(15,110,110,0.1);
+    font-size: 12px;
+    color: rgba(0,0,0,0.3);
+    letter-spacing: 1px;
+  }
+
+  .road-line {
+    height: 3px;
+    background: linear-gradient(90deg, transparent 0%, #0F6E6E 40%, #FF6B35 70%, transparent 100%);
+  }
+
+  @media (max-width: 600px) {
+    header { padding: 20px 20px; }
+    main { padding: 40px 20px 80px; }
+    h1 { font-size: 32px; }
+  }
+
+  h3 { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 16px; color: #0F6E6E; margin: 22px 0 8px; }
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+
+<header>
+  <a href="/" class="logo"><span class="taxi">Taxi</span><span class="yaar">Yaar</span></a>
+  <span class="tagline">Find · Trust · Travel</span>
+</header>
+
+<main>
+  <div class="page-eyebrow">Legal</div>
+  <h1>Terms &amp; Conditions</h1>
+  <div class="effective-date">Effective date: 12 September 2026 &nbsp;·&nbsp; Last updated: 12 September 2026</div>
+
+  <div class="intro-box">
+    These Terms &amp; Conditions ("Terms") govern your use of the TaxiYaar rider app, the TaxiYaar driver app, and the website at taxiyaar.com (together, the "Platform"), operated by Sachin Gupta, an individual operating under the name TaxiYaar ("TaxiYaar", "we", "our", or "us"). By creating an account or using the Platform, you agree to these Terms and to our <a href="/privacy/">Privacy Policy</a>. If you do not agree, please do not use TaxiYaar.
+  </div>
+
+  <h2><span class="num">1</span> What TaxiYaar Is</h2>
+  <p>TaxiYaar is a marketplace that connects people who need a trip ("Riders") with independent taxi drivers ("Drivers"). Riders post a trip request, Drivers offer a price, and the two agree on the trip directly.</p>
+  <ul>
+    <li><strong>We are not a taxi or transport operator.</strong> We do not own vehicles, employ Drivers, or provide transport ourselves.</li>
+    <li>Drivers are independent service providers. They are not our employees, agents, or partners.</li>
+    <li>The contract for the trip is between the Rider and the Driver. TaxiYaar is not a party to it.</li>
+  </ul>
+
+  <h2><span class="num">2</span> Eligibility and Your Account</h2>
+  <ul>
+    <li>You must be at least 18 years old to use TaxiYaar.</li>
+    <li>You sign in with your mobile number and a one-time password (OTP). Keep your phone and OTPs to yourself — you are responsible for everything done through your account.</li>
+    <li>Give us accurate details (name, phone number, and for Drivers, vehicle and document details) and keep them up to date.</li>
+    <li>One person, one account per app. Do not create accounts for someone else, share your account, or create extra accounts to get around a restriction.</li>
+    <li>You may link a backup email to recover your account if you lose access to your phone number.</li>
+  </ul>
+
+  <h2><span class="num">3</span> How a Booking Works</h2>
+  <ul>
+    <li><strong>Request:</strong> A Rider posts a trip request with pickup and drop locations, travel date and time, number of passengers, luggage, and preferred car type. A request stays open for a limited time and then expires.</li>
+    <li><strong>Bids:</strong> Drivers who see the request may offer a price ("bid") and state whether tolls and parking are included.</li>
+    <li><strong>Choosing:</strong> The Rider can view Driver profiles, ratings, and vehicle photos, and may call a Driver before deciding.</li>
+    <li><strong>Confirmation:</strong> When the Rider accepts a bid, the trip is confirmed at that price and both sides are notified.</li>
+    <li><strong>Starting the trip:</strong> The Rider receives a trip OTP. The Driver must enter it to start the trip. Riders should share the OTP only once they are with the Driver and in the correct vehicle.</li>
+    <li><strong>Completion:</strong> The Driver marks the trip complete at the end, and the Rider may then rate the Driver.</li>
+  </ul>
+
+  <h2><span class="num">4</span> Fares and Payment</h2>
+  <ul>
+    <li>The fare is the price in the bid the Rider accepted. Tolls and parking are included only if the bid says so; otherwise they are paid by the Rider as actually incurred.</li>
+    <li>Payment is made <strong>directly between the Rider and the Driver</strong> (for example, cash or UPI). TaxiYaar does not collect, hold, or process trip payments.</li>
+    <li>TaxiYaar currently charges neither Riders nor Drivers any fee or commission. If we introduce a fee in future, we will tell you in advance and you can choose whether to continue.</li>
+    <li>Drivers must not demand more than the agreed fare. Any other charges (such as waiting time, extra stops, or a change of route) must be agreed by both sides before the trip, not during or after it.</li>
+    <li>Any payment disagreement is between the Rider and the Driver. We may help where we can, but we are not responsible for payments we never handled.</li>
+  </ul>
+
+  <h2><span class="num">5</span> Cancellations and No-Shows</h2>
+  <ul>
+    <li>A Rider may cancel an open request at any time. Either the Rider or the Driver may cancel a confirmed trip, and will be asked for a reason. The other side is notified straight away.</li>
+    <li>If a confirmed trip is never started or cancelled, it is recorded as a Driver no-show.</li>
+    <li>We keep a record of cancellations and no-shows. Frequent cancellations or no-shows may affect a Driver's visibility to Riders, or lead to restrictions on either account.</li>
+    <li>TaxiYaar does not currently charge cancellation fees.</li>
+  </ul>
+
+  <h2><span class="num">6</span> Rider Responsibilities</h2>
+  <ul>
+    <li>Post real trips with correct details, and be at the pickup point on time.</li>
+    <li>Treat Drivers and their vehicles with respect. Do not carry illegal, dangerous, or prohibited items.</li>
+    <li>Pay the agreed fare, plus tolls and parking where they were not included in the bid.</li>
+    <li>Use TaxiYaar for your own travel, or travel you are arranging for family or friends. <strong>Do not use TaxiYaar to collect Driver contact details for resale, brokering, or running a travel-agent business.</strong> To prevent this, we may limit how many Drivers you can call or how many requests you can post, or ask you to rate a completed trip before booking again.</li>
+    <li>Leave honest reviews based on your own trip.</li>
+  </ul>
+
+  <h2><span class="num">7</span> Driver Responsibilities</h2>
+  <h3>Verification</h3>
+  <ul>
+    <li>To go live, you must upload a genuine Aadhaar card, driving licence, vehicle RC book, a profile photo, and photos of your car. Your profile is shown to Riders only after we have reviewed and approved it.</li>
+    <li>We may reject an application, or ask for more information, at our discretion.</li>
+    <li>Your photos and vehicle details must show the actual vehicle you will use. If you change vehicles, update your profile before you take trips in the new one.</li>
+  </ul>
+  <h3>Legal requirements</h3>
+  <ul>
+    <li>You are solely responsible for holding and keeping valid every licence, permit, registration, fitness certificate, and insurance policy that the law requires to carry passengers for hire, including any state or tourist permits needed for the route.</li>
+    <li>You are responsible for your own taxes on what you earn.</li>
+    <li>Our document check is a basic verification. It does not transfer any of your legal responsibilities to TaxiYaar.</li>
+  </ul>
+  <h3>Conduct on trips</h3>
+  <ul>
+    <li>Honour the price in your bid. Do not bid on trips you do not intend to take.</li>
+    <li>Arrive on time, drive safely, follow traffic laws, and never drive under the influence of alcohol or drugs.</li>
+    <li>Keep your vehicle clean and roadworthy, and as described in your profile (including AC, seats, and carrier).</li>
+    <li>Start a trip only with the Rider's trip OTP, and mark it complete when it ends.</li>
+    <li>Do not pay for, pressure for, or fake reviews.</li>
+  </ul>
+
+  <h2><span class="num">8</span> Reviews, Ratings and Reports</h2>
+  <ul>
+    <li>After a trip, Riders can rate and review the Driver. Reviews and ratings appear on the Driver's public profile.</li>
+    <li>Only a Rider's first review of a given Driver counts towards that Driver's rating.</li>
+    <li>We may hide, remove, or discount any review that appears fake, abusive, irrelevant, or otherwise in breach of these Terms.</li>
+    <li>Riders can report a Driver from the app. We look into reports and may take action on an account, but we cannot promise any particular outcome.</li>
+  </ul>
+
+  <h2><span class="num">9</span> Safety</h2>
+  <ul>
+    <li>We check Driver documents before approval, but we do not conduct police or criminal background checks, and <strong>we cannot guarantee the conduct of any Rider or Driver.</strong></li>
+    <li>Use your own judgement. Check that the Driver and vehicle match the profile before you get in.</li>
+    <li>In an emergency, call <strong>112</strong> first, then tell us.</li>
+  </ul>
+
+  <h2><span class="num">10</span> Things You Must Not Do</h2>
+  <ul>
+    <li>Give false information, impersonate anyone, or upload documents that are not yours.</li>
+    <li>Harass, threaten, abuse, or discriminate against anyone.</li>
+    <li>Use the Platform for anything illegal or fraudulent.</li>
+    <li>Scrape, copy, or harvest data from the Platform, or use bots or automated tools on it.</li>
+    <li>Reverse-engineer, tamper with, or try to disrupt the apps or our servers.</li>
+    <li>Use another person's account, or create accounts to get around a restriction or ban.</li>
+  </ul>
+
+  <h2><span class="num">11</span> Suspension and Closing Your Account</h2>
+  <ul>
+    <li>If you breach these Terms, receive serious or repeated complaints, or put others at risk, we may limit, suspend, or permanently ban your account. Where it is reasonable to do so, we will tell you why.</li>
+    <li>You can ask for your account to be deleted at any time from <strong>Settings → Delete Account</strong> in the app, or by emailing <a href="mailto:support@taxiyaar.com">support@taxiyaar.com</a>. Your data is then handled as described in our <a href="/privacy/">Privacy Policy</a>.</li>
+    <li>Closing an account does not cancel obligations from trips already taken (for example, paying an agreed fare).</li>
+  </ul>
+
+  <h2><span class="num">12</span> Messages We Send</h2>
+  <p>By using TaxiYaar you agree to receive OTP messages, in-app and push notifications about your requests, bids, and trips, and WhatsApp messages about your trips and reviews. We do not send marketing messages. You can stop WhatsApp review messages at any time by replying STOP.</p>
+
+  <h2><span class="num">13</span> Your Data</h2>
+  <p>How we collect, use, and protect your information is explained in our <a href="/privacy/">Privacy Policy</a>, which forms part of these Terms.</p>
+
+  <h2><span class="num">14</span> TaxiYaar Is Not Liable</h2>
+  <p><strong>You use TaxiYaar, and take every trip, entirely at your own risk.</strong> TaxiYaar only helps Riders and Drivers find each other. Everything that happens after that is between the Rider and the Driver.</p>
+  <ul>
+    <li>To the maximum extent permitted by law, neither TaxiYaar nor the people who own or run it will be liable for any dispute, issue, claim, loss, or damage of any kind that arises from a trip, or from any dealing between a Rider and a Driver. This includes:
+      <ul>
+        <li>accidents, injury, or death;</li>
+        <li>theft of, loss of, or damage to belongings or vehicles;</li>
+        <li>delays, missed trips, cancellations, or no-shows;</li>
+        <li>disputes over fares, tolls, parking, or payment;</li>
+        <li>misconduct, harassment, or any crime committed by a Rider or Driver;</li>
+        <li>vehicle breakdowns, traffic violations, fines, and permit or licence issues.</li>
+      </ul>
+    </li>
+    <li>Any such claim must be made against the Rider or Driver responsible, not against TaxiYaar. By using the Platform, you release TaxiYaar from all such claims.</li>
+    <li>The Platform is provided "as is" and "as available". We do not promise it will always work or be free of errors, or that a Driver will be available for every request.</li>
+    <li>TaxiYaar is not liable for any indirect, incidental, or consequential loss. Our total liability to you for any claim is limited to the fees you have paid to TaxiYaar in the 12 months before the claim (currently nil).</li>
+    <li>This section applies to the fullest extent the law allows. If any part of it is found to be unenforceable, the rest continues to apply.</li>
+  </ul>
+
+  <h2><span class="num">15</span> Indemnity</h2>
+  <p>You agree to compensate TaxiYaar for any claim, loss, or penalty that arises because you breached these Terms or the law. For Drivers, this includes any failure to hold a required licence, permit, or insurance.</p>
+
+  <h2><span class="num">16</span> Changes to These Terms</h2>
+  <p>We may update these Terms as the Platform changes. If we make material changes, we will update the date at the top of this page and let active users know through the app or a push notification. If you continue to use TaxiYaar after the change, you accept the updated Terms.</p>
+
+  <h2><span class="num">17</span> Governing Law and Disputes</h2>
+  <p>These Terms are governed by the laws of India. Any dispute that cannot be resolved through our grievance process below is subject to the exclusive jurisdiction of the courts at Bengaluru, Karnataka.</p>
+
+  <h2><span class="num">18</span> Grievance Officer</h2>
+  <p>In line with the Information Technology Act, 2000, the rules made under it, and the Consumer Protection (E-Commerce) Rules, 2020, you can raise a complaint with our Grievance Officer:</p>
+  <ul>
+    <li><strong>Name:</strong> Sachin Gupta</li>
+    <li><strong>Email:</strong> <a href="mailto:support@taxiyaar.com">support@taxiyaar.com</a></li>
+    <li><strong>Address:</strong> Bellandur, Bengaluru, Karnataka 560103</li>
+  </ul>
+  <p>We will acknowledge your complaint within 24 hours and resolve it within 15 days.</p>
+
+  <div class="contact-box">
+    <h2><span class="num">19</span> Contact Us</h2>
+    <p>Questions about these Terms? Reach out:</p>
+    <ul>
+      <li><strong>Email:</strong> <a href="mailto:support@taxiyaar.com">support@taxiyaar.com</a></li>
+      <li><strong>Website:</strong> <a href="https://taxiyaar.com">taxiyaar.com</a></li>
+      <li><strong>Platform:</strong> TaxiYaar, India</li>
+    </ul>
+  </div>
+
+</main>
+
+<div class="road-line"></div>
+<footer>© 2026 TaxiYaar &nbsp;·&nbsp; Find · Trust · Travel &nbsp;·&nbsp; <a href="/" style="color:rgba(0,0,0,0.35);">taxiyaar.com</a> &nbsp;·&nbsp; <a href="/privacy/" style="color:rgba(0,0,0,0.35);">Privacy Policy</a></footer>
+
+</body>
+</html>
