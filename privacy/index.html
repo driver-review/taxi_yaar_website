@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Privacy Policy – TaxiYaar</title>
+<meta name="description" content="What TaxiYaar collects, why, who it is shared with, and how to have it deleted.">
+<link rel="canonical" href="https://taxiyaar.com/privacy/">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -235,7 +242,7 @@
 <main>
   <div class="page-eyebrow">Legal</div>
   <h1>Privacy Policy</h1>
-  <div class="effective-date">Effective date: 16 May 2026 &nbsp;·&nbsp; Last updated: 16 May 2026</div>
+  <div class="effective-date">Effective date: 16 May 2026 &nbsp;·&nbsp; Last updated: 12 September 2026</div>
 
   <div class="intro-box">
     TaxiYaar ("we", "our", or "us") operates the TaxiYaar mobile application and website at taxiyaar.com. This Privacy Policy explains what information we collect, how we use it, and your rights over it. We keep it plain and honest — the same values we hold our drivers to.
@@ -248,7 +255,7 @@
     <div class="highlight-icon">📱</div>
     <div class="highlight-text">
       <strong>Phone number</strong>
-      <span>Collected during registration for OTP-based login. Used solely for authentication. We do not call you for marketing.</span>
+      <span>Collected during registration for OTP-based login. Once you confirm a trip, that trip's driver can see your number so they can reach you about pickup. We do not call you for marketing.</span>
     </div>
   </div>
 
@@ -264,7 +271,15 @@
     <div class="highlight-icon">🗺️</div>
     <div class="highlight-text">
       <strong>Trip data</strong>
-      <span>Departure city, destination, travel date, number of passengers, and car type preference when you post a trip request.</span>
+      <span>Pickup and drop addresses, travel date and time, number of passengers, and car type preference when you post a trip request.</span>
+    </div>
+  </div>
+
+  <div class="highlight-row">
+    <div class="highlight-icon">📍</div>
+    <div class="highlight-text">
+      <strong>Location</strong>
+      <span>When you set a pickup point, the app uses your device location to fill in the address and find drivers in your city. We do not track your location in the background.</span>
     </div>
   </div>
 
@@ -280,7 +295,15 @@
     <div class="highlight-icon">🪪</div>
     <div class="highlight-text">
       <strong>Driver documents (drivers only)</strong>
-      <span>Aadhaar card, driving licence, vehicle RC book, and car photos. Collected for identity verification only. Not shared publicly.</span>
+      <span>Aadhaar card, driving licence and vehicle RC book, sent to our team on WhatsApp. Used only to verify you — never shown to riders or anyone else.</span>
+    </div>
+  </div>
+
+  <div class="highlight-row">
+    <div class="highlight-icon">📷</div>
+    <div class="highlight-text">
+      <strong>Profile and car photos (drivers only)</strong>
+      <span>Your photo, and front, side, interior and boot photos of your car. Shown to riders inside the TaxiYaar app so they can choose a driver. Not published anywhere else.</span>
     </div>
   </div>
 
@@ -289,6 +312,22 @@
     <div class="highlight-text">
       <strong>Usage data</strong>
       <span>Basic app usage information such as screens visited and actions taken, used to improve the app. No precise location tracking.</span>
+    </div>
+  </div>
+
+  <div class="highlight-row">
+    <div class="highlight-icon">🔐</div>
+    <div class="highlight-text">
+      <strong>Device identifier</strong>
+      <span>An identifier for your phone, read when you log in. Used to protect accounts and prevent misuse, such as one person running many accounts.</span>
+    </div>
+  </div>
+
+  <div class="highlight-row">
+    <div class="highlight-icon">📞</div>
+    <div class="highlight-text">
+      <strong>Calls to drivers (riders only)</strong>
+      <span>When you tap Call on a driver, we record which driver you contacted and for which request. This powers the call limits that stop misuse.</span>
     </div>
   </div>
 
@@ -308,8 +347,8 @@
   <ul>
     <li>We do not sell your personal data to any third party, ever</li>
     <li>We do not run remarketing or behavioural advertising campaigns</li>
-    <li>We do not track your precise GPS location</li>
-    <li>We do not share your phone number with drivers — drivers call you only after you share your number directly in the booking conversation</li>
+    <li>We do not track your location in the background — only when you set a pickup point</li>
+    <li>We do not share your phone number with any driver other than the one whose bid you accept</li>
     <li>We do not use your data for any purpose beyond operating TaxiYaar</li>
   </ul>
 
@@ -319,8 +358,10 @@
     <li><strong>Firebase (Google)</strong> — used for OTP authentication and push notifications</li>
     <li><strong>Supabase</strong> — our database and file storage provider where your trip data and documents are securely stored</li>
     <li><strong>WhatsApp Business API</strong> — used to send you a single review nudge message after your trip date. No marketing messages.</li>
+    <li><strong>Google Maps Platform</strong> — maps, place search, and turning your pickup point into an address</li>
+    <li><strong>Render</strong> — hosts the servers that run the TaxiYaar service</li>
   </ul>
-  <p>All three providers are GDPR-compliant and operate under strict data processing agreements. We do not share your data with any other party.</p>
+  <p>All of these providers are GDPR-compliant and operate under strict data processing agreements. We do not share your data with any other party.</p>
 
   <h2><span class="num">5</span> Data Retention</h2>
   <p>We retain your data for as long as your account is active. If you request account deletion, we will delete your personal data within 30 days. Aggregate, anonymised trip statistics may be retained for platform analysis.</p>
@@ -340,7 +381,7 @@
   <p>TaxiYaar is not intended for use by anyone under the age of 18. We do not knowingly collect personal data from minors. If you believe a minor has created an account, please contact us and we will delete it promptly.</p>
 
   <h2><span class="num">8</span> Security</h2>
-  <p>We use industry-standard security practices including encrypted data transmission (HTTPS), secure cloud storage via Supabase, and OTP-based authentication with no passwords stored. Driver documents are stored in private, access-controlled storage and are not publicly accessible.</p>
+  <p>We use industry-standard security practices including encrypted data transmission (HTTPS), secure cloud storage via Supabase, and OTP-based authentication with no passwords stored. Driver documents are seen only by our verification team and are never publicly accessible.</p>
 
   <h2><span class="num">9</span> Changes to This Policy</h2>
   <p>If we make material changes to this policy, we will update the effective date at the top of this page and notify active users via push notification. Continued use of TaxiYaar after changes constitutes acceptance of the updated policy.</p>

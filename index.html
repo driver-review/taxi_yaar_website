@@ -2,744 +2,696 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TaxiYaar — Find · Trust · Travel</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500'><rect width='500' height='500' rx='110' fill='%230F6E6E'/><rect x='60' y='268' width='380' height='148' rx='30' fill='white'/><path d='M100 268 L138 158 L362 158 L400 268Z' fill='white'/><rect x='148' y='100' width='204' height='68' rx='18' fill='white'/><circle cx='134' cy='418' r='52' fill='white' stroke='%230F6E6E' stroke-width='14'/><circle cx='134' cy='418' r='20' fill='%230F6E6E'/><circle cx='366' cy='418' r='52' fill='white' stroke='%230F6E6E' stroke-width='14'/><circle cx='366' cy='418' r='20' fill='%230F6E6E'/></svg>">
-<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500'><rect width='500' height='500' rx='110' fill='%230F6E6E'/><rect x='60' y='268' width='380' height='148' rx='30' fill='white'/><path d='M100 268 L138 158 L362 158 L400 268Z' fill='white'/><circle cx='134' cy='418' r='52' fill='white' stroke='%230F6E6E' stroke-width='14'/><circle cx='134' cy='418' r='20' fill='%230F6E6E'/><circle cx='366' cy='418' r='52' fill='white' stroke='%230F6E6E' stroke-width='14'/><circle cx='366' cy='418' r='20' fill='%230F6E6E'/></svg>">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TaxiYaar — Know your driver before you ride</title>
+<meta name="description" content="Choose a verified intercity driver by name in Bengaluru. See their car, 8-category ratings and reviews from real trips before you ride. Zero commission. Rider and driver apps on Google Play.">
+<link rel="canonical" href="https://taxiyaar.com/">
 <meta name="theme-color" content="#0F6E6E">
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TaxiYaar">
+<meta property="og:title" content="TaxiYaar — Know your driver before you ride">
+<meta property="og:description" content="Choose a verified intercity driver by name in Bengaluru. See their car, 8-category ratings and reviews from real trips before you ride. Zero commission. Rider and driver apps on Google Play.">
+<meta property="og:url" content="https://taxiyaar.com/">
+<meta property="og:image" content="https://taxiyaar.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_IN">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://taxiyaar.com/#org",
+      "name": "TaxiYaar",
+      "url": "https://taxiyaar.com/",
+      "logo": "https://taxiyaar.com/icon-512.png",
+      "email": "support@taxiyaar.com",
+      "areaServed": "Bengaluru, India",
+      "sameAs": [
+        "https://play.google.com/store/apps/details?id=com.taxiyaar",
+        "https://play.google.com/store/apps/details?id=com.taxiyaar.driver"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://taxiyaar.com/#site",
+      "name": "TaxiYaar",
+      "url": "https://taxiyaar.com/",
+      "publisher": { "@id": "https://taxiyaar.com/#org" }
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
-  --teal: #0F6E6E; --teal-dark: #0a4f4f; --teal-light: #e4f4f4; --teal-mid: #1a9090;
-  --orange: #FF6B35; --orange-light: #fff0ea;
-  --black: #0e0e0e; --off-white: #F8F7F4; --white: #ffffff;
-  --g100: #f4f4f2; --g200: #e8e8e4; --g400: #b0b0a8; --g600: #6c6c66; --g800: #2a2a28;
+  color-scheme: light;
+  --teal: #0F6E6E;
+  --teal-deep: #093F40;
+  --teal-soft: #DDEDEB;
+  --fare: #EE6A2F;
+  --fare-soft: #FDEBE2;
+  --paper: #F2F6F5;
+  --card: #FFFFFF;
+  --ink: #0F1E1D;
+  --muted: #5A6B69;
+  --line: #D8E3E1;
+  --star: #E9A400;
+  --on-deep: #E6F2F0;
+  --on-deep-muted: #9FC2BE;
+
+  --display: "Sora", "Segoe UI", system-ui, sans-serif;
+  --body: "DM Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --gutter: clamp(16px, 4vw, 40px);
+  --maxw: 1160px;
 }
+
+*, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { font-family: 'DM Sans', sans-serif; background: var(--off-white); color: var(--black); overflow-x: hidden; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 16px/1.6 var(--body);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+img, svg { max-width: 100%; }
+h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance; }
+p { margin: 0; }
+:focus-visible { outline: 3px solid var(--fare); outline-offset: 3px; border-radius: 6px; }
 
-/* ── NAV ── */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 48px; height: 66px;
-  background: rgba(248,247,244,0.94); backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(15,110,110,0.1);
-}
-.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.nav-logo-icon { width: 36px; height: 36px; flex-shrink: 0; }
-.nav-logo-text { font-family: 'Sora'; font-weight: 800; font-size: 20px; letter-spacing: -0.5px; line-height: 1; }
-.nav-logo-text .t { color: var(--black); }
-.nav-logo-text .y { color: var(--teal); }
-.nav-links { display: flex; gap: 28px; list-style: none; }
-.nav-links a { font-size: 14px; color: var(--g600); text-decoration: none; transition: color 0.2s; }
-.nav-links a:hover { color: var(--teal); }
-.nav-cta {
-  background: var(--teal); color: white; font-family: 'DM Sans'; font-size: 14px; font-weight: 500;
-  padding: 9px 20px; border-radius: 100px; border: none; cursor: pointer;
-  text-decoration: none; transition: background 0.2s, transform 0.15s; white-space: nowrap;
-}
-.nav-cta:hover { background: var(--teal-dark); transform: translateY(-1px); }
-.hamburger {
-  display: none; flex-direction: column; gap: 5px; cursor: pointer;
-  background: none; border: none; padding: 4px;
-}
-.hamburger span { display: block; width: 22px; height: 2px; background: var(--black); border-radius: 2px; transition: all 0.3s; }
-.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.hamburger.open span:nth-child(2) { opacity: 0; }
-.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-.mobile-menu {
-  display: none; position: fixed; top: 66px; left: 0; right: 0; z-index: 190;
-  background: rgba(248,247,244,0.98); backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--g200); padding: 20px 24px;
-  flex-direction: column; gap: 4px;
-}
-.mobile-menu.open { display: flex; }
-.mobile-menu a { font-size: 16px; color: var(--g800); text-decoration: none; padding: 12px 0; border-bottom: 1px solid var(--g200); font-weight: 400; }
-.mobile-menu a:last-child { border-bottom: none; }
-.mobile-menu .m-cta { background: var(--teal); color: white; text-align: center; border-radius: 10px; padding: 14px; font-weight: 500; border-bottom: none; margin-top: 8px; }
-
-/* ── HERO ── */
-.hero {
-  min-height: 100vh; padding: 100px 48px 80px;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
-  max-width: 1240px; margin: 0 auto;
-}
+.wrap { max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gutter); }
 .eyebrow {
-  display: inline-flex; align-items: center; gap: 7px;
-  background: var(--teal-light); border: 1px solid rgba(15,110,110,0.2);
-  border-radius: 100px; padding: 5px 14px; font-size: 11px; font-weight: 500;
-  color: var(--teal); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 20px;
+  font: 600 12px/1 var(--body); letter-spacing: .14em; text-transform: uppercase;
+  color: var(--teal);
 }
-.edot { width: 5px; height: 5px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
-.h1 { font-family: 'Sora'; font-weight: 800; font-size: clamp(38px, 5vw, 66px); line-height: 1.0; letter-spacing: -3px; margin-bottom: 8px; }
-.h1 .accent { color: var(--teal); }
-.h1 .outline { -webkit-text-stroke: 2px var(--teal); color: transparent; }
-.hero-sub { font-size: clamp(15px, 1.5vw, 17px); font-weight: 300; line-height: 1.7; color: var(--g600); max-width: 420px; margin: 18px 0 30px; }
-.hero-sub strong { color: var(--black); font-weight: 500; }
-.actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-.play-badge {
-  display: inline-flex; align-items: center; gap: 10px; background: var(--black);
-  color: white; font-family: 'DM Sans'; padding: 10px 20px; border-radius: 100px;
-  text-decoration: none; transition: opacity 0.2s;
+.mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+/* ── nav ── */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in srgb, var(--paper) 90%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
 }
-.play-badge:hover { opacity: 0.85; }
-.hero-stats { display: flex; gap: 32px; margin-top: 36px; padding-top: 32px; border-top: 1px solid var(--g200); flex-wrap: wrap; }
-.stat-n { font-family: 'Sora'; font-size: 22px; font-weight: 700; letter-spacing: -1px; }
-.stat-n span { color: var(--teal); }
-.stat-l { font-size: 11px; color: var(--g600); margin-top: 2px; }
-
-/* ── DRIVER CARD ── */
-.driver-card {
-  background: var(--white); border-radius: 22px; padding: 22px;
-  border: 1px solid var(--g200); box-shadow: 0 20px 60px rgba(0,0,0,0.08);
-  animation: float 4s ease-in-out infinite;
+.nav-row { display: flex; align-items: center; gap: 24px; height: 64px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.brand svg { width: 34px; height: 34px; flex-shrink: 0; }
+.brand b { font: 800 19px/1 var(--display); letter-spacing: -.02em; }
+.brand b span { color: var(--teal); }
+.nav-links { display: flex; gap: 26px; margin-left: auto; }
+.nav-links a { text-decoration: none; font-size: 15px; color: var(--muted); }
+.nav-links a:hover { color: var(--teal); }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  font: 600 15px/1 var(--body); text-decoration: none; cursor: pointer;
+  border-radius: 12px; padding: 13px 18px; border: 0;
+  transition: transform .15s ease, background-color .2s ease;
 }
-@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-@keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
-.hero-left > * { animation: fadeUp 0.55s ease both; }
-.eyebrow{animation-delay:0.1s;} .h1{animation-delay:0.2s;} .hero-sub{animation-delay:0.3s;}
-.actions{animation-delay:0.4s;} .hero-stats{animation-delay:0.5s;}
-.hero-right .driver-card { animation: fadeUp 0.6s ease 0.25s both, float 4s ease-in-out 1.5s infinite; }
+.btn:hover { transform: translateY(-1px); }
+.btn-teal { background: var(--teal); color: #fff; }
+.btn-teal:hover { background: var(--teal-deep); }
+.menu-btn {
+  display: none; margin-left: auto; width: 44px; height: 44px;
+  background: var(--card); border: 1px solid var(--line); border-radius: 12px; cursor: pointer;
+}
+.menu-btn span { display: block; width: 18px; height: 2px; margin: 4px auto; background: var(--ink); border-radius: 2px; }
+.menu {
+  display: none; border-top: 1px solid var(--line);
+  padding: 8px var(--gutter) 16px; background: var(--paper);
+}
+.menu a { display: block; padding: 12px 0; text-decoration: none; border-bottom: 1px solid var(--line); }
+.menu a:last-child { border-bottom: 0; }
+.menu.open { display: block; }
 
-.dc-head { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 14px; }
-.dc-av { width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0; background: linear-gradient(135deg,var(--teal),var(--teal-mid)); display: flex; align-items: center; justify-content: center; font-family: 'Sora'; font-weight: 800; font-size: 18px; color: white; }
-.dc-name { font-family: 'Sora'; font-size: 16px; font-weight: 700; letter-spacing: -0.3px; }
-.dc-car { font-size: 12px; color: var(--g600); margin-top: 3px; }
-.dc-badge { display: inline-flex; align-items: center; gap: 4px; background: var(--teal-light); border: 1px solid rgba(15,110,110,0.18); border-radius: 100px; padding: 2px 9px; font-size: 10px; font-weight: 500; color: var(--teal); margin-top: 5px; }
-.dc-rating { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-.dc-stars { color: #FFB800; font-size: 14px; letter-spacing: 1px; }
-.dc-rn { font-family: 'Sora'; font-size: 20px; font-weight: 700; }
-.dc-rc { font-size: 11px; color: var(--g600); }
-.cat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
-.cat-lbl { font-size: 10px; color: var(--g600); margin-bottom: 3px; display: flex; justify-content: space-between; }
-.cat-lbl span { font-weight: 500; color: var(--black); }
-.cat-bar { height: 3px; background: var(--g200); border-radius: 100px; overflow: hidden; }
-.cat-fill { height: 100%; border-radius: 100px; background: var(--teal); }
-.photo-strip { display: grid; grid-template-columns: repeat(4,1fr); gap: 5px; margin-bottom: 12px; }
-.photo-thumb { aspect-ratio: 4/3; border-radius: 7px; overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; }
-.pt-label { position: absolute; bottom: 3px; left: 3px; background: rgba(15,110,110,0.82); color: white; font-size: 8px; padding: 2px 5px; border-radius: 3px; }
-.dc-review { background: var(--off-white); border-radius: 9px; padding: 10px 12px; border-left: 2px solid var(--teal); margin-bottom: 12px; }
-.dc-rv-text { font-size: 11px; color: var(--g800); font-style: italic; line-height: 1.5; }
-.dc-rv-by { font-size: 10px; color: var(--g400); margin-top: 4px; }
-.call-btn { width: 100%; background: var(--teal); color: white; border: none; padding: 12px; border-radius: 10px; font-family: 'DM Sans'; font-size: 14px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s; }
-.call-btn:hover { background: var(--teal-dark); }
+/* ── hero ── */
+.hero { padding-block: clamp(36px, 6vw, 72px) clamp(40px, 6vw, 80px); }
+.hero-grid {
+  display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+  gap: clamp(32px, 5vw, 64px); align-items: center;
+}
+.hero h1 {
+  font-weight: 800; font-size: clamp(40px, 6.2vw, 72px);
+  line-height: .98; letter-spacing: -.035em; margin-top: 18px;
+}
+.hero h1 em { font-style: normal; color: var(--teal); }
+.hero-sub { margin-top: 20px; max-width: 34em; font-size: clamp(16px, 1.6vw, 18px); color: var(--muted); }
+.hero-sub strong { color: var(--ink); font-weight: 600; }
 
-/* ── SHARED SECTION STYLES ── */
-.sec { padding: 72px 48px; }
-.sec-inner { max-width: 1160px; margin: 0 auto; }
-.sec-label { font-size: 11px; font-weight: 500; letter-spacing: 4px; text-transform: uppercase; color: var(--orange); margin-bottom: 12px; }
-.sec-h2 { font-family: 'Sora'; font-weight: 800; font-size: clamp(28px,3.5vw,44px); letter-spacing: -2px; line-height: 1.05; color: var(--black); margin-bottom: 36px; }
-.sec-h2-w { font-family: 'Sora'; font-weight: 800; font-size: clamp(28px,3.5vw,44px); letter-spacing: -2px; line-height: 1.05; color: white; margin-bottom: 36px; }
-
-/* ── HOW IT WORKS ── */
-.steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
-.step { background: var(--white); border-radius: 16px; padding: 24px 20px; border: 1px solid var(--g200); position: relative; overflow: hidden; }
-.step-bg { font-family: 'Sora'; font-size: 64px; font-weight: 800; color: rgba(15,110,110,0.05); position: absolute; top: 4px; right: 10px; line-height: 1; letter-spacing: -4px; }
-.step-icon { width: 42px; height: 42px; background: var(--teal-light); border-radius: 11px; display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 13px; }
-.step-title { font-family: 'Sora'; font-size: 15px; font-weight: 700; margin-bottom: 7px; }
-.step-desc { font-size: 13px; color: var(--g600); line-height: 1.6; }
-
-/* ── RATINGS ── */
-.sec-teal { padding: 72px 48px; background: var(--teal); }
-.ratings-grid { max-width: 1160px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-.rc-list { display: flex; flex-direction: column; gap: 9px; }
-.rc { display: flex; align-items: center; gap: 10px; }
-.rc-icon { font-size: 14px; width: 20px; text-align: center; }
-.rc-name { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.9); width: 92px; flex-shrink: 0; }
-.rc-track { flex: 1; height: 4px; background: rgba(255,255,255,0.15); border-radius: 100px; overflow: hidden; }
-.rc-fill { height: 100%; border-radius: 100px; background: rgba(255,255,255,0.8); }
-.rc-score { font-family: 'Sora'; font-size: 12px; font-weight: 700; color: white; width: 26px; text-align: right; }
-.dp-card { background: rgba(255,255,255,0.08); border-radius: 16px; padding: 20px; border: 1px solid rgba(255,255,255,0.12); }
-.dp-top { display: flex; gap: 12px; margin-bottom: 14px; }
-.dp-av { width: 46px; height: 46px; border-radius: 50%; background: rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center; font-family: 'Sora'; font-size: 17px; font-weight: 800; color: white; flex-shrink: 0; }
-.dp-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7px; }
-.dp-stat { background: rgba(255,255,255,0.07); border-radius: 9px; padding: 11px; }
-.dp-stat-n { font-family: 'Sora'; font-size: 18px; font-weight: 800; color: white; }
-.dp-stat-l { font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 2px; }
-
-/* ── BIDS ── */
-.bids-inner { max-width: 1160px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-.lowest-banner { background: var(--orange); color: white; border-radius: 10px; padding: 11px 14px; font-size: 13px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 7px; }
-.bid-stream { display: flex; flex-direction: column; gap: 7px; }
-.bid-card { background: var(--white); border-radius: 12px; padding: 13px 15px; border: 1px solid var(--g200); display: flex; align-items: center; gap: 12px; transition: border-color 0.2s; cursor: pointer; }
-.bid-card:hover { border-color: var(--teal); }
-.bid-card.lowest { border-color: var(--orange); }
-.bid-av { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Sora'; font-size: 13px; font-weight: 800; flex-shrink: 0; }
-.bid-price { font-family: 'Sora'; font-size: 17px; font-weight: 700; color: var(--teal); }
-.bid-low-tag { font-size: 10px; color: var(--orange); background: var(--orange-light); padding: 2px 7px; border-radius: 100px; margin-top: 2px; display: inline-block; }
-
-/* ── TRUST ── */
-.sec-black { padding: 72px 48px; background: var(--black); }
-.trust-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; background: rgba(255,255,255,0.04); border-radius: 14px; overflow: hidden; margin-top: 40px; }
-.trust-item { background: #1a1a18; padding: 24px 20px; }
-.ti-icon { font-size: 20px; margin-bottom: 12px; }
-.ti-title { font-family: 'Sora'; font-size: 14px; font-weight: 700; color: white; margin-bottom: 7px; }
-.ti-desc { font-size: 12px; color: #888880; line-height: 1.6; }
-
-/* ── COMPARE ── */
-.compare-table { width: 100%; border-collapse: collapse; margin-top: 40px; }
-.compare-table th { background: rgba(255,255,255,0.04); padding: 11px 16px; font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: #666660; text-align: left; }
-.compare-table td { background: #1a1a18; padding: 14px 16px; font-size: 13px; color: #888880; border-top: 1px solid rgba(255,255,255,0.04); }
-.compare-table tr.ours td { background: rgba(15,110,110,0.12); color: white; }
-.tick { color: var(--teal); } .cross { color: #444440; }
-
-/* ── FOR DRIVERS ── */
-.driver-cta-inner { max-width: 1160px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-.feat-list { display: flex; flex-direction: column; gap: 13px; margin: 18px 0 26px; }
-.feat { display: flex; gap: 13px; align-items: flex-start; }
-.feat-icon { width: 36px; height: 36px; border-radius: 9px; background: var(--teal-light); display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
-.feat-title { font-size: 14px; font-weight: 500; margin-bottom: 2px; }
-.feat-desc { font-size: 12px; color: var(--g600); line-height: 1.5; }
-.driver-dash { background: var(--white); border-radius: 16px; padding: 20px; border: 1px solid var(--g200); }
-.dash-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 9px; margin-bottom: 13px; }
-.dash-stat { background: var(--off-white); border-radius: 9px; padding: 12px; }
-.dash-n { font-family: 'Sora'; font-size: 20px; font-weight: 800; color: var(--teal); }
-.dash-l { font-size: 11px; color: var(--g600); margin-top: 2px; }
-
-/* ── CTA BOTTOM ── */
-.cta-bottom { padding: 72px 48px; background: var(--teal); position: relative; overflow: hidden; text-align: center; }
-.cta-bottom::before { content:''; position:absolute; top:-80px; right:-80px; width:280px; height:280px; border-radius:50%; background:rgba(255,255,255,0.05); }
-.cta-bottom::after { content:''; position:absolute; bottom:-100px; left:-60px; width:340px; height:340px; border-radius:50%; background:rgba(255,107,53,0.1); }
-.cta-content { position: relative; z-index: 2; max-width: 580px; margin: 0 auto; }
-.cta-logo-wrap { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 24px; }
-.cta-logo-icon { width: 52px; height: 52px; filter: brightness(0) invert(1); opacity: 0.9; }
-.cta-logo-text { font-family: 'Sora'; font-weight: 800; font-size: 28px; letter-spacing: -1px; color: white; }
-.cta-h2 { font-family: 'Sora'; font-weight: 800; font-size: clamp(28px,4vw,48px); letter-spacing: -2px; color: white; margin-bottom: 13px; line-height: 1.05; }
-.cta-h2 .outline-w { -webkit-text-stroke: 2px rgba(255,255,255,0.7); color: transparent; }
-.cta-btns { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
-.btn-white { display: inline-flex; align-items: center; gap: 10px; background: white; color: var(--teal); font-family: 'DM Sans'; font-size: 15px; font-weight: 500; padding: 12px 24px; border-radius: 100px; text-decoration: none; box-shadow: 0 6px 24px rgba(0,0,0,0.15); transition: transform 0.15s; }
-.btn-white:hover { transform: translateY(-2px); }
-.btn-ghost-w { display: inline-flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.85); font-size: 14px; text-decoration: none; border: 1px solid rgba(255,255,255,0.3); padding: 11px 20px; border-radius: 100px; transition: background 0.2s; }
-.btn-ghost-w:hover { background: rgba(255,255,255,0.1); }
-.cta-nums { display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap; }
-.cn-n { font-family: 'Sora'; font-size: 22px; font-weight: 800; color: white; }
-.cn-l { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 2px; }
-.cn-div { width: 1px; height: 32px; background: rgba(255,255,255,0.2); }
-
-/* ── FOOTER ── */
-footer { background: var(--black); padding: 36px 48px; }
-.footer-inner { max-width: 1160px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
-.footer-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.footer-logo-icon { width: 32px; height: 32px; filter: brightness(0) invert(1); opacity: 0.8; }
-.fl { font-family: 'Sora'; font-size: 17px; font-weight: 800; }
-.fl .t { color: white; } .fl .y { color: var(--teal); }
-.fl-tag { font-size: 10px; color: #555550; margin-top: 2px; letter-spacing: 2px; text-transform: uppercase; }
-.footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
-.footer-links a { font-size: 13px; color: #555550; text-decoration: none; transition: color 0.2s; }
-.footer-links a:hover { color: var(--teal); }
-
-.btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--teal); color: white; font-family: 'DM Sans'; font-size: 15px; font-weight: 500; padding: 12px 24px; border-radius: 100px; text-decoration: none; box-shadow: 0 6px 24px rgba(15,110,110,0.25); transition: background 0.2s, transform 0.15s; }
-.btn-primary:hover { background: var(--teal-dark); transform: translateY(-2px); }
-
-/* ── INLINE SVG LOGO ── */
-.logo-svg { display: block; }
-
-/* ════════════════════════════
-   RESPONSIVE — TABLET & MOBILE
-   ════════════════════════════ */
-
-/* Tablet: 768–1024px */
-@media (max-width: 1024px) {
-  nav { padding: 0 24px; }
-  .nav-links { display: none; }
-  .hamburger { display: flex; }
-  .hero { grid-template-columns: 1fr; gap: 40px; padding: 90px 24px 60px; min-height: auto; }
-  .hero-right { display: none; }
-  .hero-sub { max-width: 100%; }
-  .steps { grid-template-columns: 1fr 1fr; }
-  .ratings-grid { grid-template-columns: 1fr; gap: 40px; }
-  .bids-inner { grid-template-columns: 1fr; gap: 40px; }
-  .trust-grid { grid-template-columns: repeat(2,1fr); }
-  .driver-cta-inner { grid-template-columns: 1fr; gap: 40px; }
-  .driver-dash { display: none; }
-  .compare-table th:nth-child(n+4), .compare-table td:nth-child(n+4) { display: none; }
-  .sec { padding: 60px 24px; }
-  .sec-teal { padding: 60px 24px; }
-  .sec-black { padding: 60px 24px; }
-  .cta-bottom { padding: 60px 24px; }
-  footer { padding: 28px 24px; }
+/* ticket entry points */
+.tickets { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 32px; }
+.ticket {
+  position: relative; display: flex; flex-direction: column; gap: 6px;
+  background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+  padding: 18px 18px 16px; text-decoration: none;
+  transition: border-color .2s ease, transform .15s ease;
+}
+.ticket:hover { border-color: var(--teal); transform: translateY(-2px); }
+.ticket::before, .ticket::after {
+  content: ""; position: absolute; top: 62%; width: 16px; height: 16px;
+  background: var(--paper); border: 1px solid var(--line); border-radius: 50%;
+}
+.ticket::before { left: -9px; clip-path: inset(0 0 0 50%); }
+.ticket::after { right: -9px; clip-path: inset(0 50% 0 0); }
+.ticket-who { font: 700 18px/1.2 var(--display); letter-spacing: -.01em; }
+.ticket-what { font-size: 14px; color: var(--muted); line-height: 1.45; }
+.ticket-cta {
+  margin-top: 10px; padding-top: 12px; border-top: 1px dashed var(--line);
+  display: flex; align-items: center; gap: 8px; font: 600 14px/1 var(--body); color: var(--teal);
+}
+.ticket-cta svg { width: 14px; height: 14px; }
+.ticket.driver .ticket-cta { color: var(--fare); }
+.soon { margin-top: 14px; font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+.soon .pill {
+  font: 500 11px/1 var(--mono); letter-spacing: .04em; text-transform: uppercase;
+  background: var(--teal-soft); color: var(--teal); padding: 5px 8px; border-radius: 6px;
 }
 
-/* Mobile: up to 768px */
-@media (max-width: 768px) {
-  nav { padding: 0 20px; height: 60px; }
-  .mobile-menu { top: 60px; }
-  .nav-logo-text { font-size: 18px; }
-  .nav-logo-icon { width: 30px; height: 30px; }
-  .hero { padding: 80px 20px 48px; gap: 32px; }
-  .h1 { font-size: clamp(34px, 9vw, 48px); letter-spacing: -2px; }
-  .hero-stats { gap: 20px; }
-  .steps { grid-template-columns: 1fr; }
-  .trust-grid { grid-template-columns: 1fr 1fr; gap: 2px; }
-  .compare-table th:nth-child(n+3), .compare-table td:nth-child(n+3) { display: none; }
-  .compare-table { font-size: 12px; }
-  .compare-table th, .compare-table td { padding: 11px 12px; }
-  .cta-nums { gap: 16px; }
-  .cn-div { display: none; }
-  .footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
-  .footer-links { gap: 16px; }
-  .sec { padding: 52px 20px; }
-  .sec-teal, .sec-black, .cta-bottom { padding: 52px 20px; }
-  footer { padding: 28px 20px; }
-  .dp-card { display: block; }
+/* phone */
+.phone-col { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.phone {
+  width: min(330px, 100%); background: var(--ink); border-radius: 40px; padding: 10px;
+  box-shadow: 0 40px 80px -30px rgba(9, 63, 64, .45);
+}
+.screen { background: var(--paper); border-radius: 31px; overflow: hidden; }
+.sb { display: flex; justify-content: space-between; padding: 12px 22px 6px; font: 500 12px/1 var(--mono); color: var(--ink); }
+.req { background: var(--card); margin: 6px 12px 10px; border-radius: 18px; padding: 14px; border: 1px solid var(--line); }
+.req-route { font: 700 17px/1.2 var(--display); display: flex; align-items: center; gap: 6px; }
+.req-route i { font-style: normal; color: var(--muted); font-weight: 600; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.chip { font: 500 11px/1 var(--body); background: var(--paper); border-radius: 7px; padding: 6px 8px; color: var(--ink); }
+.live { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; font-size: 12px; color: var(--muted); }
+.live b { display: inline-flex; align-items: center; gap: 6px; color: var(--teal); font-weight: 600; }
+.live b::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--teal); animation: blink 1.6s ease-in-out infinite; }
+.low { margin: 0 12px 8px; background: var(--fare); color: #fff; border-radius: 12px; padding: 10px 12px; font-size: 13px; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.low b { font-weight: 600; }
+.bids { display: flex; flex-direction: column; gap: 8px; padding: 0 12px 12px; }
+.bid {
+  display: grid; grid-template-columns: 34px 1fr auto; gap: 10px; align-items: center;
+  background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 10px;
+  transition: border-color .4s ease, box-shadow .4s ease;
+}
+.bid.lowest { border-color: var(--fare); }
+.bid.ping { box-shadow: 0 0 0 3px var(--teal-soft); border-color: var(--teal); }
+.av { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font: 700 12px/1 var(--display); background: var(--teal-soft); color: var(--teal); }
+.bid .nm { font-size: 13px; font-weight: 600; line-height: 1.2; }
+.bid .rt { font-size: 11px; color: var(--muted); }
+.bid .rt s { text-decoration: none; color: var(--star); }
+.bid .note { font-size: 11px; color: var(--muted); font-style: italic; margin-top: 2px; }
+.bid .tags { display: flex; gap: 4px; margin-top: 4px; flex-wrap: wrap; }
+.tag { font: 500 10px/1 var(--body); padding: 4px 6px; border-radius: 5px; background: var(--teal-soft); color: var(--teal); }
+.tag.off { background: var(--paper); color: var(--muted); }
+.price { font: 700 16px/1 var(--display); color: var(--fare); font-variant-numeric: tabular-nums; text-align: right; }
+.price small { display: block; margin-top: 4px; font: 500 10px/1 var(--body); color: var(--fare); }
+.tapnote { text-align: center; font-size: 11px; color: var(--muted); padding: 0 12px 16px; }
+
+/* ── proof line ── */
+.proof { border-block: 1px solid var(--line); background: var(--card); }
+.proof-row { display: grid; grid-template-columns: repeat(3, 1fr); }
+.proof-item { padding: 22px var(--gutter); display: flex; align-items: baseline; gap: 12px; }
+.proof-item + .proof-item { border-left: 1px solid var(--line); }
+.proof-item b { font: 800 26px/1 var(--display); color: var(--teal); letter-spacing: -.02em; white-space: nowrap; }
+.proof-item span { font-size: 14px; color: var(--muted); line-height: 1.35; }
+
+/* ── section shells ── */
+.section { padding-block: clamp(56px, 8vw, 104px); }
+.sec-head { max-width: 640px; }
+.sec-head h2 { font-weight: 800; font-size: clamp(30px, 4vw, 46px); line-height: 1.05; letter-spacing: -.03em; margin-top: 12px; }
+.sec-head p { margin-top: 14px; color: var(--muted); font-size: 17px; max-width: 34em; }
+
+/* ── route: how a trip works ── */
+.route { list-style: none; margin: 48px 0 0; padding: 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px; position: relative; }
+.route::before {
+  content: ""; position: absolute; left: 11px; right: 11px; top: 11px; height: 2px;
+  background: repeating-linear-gradient(90deg, var(--teal) 0 10px, transparent 10px 18px);
+  background-size: 18px 2px; animation: drive 1.2s linear infinite;
+}
+.stop { position: relative; padding-top: 38px; }
+.stop::before {
+  content: ""; position: absolute; top: 0; left: 0; width: 24px; height: 24px; border-radius: 50%;
+  background: var(--paper); border: 3px solid var(--teal); box-sizing: border-box;
+}
+.stop:first-child::before { background: var(--teal); }
+.stop:last-child::before { border-color: var(--fare); background: var(--fare); }
+.stop .when { font: 500 11px/1 var(--mono); color: var(--muted); letter-spacing: .04em; text-transform: uppercase; }
+.stop h3 { font-weight: 700; font-size: 17px; line-height: 1.25; margin-top: 8px; letter-spacing: -.01em; }
+.stop p { font-size: 14px; color: var(--muted); margin-top: 6px; line-height: 1.5; }
+.stop .otp { display: inline-flex; gap: 4px; margin-top: 10px; }
+.stop .otp span { font: 500 15px/1 var(--mono); background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 7px 8px; }
+.browse {
+  margin-top: 40px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px;
+}
+.browse svg { width: 28px; height: 28px; flex-shrink: 0; color: var(--teal); }
+.browse div { flex: 1 1 280px; }
+.browse b { font-family: var(--display); font-weight: 700; }
+.browse p { font-size: 14px; color: var(--muted); }
+
+/* ── profile ── */
+.profile-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+.pcard { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 20px; box-shadow: 0 30px 60px -40px rgba(9, 63, 64, .35); }
+.p-head { display: flex; gap: 14px; align-items: center; }
+.p-av { width: 56px; height: 56px; border-radius: 50%; background: var(--teal); color: #fff; display: grid; place-items: center; font: 800 18px/1 var(--display); flex-shrink: 0; }
+.p-name { font: 700 18px/1.2 var(--display); }
+.p-car { font-size: 13px; color: var(--muted); margin-top: 3px; }
+.plate { display: inline-block; margin-top: 6px; font: 500 12px/1 var(--mono); border: 1.5px solid var(--ink); border-radius: 4px; padding: 4px 6px; background: #FFFDF5; }
+.verified { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 14px; }
+.photos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 14px; }
+.ph { aspect-ratio: 4 / 3; border-radius: 8px; position: relative; overflow: hidden; display: grid; place-items: center; background: linear-gradient(160deg, #E3EFED, #C3DCD8); }
+.ph svg { width: 92%; height: auto; }
+.ph svg.bleed { position: absolute; inset: 0; width: 100%; height: 100%; }
+.ph span { z-index: 1; }
+.ph:nth-child(2) { background: linear-gradient(160deg, #EAF3F1, #CBE1DD); }
+.ph:nth-child(3) { background: linear-gradient(160deg, #EEEBE3, #D6D0C2); }
+.ph:nth-child(4) { background: linear-gradient(160deg, #DDEBE9, #B8D4CF); }
+.ph span { position: absolute; left: 4px; bottom: 4px; font: 500 9px/1 var(--body); color: #fff; background: rgba(9, 63, 64, .8); padding: 3px 5px; border-radius: 4px; }
+.cats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 18px; margin-top: 18px; }
+.cat { display: grid; grid-template-columns: 1fr auto; gap: 4px 8px; font-size: 12px; color: var(--muted); }
+.cat b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+.bar { grid-column: 1 / -1; height: 4px; background: var(--paper); border-radius: 4px; overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--teal); border-radius: 4px; }
+.quote { margin-top: 16px; padding: 12px 14px; background: var(--paper); border-radius: 12px; font-size: 13px; }
+.quote cite { display: block; font-style: normal; color: var(--muted); font-size: 12px; margin-top: 4px; }
+.facts { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 16px; }
+.facts li { display: grid; grid-template-columns: 40px 1fr; gap: 14px; align-items: start; }
+.ico { width: 40px; height: 40px; border-radius: 12px; background: var(--teal-soft); color: var(--teal); display: grid; place-items: center; }
+.ico svg { width: 20px; height: 20px; }
+.facts b { font-family: var(--display); font-weight: 700; display: block; }
+.facts span { font-size: 14px; color: var(--muted); }
+
+/* ── drivers band ── */
+.band-deep { background: var(--teal-deep); color: var(--on-deep); }
+.band-deep .eyebrow { color: var(--fare); }
+.band-deep .sec-head p { color: var(--on-deep-muted); }
+.drv-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: start; margin-top: 8px; }
+.drv-feats { display: grid; gap: 22px; margin-top: 36px; }
+.drv-feat { display: grid; grid-template-columns: 40px 1fr; gap: 14px; }
+.drv-feat .ico { background: rgba(255, 255, 255, .08); color: var(--on-deep); }
+.drv-feat b { font-family: var(--display); font-weight: 700; display: block; color: #fff; }
+.drv-feat span { font-size: 14px; color: var(--on-deep-muted); }
+.langs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.langs span { font-size: 15px; padding: 6px 10px; border-radius: 8px; background: rgba(255, 255, 255, .08); color: #fff; }
+.drv-card { background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .12); border-radius: 20px; padding: 20px; margin-top: 36px; }
+.drv-card .label { font: 500 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--on-deep-muted); }
+.drv-req { margin-top: 12px; background: var(--card); color: var(--ink); border-radius: 14px; padding: 14px; }
+.drv-req .top { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
+.drv-req h3 { font-size: 17px; font-weight: 700; }
+.drv-req .why { font-size: 12px; color: var(--teal); font-weight: 600; margin-top: 4px; }
+.drv-req .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+.drv-req .actions span { text-align: center; padding: 10px; border-radius: 10px; font-size: 13px; font-weight: 600; }
+.drv-req .actions .skip { background: var(--paper); color: var(--muted); }
+.drv-req .actions .go { background: var(--teal); color: #fff; }
+.btn-fare { background: var(--fare); color: #fff; }
+.btn-fare:hover { background: #D85A22; }
+.drv-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 32px; }
+.drv-cta .soon { margin-top: 0; color: var(--on-deep-muted); }
+.drv-cta .soon .pill { background: rgba(255, 255, 255, .1); color: var(--on-deep); }
+
+/* ── trust ── */
+.trust { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin-top: 40px; background: var(--line); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+.trust > div { background: var(--card); padding: 22px 20px; }
+.trust .ico { margin-bottom: 14px; }
+.trust b { font-family: var(--display); font-weight: 700; display: block; }
+.trust span { display: block; font-size: 14px; color: var(--muted); margin-top: 6px; }
+
+/* ── cities ── */
+.cities { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+.city { display: inline-flex; align-items: center; gap: 8px; background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 10px 16px; font-weight: 600; }
+.city::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--teal); }
+.city-note { margin-top: 14px; font-size: 14px; color: var(--muted); }
+
+/* ── download ── */
+.download { background: var(--teal); color: #fff; border-radius: 28px; padding: clamp(28px, 5vw, 56px); display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 32px; align-items: center; }
+.dl-mark { width: 52px; height: 52px; display: block; margin-bottom: 18px; }
+.download h2 { font-weight: 800; font-size: clamp(28px, 3.6vw, 42px); letter-spacing: -.03em; line-height: 1.05; }
+.download p { margin-top: 12px; color: #CBE6E2; }
+.apps { display: grid; gap: 12px; }
+.app {
+  display: grid; grid-template-columns: 48px minmax(0, 1fr) auto; gap: 14px; align-items: center;
+  background: var(--card); color: var(--ink); border-radius: 16px; padding: 14px 16px;
+  text-decoration: none; transition: transform .15s ease, box-shadow .2s ease;
+}
+.app:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -18px rgba(0, 0, 0, .45); }
+.app-icon { width: 48px; height: 48px; }
+.app b { display: block; font: 700 17px/1.2 var(--display); }
+.app small { display: block; font-size: 13px; color: var(--muted); margin-top: 3px; }
+.get {
+  display: inline-flex; align-items: center; gap: 7px; white-space: nowrap;
+  background: var(--ink); color: #fff; font: 600 13px/1 var(--body); padding: 10px 12px; border-radius: 10px;
+}
+.get svg { width: 16px; height: 16px; }
+.ios { display: flex; align-items: center; gap: 10px; margin-top: 4px; font-size: 14px; color: #CBE6E2; }
+.ios .pill {
+  font: 500 11px/1 var(--mono); letter-spacing: .04em; text-transform: uppercase;
+  background: rgba(255, 255, 255, .14); color: #fff; padding: 5px 8px; border-radius: 6px;
+}
+@media (max-width: 420px) {
+  .app { grid-template-columns: 44px minmax(0, 1fr); }
+  .app-icon { width: 44px; height: 44px; }
+  .get { grid-column: 1 / -1; justify-content: center; padding-block: 12px; }
 }
 
-/* Small mobile: up to 480px */
-@media (max-width: 480px) {
-  .trust-grid { grid-template-columns: 1fr; }
-  .hero-stats { flex-wrap: wrap; gap: 16px; }
-  .hero-stats > div { min-width: 80px; }
-  .actions { flex-direction: column; align-items: flex-start; gap: 12px; }
-  .play-badge { width: auto; justify-content: center; align-self: flex-start; }
-  .cta-btns { flex-direction: column; align-items: center; }
-  .btn-white, .btn-ghost-w { width: 100%; justify-content: center; }
-  .btn-primary { width: 100%; justify-content: center; }
-  .ratings-grid { grid-template-columns: 1fr; }
-  .dp-stats { grid-template-columns: 1fr 1fr 1fr; }
-  .dp-card { padding: 16px; }
-  .dp-top { gap: 10px; }
-  .dp-av { width: 40px; height: 40px; font-size: 15px; }
-  .dp-stat { padding: 10px 8px; }
-  .dp-stat-n { font-size: 16px; }
-  .dp-stat-l { font-size: 10px; }
-  .sec-h2, .sec-h2-w { letter-spacing: -1px; }
-  .rc-name { width: 80px; }
+/* ── footer ── */
+.foot { padding-block: 40px 48px; color: var(--muted); font-size: 14px; }
+.foot-row { display: flex; flex-wrap: wrap; gap: 16px 28px; align-items: center; justify-content: space-between; }
+.foot nav { display: flex; flex-wrap: wrap; gap: 20px; }
+.foot a { text-decoration: none; }
+.foot a:hover { color: var(--teal); }
+
+/* ── sticky phone bar ── */
+.dock { display: none; }
+
+@keyframes blink { 50% { opacity: .25; } }
+@keyframes drive { to { background-position: 18px 0; } }
+
+/* ── responsive ── */
+@media (max-width: 960px) {
+  .nav-links, .nav-row > .btn { display: none; }
+  .menu-btn { display: block; }
+  .hero-grid, .profile-grid, .drv-grid, .download { grid-template-columns: 1fr; }
+  .route { grid-template-columns: 1fr 1fr 1fr; row-gap: 36px; }
+  .route::before { display: none; }
+  .trust { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 720px) {
+  body { padding-bottom: 76px; }
+  .tickets { grid-template-columns: 1fr; }
+  .proof-row { grid-template-columns: 1fr; }
+  .proof-item + .proof-item { border-left: 0; border-top: 1px solid var(--line); }
+  .proof-item { padding-block: 16px; }
+  .route { grid-template-columns: 1fr; gap: 0; }
+  .route::before {
+    display: block; left: 11px; right: auto; top: 12px; bottom: 12px; width: 2px; height: auto;
+    background: repeating-linear-gradient(180deg, var(--teal) 0 10px, transparent 10px 18px);
+    background-size: 2px 18px; animation: drive-v 1.2s linear infinite;
+  }
+  .stop { padding: 0 0 28px 44px; }
+  .stop:last-child { padding-bottom: 0; }
+  .cats { grid-template-columns: 1fr; }
+  .trust { grid-template-columns: 1fr; }
+  .dock {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+    padding: 10px var(--gutter) calc(10px + env(safe-area-inset-bottom));
+    background: color-mix(in srgb, var(--card) 94%, transparent); backdrop-filter: blur(12px);
+    border-top: 1px solid var(--line);
+  }
+  .dock .btn { padding: 13px 10px; font-size: 14px; }
+}
+@keyframes drive-v { to { background-position: 0 18px; } }
+@media (max-width: 400px) {
+  .hero h1 { letter-spacing: -.03em; }
+  .photos { grid-template-columns: 1fr 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
 }
 </style>
 </head>
 <body>
 
-<!-- ── NAV ── -->
-<nav>
-  <a class="nav-logo" href="#">
-    <svg class="nav-logo-icon logo-svg" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="0" y="0" width="500" height="500" rx="110" fill="#0F6E6E"/>
-      <rect x="60" y="268" width="380" height="148" rx="30" fill="#ffffff"/>
-      <path d="M100 268 L138 158 L362 158 L400 268Z" fill="#ffffff"/>
-      <rect x="148" y="100" width="204" height="68" rx="18" fill="#ffffff"/>
-      <text x="250" y="150" text-anchor="middle" font-size="42" font-weight="900" fill="#0F6E6E" font-family="sans-serif" letter-spacing="6">TAXI</text>
-      <rect x="118" y="168" width="90" height="80" rx="14" fill="#0F6E6E" opacity="0.9"/>
-      <rect x="292" y="168" width="90" height="80" rx="14" fill="#0F6E6E" opacity="0.9"/>
-      <line x1="250" y1="268" x2="250" y2="416" stroke="#0F6E6E" stroke-width="5" opacity="0.2"/>
-      <rect x="60" y="318" width="380" height="24" fill="#0F6E6E" opacity="0.12"/>
-      <circle cx="134" cy="418" r="52" fill="#ffffff" stroke="#0F6E6E" stroke-width="14"/>
-      <circle cx="134" cy="418" r="20" fill="#0F6E6E"/>
-      <circle cx="366" cy="418" r="52" fill="#ffffff" stroke="#0F6E6E" stroke-width="14"/>
-      <circle cx="366" cy="418" r="20" fill="#0F6E6E"/>
-      <ellipse cx="442" cy="310" rx="24" ry="18" fill="#0F6E6E" opacity="0.55"/>
-    </svg>
-    <div class="nav-logo-text"><span class="t">Taxi</span><span class="y">Yaar</span></div>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#how">How it works</a></li>
-    <li><a href="#ratings">Ratings</a></li>
-    <li><a href="#drivers">For drivers</a></li>
-  </ul>
-  <a href="https://play.google.com/store" class="nav-cta" id="navCta">Get on Google Play ↓</a>
-  <button class="hamburger" id="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
-<!-- Mobile Menu -->
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#how" onclick="closeMenu()">How it works</a>
-  <a href="#ratings" onclick="closeMenu()">Ratings</a>
-  <a href="#bids" onclick="closeMenu()">Request a trip</a>
-  <a href="#drivers" onclick="closeMenu()">For drivers</a>
-  <a href="https://play.google.com/store" class="m-cta">▶ &nbsp;Download on Google Play</a>
-</div>
-
-<!-- ── HERO ── -->
-<section style="background:var(--off-white);">
-<div class="hero">
-  <div class="hero-left">
-    <div class="eyebrow"><span class="edot"></span>Intercity Travel, Reimagined</div>
-    <h1 class="h1">Know your<br><span class="accent">driver and taxi</span><br><span class="outline">before</span> you ride.</h1>
-    <p class="hero-sub">Not a random cab assigned to you. <strong>A specific, verified person</strong> — with a name, a face, real reviews, and photos of their car.</p>
-    <div class="actions">
-      <a href="https://play.google.com/store" class="play-badge">
-        <span style="font-size:20px;">▶</span>
-        <div>
-          <div style="font-size:10px;opacity:0.6;line-height:1;">GET IT ON</div>
-          <div style="font-size:14px;font-weight:500;line-height:1.3;">Google Play</div>
-        </div>
-      </a>
-      <a href="#how" style="font-size:14px;color:var(--teal);text-decoration:none;font-weight:500;">See how it works →</a>
-    </div>
-    <div class="hero-stats">
-      <div><div class="stat-n">8<span>+</span></div><div class="stat-l">Rating categories</div></div>
-      <div><div class="stat-n">100<span>%</span></div><div class="stat-l">Manually verified</div></div>
-      <div><div class="stat-n">₹0</div><div class="stat-l">Commission</div></div>
-    </div>
-  </div>
-  <div class="hero-right">
-    <div class="driver-card">
-      <div class="dc-head">
-        <div class="dc-av">R</div>
-        <div>
-          <div class="dc-name">Rajesh Kumar</div>
-          <div class="dc-car">Toyota Innova Crysta · White · 2021</div>
-          <div class="dc-badge">✓ Admin Verified</div>
-        </div>
-      </div>
-      <div class="dc-rating">
-        <span class="dc-stars">★★★★★</span>
-        <span class="dc-rn">4.9</span>
-        <span class="dc-rc">142 reviews · 3 yrs on route</span>
-      </div>
-      <div class="cat-grid">
-        <div><div class="cat-lbl">Behaviour <span>4.9</span></div><div class="cat-bar"><div class="cat-fill" style="width:98%"></div></div></div>
-        <div><div class="cat-lbl">Safety <span>4.8</span></div><div class="cat-bar"><div class="cat-fill" style="width:96%"></div></div></div>
-        <div><div class="cat-lbl">Honesty <span>5.0</span></div><div class="cat-bar"><div class="cat-fill" style="width:100%"></div></div></div>
-        <div><div class="cat-lbl">Cleanliness <span>4.7</span></div><div class="cat-bar"><div class="cat-fill" style="width:94%"></div></div></div>
-      </div>
-      <div style="font-size:10px;font-weight:500;color:var(--g400);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;">Car Photos · Admin Verified</div>
-      <div class="photo-strip">
-        <div class="photo-thumb" style="background:#e8f4f4;">
-          <svg viewBox="0 0 60 40" width="40" fill="none"><rect x="5" y="13" width="50" height="18" rx="3" fill="#0F6E6E" opacity="0.7"/><path d="M10 13 C12 5 18 3 22 3 L38 3 C42 3 48 5 50 13Z" fill="#0a5a5a" opacity="0.8"/><circle cx="15" cy="31" r="6" fill="#222"/><circle cx="45" cy="31" r="6" fill="#222"/><rect x="48" y="9" width="7" height="6" rx="2" fill="#FFE580" opacity="0.9"/></svg>
-          <div class="pt-label">Front</div>
-        </div>
-        <div class="photo-thumb" style="background:#f0f8f8;">
-          <svg viewBox="0 0 60 40" width="40" fill="none"><rect x="3" y="13" width="54" height="18" rx="3" fill="#0F6E6E" opacity="0.6"/><path d="M8 13 C10 5 16 3 20 3 L40 3 C44 3 50 5 52 13Z" fill="#0a5a5a" opacity="0.7"/><circle cx="12" cy="31" r="6" fill="#222"/><circle cx="48" cy="31" r="6" fill="#222"/></svg>
-          <div class="pt-label">Side</div>
-        </div>
-        <div class="photo-thumb" style="background:#eaf0f0;">
-          <svg viewBox="0 0 60 40" width="40" fill="none"><rect x="8" y="7" width="44" height="28" rx="4" fill="#e8e8e0" opacity="0.9"/><rect x="12" y="11" width="16" height="12" rx="2" fill="#b0d0d0" opacity="0.8"/><rect x="32" y="11" width="16" height="12" rx="2" fill="#b0d0d0" opacity="0.8"/><rect x="12" y="25" width="36" height="6" rx="2" fill="#c0c0b8"/></svg>
-          <div class="pt-label">Interior</div>
-        </div>
-        <div class="photo-thumb" style="background:#e4f2f2;">
-          <svg viewBox="0 0 60 40" width="40" fill="none"><rect x="5" y="9" width="50" height="24" rx="3" fill="#0F6E6E" opacity="0.5"/><rect x="10" y="15" width="40" height="12" rx="2" fill="rgba(255,255,255,0.1)"/></svg>
-          <div class="pt-label">Boot</div>
-        </div>
-      </div>
-      <div class="dc-review">
-        <div class="dc-rv-text">"Never had a better driver. Innova always spotless, never a surprise toll charge."</div>
-        <div class="dc-rv-by">— Priya S. · 3 weeks ago</div>
-      </div>
-      <button class="call-btn">📞 &nbsp;Call Rajesh Directly</button>
-    </div>
-  </div>
-</div>
-</section>
-
-<!-- ── HOW IT WORKS ── -->
-<section class="sec" id="how" style="background:var(--off-white);">
-<div class="sec-inner">
-  <div class="sec-label">How it works</div>
-  <h2 class="sec-h2" style="max-width:480px;margin-bottom:32px;">Two ways to find your driver</h2>
-  <div class="steps">
-    <div class="step"><div class="step-bg">1</div><div class="step-icon">🔍</div><div class="step-title">Browse verified drivers</div><p class="step-desc">Open the app, select your route. Scroll through verified driver profiles — 8-category ratings, real car photos, all past reviews. Take your time.</p></div>
-    <div class="step"><div class="step-bg">2</div><div class="step-icon">📋</div><div class="step-title">Post a trip request</div><p class="step-desc">Share your route, date, and passenger count. Drivers bid with their price and a note. Compare bids side by side — profile and price together, always.</p></div>
-    <div class="step"><div class="step-bg">3</div><div class="step-icon">📞</div><div class="step-title">Pick, call, travel</div><p class="step-desc">Found someone you trust? Tap Call. Speak to them directly on your phone. Confirm pickup, agree price. No booking fee. No middleman.</p></div>
-  </div>
-  <div style="background:var(--white);border-radius:14px;padding:18px 22px;border:1px solid var(--g200);margin-top:14px;display:flex;align-items:flex-start;gap:16px;">
-    <div style="font-size:20px;flex-shrink:0;margin-top:2px;">💡</div>
-    <div>
-      <div style="font-family:'Sora';font-size:14px;font-weight:700;margin-bottom:3px;">No in-app payments. No GPS tracking. No commission cut.</div>
-      <div style="font-size:13px;color:var(--g600);line-height:1.6;">Intercity trips are planned in advance. You call the driver, agree on price, pay directly by cash or UPI. TaxiYaar owns the trust layer — not the transaction.</div>
-    </div>
-  </div>
-</div>
-</section>
-
-<!-- ── RATINGS ── -->
-<section class="sec-teal" id="ratings">
-<div class="ratings-grid">
-  <div>
-    <div class="sec-label" style="color:rgba(255,255,255,0.4);">8-Category Rating System</div>
-    <h2 class="sec-h2-w" style="margin-bottom:13px;">A star average<br>tells you nothing.</h2>
-    <p style="font-size:15px;color:rgba(255,255,255,0.65);line-height:1.7;margin-bottom:22px;">We rate every driver across 8 specific categories — because spending hours in a car with someone requires knowing exactly who they are.</p>
-    <div class="rc-list">
-      <div class="rc"><div class="rc-icon">😊</div><div class="rc-name">Behaviour</div><div class="rc-track"><div class="rc-fill" style="width:96%"></div></div><div class="rc-score">4.8</div></div>
-      <div class="rc"><div class="rc-icon">🛡️</div><div class="rc-name">Safety</div><div class="rc-track"><div class="rc-fill" style="width:98%"></div></div><div class="rc-score">4.9</div></div>
-      <div class="rc"><div class="rc-icon">💰</div><div class="rc-name">Honesty</div><div class="rc-track"><div class="rc-fill" style="width:100%"></div></div><div class="rc-score">5.0</div></div>
-      <div class="rc"><div class="rc-icon">✨</div><div class="rc-name">Cleanliness</div><div class="rc-track"><div class="rc-fill" style="width:94%"></div></div><div class="rc-score">4.7</div></div>
-      <div class="rc"><div class="rc-icon">⏰</div><div class="rc-name">Timeliness</div><div class="rc-track"><div class="rc-fill" style="width:90%"></div></div><div class="rc-score">4.5</div></div>
-      <div class="rc"><div class="rc-icon">🚗</div><div class="rc-name">Car Condition</div><div class="rc-track"><div class="rc-fill" style="width:92%"></div></div><div class="rc-score">4.6</div></div>
-      <div class="rc"><div class="rc-icon">🗺️</div><div class="rc-name">Navigation</div><div class="rc-track"><div class="rc-fill" style="width:88%"></div></div><div class="rc-score">4.4</div></div>
-      <div class="rc"><div class="rc-icon">🤝</div><div class="rc-name">Friendliness</div><div class="rc-track"><div class="rc-fill" style="width:86%"></div></div><div class="rc-score">4.3</div></div>
-    </div>
-  </div>
-  <div>
-    <div class="dp-card">
-      <div class="dp-top">
-        <div class="dp-av">R</div>
-        <div>
-          <div style="font-family:'Sora';font-size:15px;font-weight:700;color:white;">Rajesh Kumar</div>
-          <div style="font-size:12px;color:rgba(255,255,255,0.55);margin-top:2px;">Toyota Innova · Intercity Driver</div>
-          <div style="display:inline-flex;align-items:center;gap:3px;background:rgba(255,255,255,0.1);border-radius:100px;padding:3px 9px;font-size:10px;color:rgba(255,255,255,0.75);margin-top:5px;">✓ Aadhaar · DL · RC Verified</div>
-        </div>
-      </div>
-      <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:14px;line-height:1.6;font-style:italic;">"I believe a driver's job is to make the journey comfortable, not just get from A to B."</div>
-      <div class="dp-stats">
-        <div class="dp-stat"><div class="dp-stat-n">4.9</div><div class="dp-stat-l">Overall rating</div></div>
-        <div class="dp-stat"><div class="dp-stat-n">142</div><div class="dp-stat-l">Reviews</div></div>
-        <div class="dp-stat" style="background:rgba(255,107,53,0.2);border:1px solid rgba(255,107,53,0.3);"><div class="dp-stat-n" style="color:#FF6B35;">5.0</div><div class="dp-stat-l">Honesty score</div></div>
-      </div>
-    </div>
-  </div>
-</div>
-</section>
-
-<!-- ── BIDS ── -->
-<section class="sec" id="bids" style="background:var(--white);">
-<div class="bids-inner">
-  <div>
-    <div class="sec-label">Request Mode</div>
-    <h2 class="sec-h2" style="margin-bottom:13px;">Post your trip.<br>Drivers bid.<br>You choose trust.</h2>
-    <p style="font-size:15px;color:var(--g600);line-height:1.7;margin-bottom:18px;">Post your trip and let verified drivers come to you. Every bid shows their full profile alongside their price — so you never choose between a safe driver and a cheaper fare.</p>
-    <div style="background:var(--teal-light);border-radius:11px;padding:13px 17px;border:1px solid rgba(15,110,110,0.15);">
-      <div style="font-size:13px;font-weight:500;color:var(--teal);margin-bottom:3px;">No expiry timers, no pressure.</div>
-      <div style="font-size:12px;color:var(--g600);line-height:1.55;">Your request stays open until you've found the right person.</div>
-    </div>
-  </div>
-  <div>
-    <div class="lowest-banner">
-      <div><div style="font-weight:500;font-size:13px;">3 drivers have bid · Lowest: ₹2,300</div><div style="font-size:11px;opacity:0.85;margin-top:2px;">Pick based on trust, not just price</div></div>
-      <span>🏆</span>
-    </div>
-    <div class="bid-stream">
-      <div class="bid-card lowest">
-        <div class="bid-av" style="background:var(--orange-light);color:var(--orange);">S</div>
-        <div style="flex:1;">
-          <div style="font-size:13px;font-weight:500;">Suresh Rawat</div>
-          <div style="font-size:11px;color:var(--g600);"><span style="color:#FFB800;">★★★★☆</span> 4.5 · 51 reviews</div>
-          <div style="font-size:11px;color:var(--g600);font-style:italic;margin-top:1px;">"Can pick from any location"</div>
-        </div>
-        <div style="text-align:right;"><div class="bid-price">₹2,300</div><div class="bid-low-tag">Lowest bid</div></div>
-      </div>
-      <div class="bid-card">
-        <div class="bid-av" style="background:var(--teal-light);color:var(--teal);">R</div>
-        <div style="flex:1;">
-          <div style="font-size:13px;font-weight:500;">Rajesh Kumar</div>
-          <div style="font-size:11px;color:var(--g600);"><span style="color:#FFB800;">★★★★★</span> 4.9 · 142 reviews</div>
-          <div style="font-size:11px;color:var(--g600);font-style:italic;margin-top:1px;">"Innova, AC, music on request"</div>
-        </div>
-        <div style="text-align:right;"><div class="bid-price">₹2,700</div></div>
-      </div>
-      <div class="bid-card">
-        <div class="bid-av" style="background:var(--g100);color:var(--g800);">M</div>
-        <div style="flex:1;">
-          <div style="font-size:13px;font-weight:500;">Manoj Singh</div>
-          <div style="font-size:11px;color:var(--g600);"><span style="color:#FFB800;">★★★★★</span> 4.7 · 89 reviews</div>
-          <div style="font-size:11px;color:var(--g600);font-style:italic;margin-top:1px;">"Ertiga, toll included"</div>
-        </div>
-        <div style="text-align:right;"><div class="bid-price">₹2,500</div></div>
-      </div>
-      <div style="font-size:11px;color:var(--g400);text-align:center;margin-top:3px;">Tap any bid to view full driver profile</div>
-    </div>
-  </div>
-</div>
-</section>
-
-<!-- ── TRUST ── -->
-<section class="sec-black">
-<div style="max-width:1160px;margin:0 auto;">
-  <div class="sec-label">Trust Infrastructure</div>
-  <h2 class="sec-h2-w" style="max-width:520px;margin-bottom:0;">Every driver is a person<br>you can genuinely trust.</h2>
-  <div class="trust-grid">
-    <div class="trust-item"><div class="ti-icon">🪪</div><div class="ti-title">Document verification</div><p class="ti-desc">Aadhaar, driving licence, and RC book reviewed by a human admin. No automated approvals — ever.</p></div>
-    <div class="trust-item"><div class="ti-icon">📸</div><div class="ti-title">4 verified car photos</div><p class="ti-desc">Front, side, interior, and boot — reviewed by our team. See the exact car before you call.</p></div>
-    <div class="trust-item"><div class="ti-icon">⭐</div><div class="ti-title">Trip-verified reviews</div><p class="ti-desc">Reviews collected only after confirmed trips. 142 reviews means 142 real journeys made.</p></div>
-    <div class="trust-item"><div class="ti-icon">🛡️</div><div class="ti-title">24-hour complaint handling</div><p class="ti-desc">Any verified complaint triggers immediate admin review. Drivers suspended within 24 hours.</p></div>
-  </div>
-</div>
-</section>
-
-<!-- ── COMPARE ── -->
-<section class="sec-black" style="padding-top:0;">
-<div style="max-width:1160px;margin:0 auto;">
-  <div class="sec-label">How we compare</div>
-  <div style="overflow-x:auto;">
-    <table class="compare-table" style="min-width:400px;">
-      <thead>
-        <tr>
-          <th>Platform type</th>
-          <th>You choose driver</th>
-          <th>Individual profiles</th>
-          <th>8-category ratings</th>
-          <th>Driver bidding</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="ours">
-          <td><strong>TaxiYaar</strong></td>
-          <td><span class="tick">✓</span> Full choice</td>
-          <td><span class="tick">✓</span> Complete</td>
-          <td><span class="tick">✓</span> Yes</td>
-          <td><span class="tick">✓</span> Yes</td>
-        </tr>
-        <tr>
-          <td>Ride-hailing apps</td>
-          <td><span class="cross">✗</span> Random</td>
-          <td><span class="cross">✗</span> None</td>
-          <td><span class="cross">✗</span> Stars only</td>
-          <td><span class="cross">✗</span> No</td>
-        </tr>
-        <tr>
-          <td>Bidding apps</td>
-          <td><span class="cross">✗</span> Limited</td>
-          <td><span class="cross">✗</span> Basic</td>
-          <td><span class="cross">✗</span> Stars only</td>
-          <td style="color:#888880;">~ Yes</td>
-        </tr>
-        <tr>
-          <td>Agency-based apps</td>
-          <td><span class="cross">✗</span> Assigned</td>
-          <td><span class="cross">✗</span> None</td>
-          <td><span class="cross">✗</span> None</td>
-          <td><span class="cross">✗</span> No</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-</section>
-
-<!-- ── FOR DRIVERS ── -->
-<section class="sec" id="drivers" style="background:var(--off-white);">
-<div class="driver-cta-inner">
-  <div>
-    <div class="sec-label">For Drivers</div>
-    <h2 class="sec-h2" style="margin-bottom:8px;">Your reputation.<br>Your business.</h2>
-    <p style="font-size:15px;color:var(--g600);line-height:1.7;">The first platform built specifically for intercity drivers. Your profile is your business card. Your rating is your career.</p>
-    <div class="feat-list">
-      <div class="feat"><div class="feat-icon">📱</div><div><div class="feat-title">Your own profile</div><div class="feat-desc">Bio, car photos, availability — riders see the real you before choosing you.</div></div></div>
-      <div class="feat"><div class="feat-icon">🏆</div><div><div class="feat-title">Ratings bring more rides</div><div class="feat-desc">Higher rating means you appear first. Reviews are your permanent reputation.</div></div></div>
-      <div class="feat"><div class="feat-icon">💰</div><div><div class="feat-title">Zero commission</div><div class="feat-desc">You negotiate price directly with riders. Every rupee you earn stays with you.</div></div></div>
-    </div>
-    <a href="#" class="btn-primary">Register as a driver →</a>
-  </div>
-  <div class="driver-dash">
-    <div style="font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--g400);margin-bottom:14px;">Driver Dashboard</div>
-    <div class="dash-stats">
-      <div class="dash-stat"><div class="dash-n">4.9</div><div class="dash-l">Your rating</div></div>
-      <div class="dash-stat"><div class="dash-n">142</div><div class="dash-l">Reviews</div></div>
-      <div class="dash-stat"><div class="dash-n">3</div><div class="dash-l">Active bids</div></div>
-    </div>
-    <div style="background:var(--off-white);border-radius:9px;padding:13px;margin-bottom:9px;">
-      <div style="font-size:11px;color:var(--g400);margin-bottom:5px;">New ride request · 2 min ago</div>
-      <div style="font-size:14px;font-weight:500;">Delhi → Haridwar</div>
-      <div style="font-size:12px;color:var(--g600);margin-top:2px;">Sat 18 May · 6:00 AM · 2 passengers</div>
-      <div style="display:flex;gap:8px;margin-top:9px;">
-        <button style="flex:1;background:var(--teal);color:white;border:none;padding:8px;border-radius:7px;font-family:'DM Sans';font-size:12px;font-weight:500;cursor:pointer;">Place bid</button>
-        <button style="padding:8px 12px;border:1px solid var(--g200);background:transparent;border-radius:7px;font-size:12px;color:var(--g600);cursor:pointer;">Skip</button>
-      </div>
-    </div>
-    <div style="font-size:12px;color:var(--teal);text-align:center;padding:9px;background:var(--teal-light);border-radius:8px;">✓ Profile is live · 3 riders viewed it today</div>
-  </div>
-</div>
-</section>
-
-<!-- ── CTA BOTTOM ── -->
-<section class="cta-bottom">
-<div class="cta-content">
-  <div class="cta-logo-wrap">
-    <svg class="cta-logo-icon" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="0" y="0" width="500" height="500" rx="110" fill="white" opacity="0.9"/>
-      <rect x="60" y="268" width="380" height="148" rx="30" fill="#0F6E6E"/>
-      <path d="M100 268 L138 158 L362 158 L400 268Z" fill="#0F6E6E"/>
-      <rect x="148" y="100" width="204" height="68" rx="18" fill="#0F6E6E"/>
-      <text x="250" y="150" text-anchor="middle" font-size="42" font-weight="900" fill="white" font-family="sans-serif" letter-spacing="6">TAXI</text>
-      <rect x="118" y="168" width="90" height="80" rx="14" fill="white" opacity="0.9"/>
-      <rect x="292" y="168" width="90" height="80" rx="14" fill="white" opacity="0.9"/>
-      <circle cx="134" cy="418" r="52" fill="#0F6E6E" stroke="white" stroke-width="14"/>
-      <circle cx="134" cy="418" r="20" fill="white"/>
-      <circle cx="366" cy="418" r="52" fill="#0F6E6E" stroke="white" stroke-width="14"/>
-      <circle cx="366" cy="418" r="20" fill="white"/>
-    </svg>
-    <div class="cta-logo-text">TaxiYaar</div>
-  </div>
-  <h2 class="cta-h2">Don't book a cab.<br>Book <span class="outline-w">Rajesh Kumar.</span></h2>
-  <p style="font-size:15px;color:rgba(255,255,255,0.7);margin-bottom:28px;line-height:1.6;">India's first platform where you choose the driver — not the other way around.</p>
-  <div class="cta-btns">
-    <a href="https://play.google.com/store" class="btn-white">
-      <span style="font-size:18px;">▶</span>
-      <div>
-        <div style="font-size:10px;color:var(--teal);opacity:0.7;line-height:1;">GET IT ON</div>
-        <div style="font-size:14px;font-weight:600;color:var(--teal);line-height:1.3;">Google Play</div>
-      </div>
+<header class="nav">
+  <div class="wrap nav-row">
+    <a class="brand" href="#top" aria-label="TaxiYaar home">
+      <svg viewBox="0 0 500 500" aria-hidden="true"><rect width="500" height="500" rx="110" fill="#0F6E6E"/><rect x="60" y="268" width="380" height="148" rx="30" fill="#fff"/><path d="M100 268 L138 158 L362 158 L400 268Z" fill="#fff"/><rect x="148" y="100" width="204" height="68" rx="18" fill="#fff"/><circle cx="134" cy="418" r="52" fill="#fff" stroke="#0F6E6E" stroke-width="14"/><circle cx="134" cy="418" r="20" fill="#0F6E6E"/><circle cx="366" cy="418" r="52" fill="#fff" stroke="#0F6E6E" stroke-width="14"/><circle cx="366" cy="418" r="20" fill="#0F6E6E"/></svg>
+      <b>Taxi<span>Yaar</span></b>
     </a>
-    <a href="#drivers" class="btn-ghost-w">Register as a driver →</a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#how">How it works</a>
+      <a href="#drivers">For drivers</a>
+      <a href="#cities">Where we run</a>
+    </nav>
+    <a class="btn btn-teal" href="#download">Get the app</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
   </div>
-  <!-- <div class="cta-nums">
-    <div><div class="cn-n">100+</div><div class="cn-l">Verified drivers</div></div>
-    <div class="cn-div"></div>
-    <div><div class="cn-n">500+</div><div class="cn-l">Real reviews</div></div>
-    <div class="cn-div"></div>
-    <div><div class="cn-n">₹0</div><div class="cn-l">Commission</div></div>
-  </div> -->
-</div>
-</section>
-
-<!-- ── FOOTER ── -->
-<footer>
-<div class="footer-inner">
-  <a class="footer-logo" href="#">
-    <svg class="footer-logo-icon" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="0" y="0" width="500" height="500" rx="110" fill="#0F6E6E"/>
-      <rect x="60" y="268" width="380" height="148" rx="30" fill="#ffffff"/>
-      <path d="M100 268 L138 158 L362 158 L400 268Z" fill="#ffffff"/>
-      <circle cx="134" cy="418" r="52" fill="#ffffff" stroke="#0F6E6E" stroke-width="14"/>
-      <circle cx="134" cy="418" r="20" fill="#0F6E6E"/>
-      <circle cx="366" cy="418" r="52" fill="#ffffff" stroke="#0F6E6E" stroke-width="14"/>
-      <circle cx="366" cy="418" r="20" fill="#0F6E6E"/>
-    </svg>
-    <div>
-      <div class="fl"><span class="t">Taxi</span><span class="y">Yaar</span></div>
-      <div class="fl-tag">Find · Trust · Travel</div>
-    </div>
-  </a>
-  <div class="footer-links">
-    <a href="#">About</a>
+  <div class="menu" id="menu">
     <a href="#how">How it works</a>
     <a href="#drivers">For drivers</a>
-    <a href="#">Privacy</a>
-    <a href="#">Contact</a>
+    <a href="#cities">Where we run</a>
+    <a href="#download">Get the app</a>
   </div>
-  <div style="font-size:12px;color:#444440;text-align:right;">
-    <div style="color:#888880;">taxiyaar.com</div>
-    <div style="margin-top:3px;">© 2026 TaxiYaar</div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Now in Bengaluru</div>
+        <h1>Know your <em>driver</em> before you ride.</h1>
+        <p class="hero-sub">Not a random cab. <strong>A verified person</strong> — with a name, a face, photos of their car and reviews from real trips. You pick them, you call them, you pay them directly.</p>
+
+        <div class="tickets">
+          <a class="ticket" href="https://play.google.com/store/apps/details?id=com.taxiyaar">
+            <span class="ticket-who">I'm travelling</span>
+            <span class="ticket-what">Post your trip, compare bids from verified drivers, pick the one you trust.</span>
+            <span class="ticket-cta"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 1.5v11l10-5.5z" fill="currentColor"/></svg>Rider app · Google Play</span>
+          </a>
+          <a class="ticket driver" href="https://play.google.com/store/apps/details?id=com.taxiyaar.driver">
+            <span class="ticket-who">I drive a taxi</span>
+            <span class="ticket-what">Get trip requests on your route. Set your own price. Keep every rupee.</span>
+            <span class="ticket-cta"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 1.5v11l10-5.5z" fill="currentColor"/></svg>Driver app · Google Play</span>
+          </a>
+        </div>
+        <div class="soon"><span class="pill">Coming soon</span>iPhone apps on the App Store</div>
+      </div>
+
+      <div class="phone-col">
+        <div class="phone" role="img" aria-label="The rider app showing a live Bengaluru to Mysuru request with three driver bids">
+          <div class="screen">
+            <div class="sb"><span>6:12</span><span>Your request</span></div>
+            <div class="req">
+              <div class="req-route">Bengaluru <i>→</i> Mysuru</div>
+              <div class="chips">
+                <span class="chip">Sat, 20 Sep</span><span class="chip">6:00 AM</span><span class="chip">3 passengers</span><span class="chip">SUV</span>
+              </div>
+              <div class="live"><b>Live</b><span><span class="mono" id="countdown">54:12</span> left</span></div>
+            </div>
+            <div class="low"><span><b>3 drivers have bid</b> · lowest ₹2,300</span><span aria-hidden="true">↓</span></div>
+            <div class="bids">
+              <div class="bid lowest">
+                <div class="av" style="background:var(--fare-soft);color:var(--fare)">SR</div>
+                <div><div class="nm">Suresh R.</div><div class="rt"><s>★</s> 4.6 · 51 reviews</div><div class="tags"><span class="tag">Toll incl.</span><span class="tag off">Parking extra</span></div></div>
+                <div class="price">₹2,300<small>Lowest</small></div>
+              </div>
+              <div class="bid">
+                <div class="av">MK</div>
+                <div><div class="nm">Manjunath K.</div><div class="rt"><s>★</s> 4.9 · 142 reviews</div><div class="note">"Innova Crysta, carrier on top"</div></div>
+                <div class="price">₹2,700</div>
+              </div>
+              <div class="bid">
+                <div class="av">IP</div>
+                <div><div class="nm">Imran P.</div><div class="rt"><s>★</s> 4.7 · 89 reviews</div><div class="tags"><span class="tag">Toll incl.</span><span class="tag">Parking incl.</span></div></div>
+                <div class="price">₹2,500</div>
+              </div>
+            </div>
+            <div class="tapnote">Tap a bid to see the driver's full profile</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF -->
+  <div class="proof">
+    <div class="wrap proof-row" style="padding-inline:0">
+      <div class="proof-item"><b>₹0</b><span>commission — riders pay drivers directly, cash or UPI</span></div>
+      <div class="proof-item"><b>8</b><span>rating categories on every driver, not one star average</span></div>
+      <div class="proof-item"><b>1 by 1</b><span>every driver checked by a person before going live</span></div>
+    </div>
   </div>
-</div>
+
+  <!-- HOW -->
+  <section class="section" id="how">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">How a trip works</div>
+        <h2>From request to drop-off, you're choosing a person.</h2>
+      </div>
+      <ol class="route">
+        <li class="stop"><div class="when">Now</div><h3>Post your trip</h3><p>Route, date, time and passengers. Your request is live for an hour and drivers on your route are notified straight away.</p></li>
+        <li class="stop"><div class="when">Minutes</div><h3>Drivers bid</h3><p>Each bid carries a price, a note, and whether toll and parking are included — no surprises later.</p></li>
+        <li class="stop"><div class="when">Your pace</div><h3>Pick on trust</h3><p>Every bid opens the full profile: 8 category ratings, 4 car photos, reviews from real trips.</p></li>
+        <li class="stop"><div class="when">One call</div><h3>Call and accept</h3><p>Talk to the driver directly, then accept their bid. Your trip is confirmed.</p></li>
+        <li class="stop"><div class="when">Pickup</div><h3>Share your OTP</h3><p>The driver starts the ride with your trip code — only you have it.</p><div class="otp" aria-label="Trip code 4 8 2 7"><span>4</span><span>8</span><span>2</span><span>7</span></div></li>
+        <li class="stop"><div class="when">Drop-off</div><h3>Pay and review</h3><p>Pay the driver directly. Rate them across all 8 categories for the next rider.</p></li>
+      </ol>
+      <div class="browse">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <div><b>Rather browse first?</b><p>Set your pickup and see every approved driver in your city, best-rated first — then call the one you like.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFILE -->
+  <section class="section" style="padding-top:0">
+    <div class="wrap profile-grid">
+      <div>
+        <div class="eyebrow">The driver profile</div>
+        <div class="sec-head"><h2>A star average tells you nothing.</h2><p>You'll spend hours in this car. So every driver is rated on eight things that matter on a long road — and you see all of them before you call.</p></div>
+        <ul class="facts">
+          <li><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="12" r="2.5"/><path d="M14 10h4M14 14h4"/></svg></div><div><b>Documents checked by a person</b><span>Aadhaar, driving licence and RC reviewed by our team. No automatic approvals.</span></div></li>
+          <li><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></div><div><b>The actual car, four ways</b><span>Front, side, interior and boot — so the car that arrives is the car you chose.</span></div></li>
+          <li><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></div><div><b>Reviews only after a trip</b><span>Nobody can review a driver they haven't travelled with.</span></div></li>
+        </ul>
+      </div>
+      <div class="pcard" aria-label="Driver profile">
+        <div class="p-head">
+          <div class="p-av">MK</div>
+          <div>
+            <div class="p-name">Manjunath K.</div>
+            <div class="p-car">Toyota Innova Crysta · White · 2021 · 9 yrs driving</div>
+            <span class="plate">KA 05 MN 4821</span>
+          </div>
+        </div>
+        <div class="verified"><span class="tag">✓ Aadhaar</span><span class="tag">✓ Licence</span><span class="tag">✓ RC</span><span class="tag off">142 reviews · 4.9</span></div>
+        <div class="photos"><div class="ph"><svg viewBox="0 0 160 120" aria-hidden="true"><defs><linearGradient id="cf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D3DAD9"/></linearGradient></defs><ellipse cx="80" cy="101" rx="60" ry="6" fill="#0F1E1D" opacity=".18"/><rect x="30" y="84" width="17" height="17" rx="4" fill="#1D2424"/><rect x="113" y="84" width="17" height="17" rx="4" fill="#1D2424"/><path d="M44 58 L53 31 Q55 26 61 26 L99 26 Q105 26 107 31 L116 58Z" fill="url(#cf)"/><path d="M49 56 L56 34 Q57 31 60 31 L100 31 Q103 31 104 34 L111 56Z" fill="#2E4A52"/><path d="M58 34 L72 34 L62 54 L52 54Z" fill="#fff" opacity=".14"/><path d="M26 72 Q26 60 38 58 L122 58 Q134 60 134 72 L134 90 Q134 95 129 95 L31 95 Q26 95 26 90Z" fill="url(#cf)"/><path d="M35 53 L44 53 L44 60 L33 60Z" fill="#C3CCCB"/><path d="M116 53 L125 53 L127 60 L116 60Z" fill="#C3CCCB"/><path d="M31 66 L52 64 L50 73 L31 73Z" fill="#EAF6FF" stroke="#8C9A99"/><path d="M129 66 L108 64 L110 73 L129 73Z" fill="#EAF6FF" stroke="#8C9A99"/><rect x="56" y="63" width="48" height="13" rx="3" fill="#232C2B"/><path d="M58 67h44M58 70h44M58 73h44" stroke="#8A9796"/><circle cx="80" cy="69.5" r="3" fill="#DDE3E2"/><rect x="48" y="84" width="64" height="6" rx="3" fill="#2B3433"/><rect x="66" y="78" width="28" height="7" rx="1" fill="#FFFDF5" stroke="#2B3433" stroke-width=".8"/><circle cx="38" cy="85" r="2.5" fill="#F4F0D8"/><circle cx="122" cy="85" r="2.5" fill="#F4F0D8"/></svg><span>Front</span></div><div class="ph"><svg viewBox="0 0 160 120" aria-hidden="true"><defs><linearGradient id="cs" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D0D8D7"/></linearGradient></defs><ellipse cx="80" cy="100" rx="70" ry="5" fill="#0F1E1D" opacity=".18"/><path d="M10 82 L10 70 Q10 63 18 62 L42 58 L58 38 Q61 34 67 34 L134 34 Q141 34 143 40 L147 60 L149 82 Q149 88 143 88 L16 88 Q10 88 10 82Z" fill="url(#cs)"/><path d="M46 58 L60 40 Q62 38 65 38 L89 38 L89 58Z" fill="#2E4A52"/><path d="M93 38 L118 38 L118 58 L93 58Z" fill="#2E4A52"/><path d="M122 38 L135 38 Q139 38 140 42 L143 58 L122 58Z" fill="#2E4A52"/><path d="M60 40 L70 40 L58 56 L50 56Z" fill="#fff" opacity=".14"/><path d="M91 60 V86 M120 60 V86" stroke="#B7C0BF"/><path d="M12 76 H148" stroke="#C6CECD"/><rect x="78" y="64" width="8" height="2.5" rx="1" fill="#9AA5A4"/><rect x="107" y="64" width="8" height="2.5" rx="1" fill="#9AA5A4"/><path d="M12 66 L26 63 L26 69 L12 71Z" fill="#EAF6FF" stroke="#8C9A99" stroke-width=".8"/><rect x="144" y="44" width="4" height="14" rx="1.5" fill="#D9483B"/><path d="M41 55 L48 53 L48 60 L41 60Z" fill="#C3CCCB"/><path d="M23 88 A15 15 0 0 1 53 88Z" fill="#3A4443"/><path d="M107 88 A15 15 0 0 1 137 88Z" fill="#3A4443"/><circle cx="38" cy="88" r="13" fill="#1D2424"/><circle cx="38" cy="88" r="7" fill="#B8C2C1"/><circle cx="38" cy="88" r="2.5" fill="#6B7675"/><circle cx="122" cy="88" r="13" fill="#1D2424"/><circle cx="122" cy="88" r="7" fill="#B8C2C1"/><circle cx="122" cy="88" r="2.5" fill="#6B7675"/></svg><span>Side</span></div><div class="ph"><svg class="bleed" viewBox="0 0 160 120" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="ci" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#BFE0EA"/><stop offset="1" stop-color="#EEF7F6"/></linearGradient></defs><rect width="160" height="120" fill="#1F2626"/><path d="M14 10 Q80 0 146 10 L134 56 L26 56Z" fill="url(#ci)"/><path d="M26 46 Q48 34 70 41 T110 38 T134 46 L134 50 L26 50Z" fill="#9CC8B8"/><path d="M50 56 L78 40 L82 40 L110 56Z" fill="#8E9998"/><path d="M80 42 V45 M80 48 V53" stroke="#fff"/><rect x="70" y="10" width="20" height="6" rx="2" fill="#3A4443"/><path d="M0 56 H160 V78 H0Z" fill="#3A4342"/><path d="M0 57 H160" stroke="#56605F"/><rect x="66" y="60" width="28" height="12" rx="2" fill="#0F6E6E"/><circle cx="114" cy="76" r="15" fill="none" stroke="#141A1A" stroke-width="5"/><path d="M99 76 H129 M114 76 V91" stroke="#141A1A" stroke-width="4"/><rect x="68" y="84" width="24" height="40" rx="4" fill="#2D3534"/><rect x="28" y="64" width="26" height="14" rx="6" fill="#B9A487"/><rect x="106" y="64" width="26" height="14" rx="6" fill="#B9A487"/><path d="M36 78 V82 M46 78 V82 M114 78 V82 M124 78 V82" stroke="#8F9998" stroke-width="2"/><rect x="18" y="81" width="46" height="46" rx="12" fill="#CDB797"/><rect x="96" y="81" width="46" height="46" rx="12" fill="#CDB797"/><path d="M41 88 V122 M119 88 V122" stroke="#B39D7E" stroke-width="1.5"/></svg><span>Interior</span></div><div class="ph"><svg viewBox="0 0 160 120" aria-hidden="true"><defs><linearGradient id="cb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D0D8D7"/></linearGradient></defs><ellipse cx="80" cy="103" rx="62" ry="5" fill="#0F1E1D" opacity=".18"/><rect x="28" y="92" width="16" height="11" rx="3" fill="#1D2424"/><rect x="116" y="92" width="16" height="11" rx="3" fill="#1D2424"/><path d="M32 8 H128 L136 26 H24Z" fill="url(#cb)"/><path d="M40 12 H120 L125 22 H35Z" fill="#2E4A52"/><path d="M26 26 H134 L136 62 H24Z" fill="#2A3231"/><path d="M30 28 L28 58 M130 28 L132 58" stroke="#8C9A99" stroke-width="2"/><rect x="34" y="36" width="30" height="26" rx="3" fill="#EE6A2F"/><path d="M44 36 v-3 h10 v3" stroke="#B64A1D" stroke-width="2" fill="none"/><path d="M41 40 V58 M57 40 V58" stroke="#fff" opacity=".3"/><rect x="68" y="42" width="26" height="20" rx="3" fill="#0F6E6E"/><path d="M76 42 v-3 h10 v3" stroke="#0A4F4F" stroke-width="2" fill="none"/><rect x="98" y="46" width="30" height="16" rx="7" fill="#7A6450"/><path d="M106 46 q7 -6 14 0" stroke="#5C4A3A" stroke-width="2" fill="none"/><path d="M20 62 H140 L142 92 Q142 97 137 97 H23 Q18 97 18 92Z" fill="url(#cb)"/><rect x="24" y="60" width="112" height="4" rx="1" fill="#A7B0AF"/><rect x="20" y="66" width="12" height="14" rx="2" fill="#D9483B"/><rect x="128" y="66" width="12" height="14" rx="2" fill="#D9483B"/><rect x="64" y="72" width="32" height="8" rx="1" fill="#FFFDF5" stroke="#2B3433" stroke-width=".8"/><rect x="22" y="86" width="116" height="7" rx="3" fill="#2B3433"/></svg><span>Boot</span></div></div>
+        <div class="cats">
+          <div class="cat">Behaviour<b>4.9</b><div class="bar"><i style="width:98%"></i></div></div>
+          <div class="cat">Safety<b>4.9</b><div class="bar"><i style="width:98%"></i></div></div>
+          <div class="cat">Honesty<b>5.0</b><div class="bar"><i style="width:100%"></i></div></div>
+          <div class="cat">Cleanliness<b>4.7</b><div class="bar"><i style="width:94%"></i></div></div>
+          <div class="cat">Timeliness<b>4.6</b><div class="bar"><i style="width:92%"></i></div></div>
+          <div class="cat">Car condition<b>4.8</b><div class="bar"><i style="width:96%"></i></div></div>
+          <div class="cat">Navigation<b>4.5</b><div class="bar"><i style="width:90%"></i></div></div>
+          <div class="cat">Friendliness<b>4.8</b><div class="bar"><i style="width:96%"></i></div></div>
+        </div>
+        <div class="quote">"Left Bengaluru at 5:30 sharp, no toll surprises, car spotless the whole way."<cite>Priya M. · after a trip to Mysuru</cite></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DRIVERS -->
+  <section class="section band-deep" id="drivers">
+    <div class="wrap drv-grid">
+      <div>
+        <div class="sec-head">
+          <div class="eyebrow">For drivers</div>
+          <h2>Your reputation is your business.</h2>
+          <p>Your profile is your visiting card. Every good trip adds to it — and a higher rating puts you nearer the top when riders browse.</p>
+        </div>
+        <div class="drv-feats">
+          <div class="drv-feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></div><div><b>Requests where you'll be</b><span>From your home city, and from every city on your travel schedule.</span></div></div>
+          <div class="drv-feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 4h10M7 8h10M7 4c4 0 6 2 6 4s-2 4-6 4l7 8"/></svg></div><div><b>Your price, zero commission</b><span>Bid what the trip is worth. Say if toll and parking are included. Every rupee stays with you.</span></div></div>
+          <div class="drv-feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 5h9M8.5 3v2M6 5c0 4 3 7 6 8M11 5c0 4-3 7-7 8"/><path d="M13 21l4-10 4 10M14.5 17.5h5"/></svg></div><div><b>In your language</b><div class="langs"><span>English</span><span lang="hi">हिन्दी</span><span lang="ta">தமிழ்</span><span lang="te">తెలుగు</span><span lang="kn">ಕನ್ನಡ</span></div></div></div>
+        </div>
+        <div class="drv-cta">
+          <a class="btn btn-fare" href="https://play.google.com/store/apps/details?id=com.taxiyaar.driver"><svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true"><path d="M2 1.5v11l10-5.5z" fill="currentColor"/></svg>Register on the driver app</a>
+          <div class="soon"><span class="pill">Coming soon</span>on the App Store</div>
+        </div>
+      </div>
+      <div class="drv-card">
+        <div class="label">Driver app · new request</div>
+        <div class="drv-req">
+          <div class="top"><h3>Whitefield → BLR Airport</h3><span class="mono" style="font-size:12px;color:var(--muted)">2 min ago</span></div>
+          <div class="chips"><span class="chip">Sat, 27 Sep</span><span class="chip">4:30 AM</span><span class="chip">2 passengers</span><span class="chip">Sedan</span></div>
+          <div class="why">In your home city · Bengaluru</div>
+          <div class="actions"><span class="skip">Not for me</span><span class="go">Place bid</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <section class="section">
+    <div class="wrap">
+      <div class="sec-head"><div class="eyebrow">If something goes wrong</div><h2>Built so you can trust a stranger.</h2></div>
+      <div class="trust">
+        <div><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></div><b>Approved by hand</b><span>No driver goes live until our team has checked their documents and car.</span></div>
+        <div><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M10 7h4M10 11h4"/><path d="M9.5 16.5h5"/></svg></div><b>A code to start</b><span>The trip only starts with your OTP, so no one else can claim your ride.</span></div>
+        <div><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 21V4h11l-2 4 2 4H5"/></svg></div><b>Report a driver</b><span>Report from the driver's profile in the app. Every report is reviewed by our team.</span></div>
+        <div><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.8 7L4 20l1.1-4.6A8 8 0 1 1 21 12z"/></svg></div><b>Support on WhatsApp</b><span>Help, documents and complaints each reach a real person on WhatsApp.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CITIES -->
+  <section class="section" id="cities" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head"><div class="eyebrow">Where we run</div><h2>Now in Bengaluru.</h2><p>Book any trip that starts in Bengaluru — an airport run across town, or out of the city to Mysuru and beyond.</p></div>
+      <div class="cities"><span class="city">Bengaluru</span></div>
+      <p class="city-note">More cities soon. Driving from another city? Register now and you'll get requests as soon as riders there can book.</p>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD -->
+  <section class="section" id="download" style="padding-top:0">
+    <div class="wrap">
+      <div class="download">
+        <div><svg class="dl-mark" viewBox="0 0 500 500" aria-hidden="true"><rect width="500" height="500" rx="110" fill="#fff"/><rect x="60" y="268" width="380" height="148" rx="30" fill="#0F6E6E"/><path d="M100 268 L138 158 L362 158 L400 268Z" fill="#0F6E6E"/><rect x="148" y="100" width="204" height="68" rx="18" fill="#0F6E6E"/><text x="250" y="150" text-anchor="middle" font-size="42" font-weight="900" fill="#fff" font-family="sans-serif" letter-spacing="6">TAXI</text><rect x="118" y="168" width="90" height="80" rx="14" fill="#fff" opacity="0.9"/><rect x="292" y="168" width="90" height="80" rx="14" fill="#fff" opacity="0.9"/><circle cx="134" cy="418" r="52" fill="#0F6E6E" stroke="#fff" stroke-width="14"/><circle cx="134" cy="418" r="20" fill="#fff"/><circle cx="366" cy="418" r="52" fill="#0F6E6E" stroke="#fff" stroke-width="14"/><circle cx="366" cy="418" r="20" fill="#fff"/></svg><h2>Don't book a cab. Book a driver you know.</h2><p>Both apps are free. No booking fee, no commission, no in-app payments.</p></div>
+        <div class="apps">
+          <a class="app" href="https://play.google.com/store/apps/details?id=com.taxiyaar"><svg class="app-icon" viewBox="0 0 500 500" aria-hidden="true"><rect width="500" height="500" rx="110" fill="#0F6E6E"/><rect x="60" y="268" width="380" height="148" rx="30" fill="#fff"/><path d="M100 268 L138 158 L362 158 L400 268Z" fill="#fff"/><rect x="148" y="100" width="204" height="68" rx="18" fill="#fff"/><circle cx="134" cy="418" r="52" fill="#fff" stroke="#0F6E6E" stroke-width="14"/><circle cx="134" cy="418" r="20" fill="#0F6E6E"/><circle cx="366" cy="418" r="52" fill="#fff" stroke="#0F6E6E" stroke-width="14"/><circle cx="366" cy="418" r="20" fill="#0F6E6E"/></svg><span><b>TaxiYaar</b><small>For riders · find and book a driver</small></span><span class="get"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2 13 12 3 22Z" fill="#00A0FF"/><path d="M3 2 16.5 8.5 13 12Z" fill="#00D46A"/><path d="M3 22 13 12 16.5 15.5Z" fill="#FF3A44"/><path d="M16.5 8.5 21 11q1.4 1 0 2l-4.5 2.5L13 12Z" fill="#FFC400"/></svg>Google Play</span></a>
+          <a class="app" href="https://play.google.com/store/apps/details?id=com.taxiyaar.driver"><svg class="app-icon" viewBox="0 0 500 500" aria-hidden="true"><rect width="500" height="500" rx="110" fill="#EE6A2F"/><rect x="60" y="268" width="380" height="148" rx="30" fill="#fff"/><path d="M100 268 L138 158 L362 158 L400 268Z" fill="#fff"/><rect x="148" y="100" width="204" height="68" rx="18" fill="#fff"/><circle cx="134" cy="418" r="52" fill="#fff" stroke="#EE6A2F" stroke-width="14"/><circle cx="134" cy="418" r="20" fill="#EE6A2F"/><circle cx="366" cy="418" r="52" fill="#fff" stroke="#EE6A2F" stroke-width="14"/><circle cx="366" cy="418" r="20" fill="#EE6A2F"/></svg><span><b>TaxiYaar Driver</b><small>For drivers · get trip requests</small></span><span class="get"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2 13 12 3 22Z" fill="#00A0FF"/><path d="M3 2 16.5 8.5 13 12Z" fill="#00D46A"/><path d="M3 22 13 12 16.5 15.5Z" fill="#FF3A44"/><path d="M16.5 8.5 21 11q1.4 1 0 2l-4.5 2.5L13 12Z" fill="#FFC400"/></svg>Google Play</span></a>
+          <p class="ios"><span class="pill">Coming soon</span>iPhone apps on the App Store</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap foot">
+  <div class="foot-row">
+    <a class="brand" href="#top"><b>Taxi<span>Yaar</span></b></a>
+    <nav aria-label="Footer">
+      <a href="#how">How it works</a>
+      <a href="#drivers">For drivers</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/delete/">Delete account</a>
+      <a href="mailto:support@taxiyaar.com">Contact</a>
+    </nav>
+    <span>© 2026 TaxiYaar · taxiyaar.com</span>
+  </div>
 </footer>
 
+<div class="dock" aria-label="Get the app">
+  <a class="btn btn-teal" href="https://play.google.com/store/apps/details?id=com.taxiyaar">Rider app</a>
+  <a class="btn btn-fare" href="https://play.google.com/store/apps/details?id=com.taxiyaar.driver">Driver app</a>
+</div>
+
 <script>
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const navCta = document.getElementById('navCta');
-
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('open');
-    mobileMenu.classList.toggle('open');
+(function () {
+  var btn = document.getElementById("menuBtn");
+  var menu = document.getElementById("menu");
+  btn.addEventListener("click", function () {
+    var open = menu.classList.toggle("open");
+    btn.setAttribute("aria-expanded", String(open));
+  });
+  menu.addEventListener("click", function (e) {
+    if (e.target.tagName === "A") { menu.classList.remove("open"); btn.setAttribute("aria-expanded", "false"); }
   });
 
-  function closeMenu() {
-    hamburger.classList.remove('open');
-    mobileMenu.classList.remove('open');
-  }
+  // The request's one-hour window, ticking down.
+  var left = 54 * 60 + 12;
+  var out = document.getElementById("countdown");
+  setInterval(function () {
+    left = left > 0 ? left - 1 : 60 * 60;
+    var m = Math.floor(left / 60), s = left % 60;
+    out.textContent = (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s;
+  }, 1000);
 
-  // Hide desktop CTA on mobile, show hamburger
-  function handleResize() {
-    if (window.innerWidth <= 1024) {
-      navCta.style.display = 'none';
-    } else {
-      navCta.style.display = 'inline-flex';
-      closeMenu();
-    }
+  // A bid lights up now and then, like a fresh one arriving.
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    var bids = document.querySelectorAll(".bid");
+    var i = 0;
+    setInterval(function () {
+      bids.forEach(function (b) { b.classList.remove("ping"); });
+      bids[i % bids.length].classList.add("ping");
+      i++;
+    }, 2600);
   }
-  handleResize();
-  window.addEventListener('resize', handleResize);
-
-  // Close menu on outside click
-  document.addEventListener('click', (e) => {
-    if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
-      closeMenu();
-    }
-  });
+})();
 </script>
 </body>
 </html>

@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Delete My Data – TaxiYaar</title>
+<meta name="description" content="Delete your TaxiYaar account and data — from the app, or here if you've uninstalled it.">
+<link rel="canonical" href="https://taxiyaar.com/delete/">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -273,6 +280,33 @@
     letter-spacing: 1px;
   }
 
+  .in-app {
+    background: #fff;
+    border: 1px solid rgba(15,110,110,0.25);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 20px;
+  }
+  .in-app-label, .or-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #0F6E6E;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+  .or-label { color: #FF6B35; margin-bottom: 4px; }
+  .steps { margin: 0; padding-left: 20px; }
+  .steps li { font-size: 14px; color: #2a2a2a; padding: 3px 0 3px 4px; }
+  .steps li::marker { color: #0F6E6E; font-weight: 700; }
+  label.field-label { display: block; }
+  .error { color: #C0392B; font-size: 13px; margin: -8px 0 14px; }
+  .link-btn {
+    margin-top: 20px; background: none; border: 0; color: #0F6E6E;
+    font: 500 14px 'DM Sans', sans-serif; cursor: pointer; text-decoration: underline;
+  }
+  .note a { color: #0F6E6E; }
+
   @media (max-width: 600px) {
     header { padding: 18px 20px; }
     .card { padding: 32px 24px; }
@@ -296,9 +330,16 @@
       <div class="icon-wrap">🗑️</div>
       <div class="page-eyebrow">Account & Data</div>
       <h1>Delete My Data</h1>
-      <p class="subtitle">Submit this form and we will permanently delete your account and all associated data within 30 days.</p>
+      <p class="subtitle">You can ask us to permanently delete your TaxiYaar account and everything linked to it. We do it within 30 days and confirm on WhatsApp.</p>
 
-      <div class="divider"></div>
+      <div class="in-app">
+        <p class="in-app-label">Quickest — from the app</p>
+        <ol class="steps">
+          <li>Open the <strong>TaxiYaar</strong> or <strong>TaxiYaar Driver</strong> app</li>
+          <li>Open the side menu and tap <strong>Settings</strong></li>
+          <li>Tap <strong>Delete Account</strong> — WhatsApp opens with your request ready. Press send.</li>
+        </ol>
+      </div>
 
       <div class="what-gets-deleted">
         <p>What gets deleted</p>
@@ -311,66 +352,81 @@
         </ul>
       </div>
 
-      <div class="field-label">Registered phone number</div>
-      <input type="tel" id="phone" placeholder="+91 98765 43210" />
+      <div class="divider"></div>
 
-      <div class="field-label">Account type</div>
+      <p class="or-label">Uninstalled the app?</p>
+      <p class="subtitle" style="margin-bottom:20px;">Fill this in and we'll open WhatsApp with your request written for you.</p>
+
+      <label class="field-label" for="phone">Registered phone number</label>
+      <input type="tel" id="phone" placeholder="+91 98765 43210" autocomplete="tel" />
+
+      <label class="field-label" for="account-type">Account type</label>
       <select id="account-type">
         <option value="" disabled selected>Select your account type</option>
         <option value="rider">Rider</option>
         <option value="driver">Driver</option>
       </select>
 
-      <div class="field-label">Reason (optional)</div>
+      <label class="field-label" for="reason">Reason (optional)</label>
       <textarea id="reason" placeholder="Let us know why you're leaving — helps us improve"></textarea>
 
-      <button class="submit-btn" onclick="handleSubmit()">Request Account Deletion</button>
+      <p class="error" id="error" hidden></p>
+      <button class="submit-btn" id="send-btn" type="button">Send request on WhatsApp</button>
 
-      <p class="note">We will send a confirmation to your WhatsApp number once the deletion is processed. This action is permanent and cannot be undone.</p>
+      <p class="note">This is permanent and cannot be undone. No WhatsApp on this device? Email <a href="mailto:support@taxiyaar.com?subject=TaxiYaar%20Data%20Deletion%20Request">support@taxiyaar.com</a> from anywhere with your registered number.</p>
     </div>
 
-    <!-- Success state -->
+    <!-- After WhatsApp opens -->
     <div class="success-state" id="success-state">
       <div class="success-icon">✓</div>
-      <h2>Request Received</h2>
-      <p>We have received your deletion request for <strong id="confirm-phone"></strong>.<br><br>Your account and all associated data will be permanently deleted within <strong>30 days</strong>. You will receive a WhatsApp confirmation once done.<br><br>Thank you for using TaxiYaar.</p>
+      <h2>Now press send in WhatsApp</h2>
+      <p>WhatsApp is open with your request for <strong id="confirm-phone"></strong>. It reaches us once you press <strong>send</strong>.<br><br>We'll delete your account and all associated data within <strong>30 days</strong> and confirm on WhatsApp.</p>
+      <button class="link-btn" id="back-btn" type="button">WhatsApp didn't open? Go back</button>
     </div>
 
   </div>
 </main>
 
 <div class="road-line"></div>
-<footer>© 2026 TaxiYaar &nbsp;·&nbsp; taxiyaar.com &nbsp;·&nbsp; <a href="/privacy" style="color:rgba(0,0,0,0.35);">Privacy Policy</a></footer>
+<footer>© 2026 TaxiYaar &nbsp;·&nbsp; <a href="/" style="color:rgba(0,0,0,0.35);">taxiyaar.com</a> &nbsp;·&nbsp; <a href="/privacy/" style="color:rgba(0,0,0,0.35);">Privacy Policy</a></footer>
 
 <script>
-  function handleSubmit() {
-    const phone = document.getElementById('phone').value.trim();
-    const accountType = document.getElementById('account-type').value;
+  // Same support number the apps fall back to. The backend doesn't allow
+  // browser calls from this site, so it can't be read live here.
+  const SUPPORT_WHATSAPP = '917798686789';
 
-    if (!phone) {
-      alert('Please enter your registered phone number.');
-      return;
-    }
-    if (!accountType) {
-      alert('Please select your account type.');
-      return;
-    }
+  const $ = id => document.getElementById(id);
 
-    const reason = document.getElementById('reason').value.trim();
-    const subject = encodeURIComponent('TaxiYaar Data Deletion Request');
-    const body = encodeURIComponent(
-      'Phone number: ' + phone + '\n' +
-      'Account type: ' + accountType + '\n' +
-      (reason ? 'Reason: ' + reason : '') + '\n\n' +
-      'Please delete my account and all associated data.'
-    );
-
-    window.location.href = 'mailto:support@taxiyaar.com?subject=' + subject + '&body=' + body;
-
-    document.getElementById('confirm-phone').textContent = phone;
-    document.getElementById('form-state').style.display = 'none';
-    document.getElementById('success-state').style.display = 'block';
+  function showError(msg) {
+    $('error').textContent = msg;
+    $('error').hidden = false;
   }
+
+  $('send-btn').addEventListener('click', () => {
+    const phone = $('phone').value.trim();
+    const accountType = $('account-type').value;
+    const reason = $('reason').value.trim();
+
+    if (!phone) return showError('Enter the phone number your account is registered with.');
+    if (!accountType) return showError('Choose whether this is a rider or a driver account.');
+    $('error').hidden = true;
+
+    const text =
+      'Hi TaxiYaar, please delete my ' + accountType + ' account and all associated data.\n' +
+      'Registered number: ' + phone +
+      (reason ? '\nReason: ' + reason : '');
+
+    window.location.href = 'https://wa.me/' + SUPPORT_WHATSAPP + '?text=' + encodeURIComponent(text);
+
+    $('confirm-phone').textContent = phone;
+    $('form-state').style.display = 'none';
+    $('success-state').style.display = 'block';
+  });
+
+  $('back-btn').addEventListener('click', () => {
+    $('success-state').style.display = 'none';
+    $('form-state').style.display = 'block';
+  });
 </script>
 
 </body>
