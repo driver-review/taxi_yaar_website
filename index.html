@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TaxiYaar — Know your driver before you ride</title>
-<meta name="description" content="Choose a verified intercity driver by name in Bengaluru. See their car, 8-category ratings and reviews from real trips before you ride. Zero commission. Rider and driver apps on Google Play.">
+<title>Intercity &amp; Outstation Taxi from Bangalore | TaxiYaar</title>
+<meta name="description" content="Intercity and outstation taxis from Bangalore to Mysore, Coorg, Ooty, Chennai and more. Pick a verified driver, see their car and reviews, pay them directly.">
 <link rel="canonical" href="https://taxiyaar.com/">
 <meta name="theme-color" content="#0F6E6E">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
@@ -13,8 +13,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="TaxiYaar">
-<meta property="og:title" content="TaxiYaar — Know your driver before you ride">
-<meta property="og:description" content="Choose a verified intercity driver by name in Bengaluru. See their car, 8-category ratings and reviews from real trips before you ride. Zero commission. Rider and driver apps on Google Play.">
+<meta property="og:title" content="Intercity &amp; Outstation Taxi from Bangalore | TaxiYaar">
+<meta property="og:description" content="Intercity and outstation taxis from Bangalore to Mysore, Coorg, Ooty, Chennai and more. Pick a verified driver, see their car and reviews, pay them directly.">
 <meta property="og:url" content="https://taxiyaar.com/">
 <meta property="og:image" content="https://taxiyaar.com/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -32,7 +32,8 @@
       "url": "https://taxiyaar.com/",
       "logo": "https://taxiyaar.com/icon-512.png",
       "email": "support@taxiyaar.com",
-      "areaServed": "Bengaluru, India",
+      "description": "Marketplace for intercity and outstation taxi trips from Bengaluru, where riders choose a verified driver and pay them directly.",
+      "areaServed": { "@type": "City", "name": "Bengaluru" },
       "sameAs": [
         "https://play.google.com/store/apps/details?id=com.taxiyaar",
         "https://play.google.com/store/apps/details?id=com.taxiyaar.driver"
@@ -44,6 +45,23 @@
       "name": "TaxiYaar",
       "url": "https://taxiyaar.com/",
       "publisher": { "@id": "https://taxiyaar.com/#org" }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://taxiyaar.com/#service",
+      "serviceType": "Intercity taxi",
+      "name": "Intercity and outstation taxis from Bangalore",
+      "provider": { "@id": "https://taxiyaar.com/#org" },
+      "areaServed": { "@type": "City", "name": "Bengaluru" },
+      "url": "https://taxiyaar.com/outstation-cabs-bangalore/"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Can I book an intercity taxi from Bangalore on TaxiYaar?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Any trip that starts in Bengaluru, whether that's Mysuru, Coorg, Ooty, Chennai, Tirupati, Hyderabad or Goa. Post your trip in the app and verified drivers on your route bid for it." } },
+        { "@type": "Question", "name": "How much does an outstation cab from Bangalore cost?", "acceptedAnswer": { "@type": "Answer", "text": "There's no fixed fare. Drivers set their own price in their bid and say whether toll and parking are included. You compare bids, pick one and pay the driver directly in cash or by UPI. TaxiYaar takes no commission or booking fee." } },
+        { "@type": "Question", "name": "How are TaxiYaar drivers verified?", "acceptedAnswer": { "@type": "Answer", "text": "A person on our team checks every driver's Aadhaar, driving licence and vehicle RC before they go live. You also see photos of the actual car and reviews from riders who travelled with them." } }
+      ]
     }
   ]
 }
@@ -327,9 +345,18 @@ p { margin: 0; }
 
 /* ── cities ── */
 .cities { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
-.city { display: inline-flex; align-items: center; gap: 8px; background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 10px 16px; font-weight: 600; }
-.city::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--teal); }
 .city-note { margin-top: 14px; font-size: 14px; color: var(--muted); }
+.city-note a { color: var(--teal); font-weight: 600; text-decoration: none; }
+.route-link { display: inline-flex; align-items: center; gap: 8px; background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 10px 16px; font-weight: 600; text-decoration: none; transition: border-color .2s ease; }
+.route-link::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--teal); }
+.route-link:hover { border-color: var(--teal); color: var(--teal); }
+.faq { margin-top: 24px; max-width: 800px; border-top: 1px solid var(--line); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { cursor: pointer; list-style: none; padding: 18px 36px 18px 0; position: relative; font: 700 17px/1.35 var(--display); letter-spacing: -.01em; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; position: absolute; right: 4px; top: 16px; font: 400 24px/1 var(--body); color: var(--teal); }
+.faq details[open] summary::after { content: "–"; }
+.faq details p { padding: 0 0 18px; color: var(--muted); max-width: 44em; }
 
 /* ── download ── */
 .download { background: var(--teal); color: #fff; border-radius: 28px; padding: clamp(28px, 5vw, 56px); display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 32px; align-items: center; }
@@ -431,7 +458,7 @@ p { margin: 0; }
     <nav class="nav-links" aria-label="Sections">
       <a href="#how">How it works</a>
       <a href="#drivers">For drivers</a>
-      <a href="#cities">Where we run</a>
+      <a href="/outstation-cabs-bangalore/">Outstation routes</a>
     </nav>
     <a class="btn btn-teal" href="#download">Get the app</a>
     <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
@@ -439,7 +466,7 @@ p { margin: 0; }
   <div class="menu" id="menu">
     <a href="#how">How it works</a>
     <a href="#drivers">For drivers</a>
-    <a href="#cities">Where we run</a>
+    <a href="/outstation-cabs-bangalore/">Outstation routes</a>
     <a href="#download">Get the app</a>
   </div>
 </header>
@@ -449,7 +476,7 @@ p { margin: 0; }
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <div class="eyebrow">Now in Bengaluru</div>
+        <div class="eyebrow">Intercity &amp; outstation taxis from Bengaluru</div>
         <h1>Know your <em>driver</em> before you ride.</h1>
         <p class="hero-sub">Not a random cab. <strong>A verified person</strong> — with a name, a face, photos of their car and reviews from real trips. You pick them, you call them, you pay them directly.</p>
 
@@ -620,9 +647,32 @@ p { margin: 0; }
   <!-- CITIES -->
   <section class="section" id="cities" style="padding-top:0">
     <div class="wrap">
-      <div class="sec-head"><div class="eyebrow">Where we run</div><h2>Now in Bengaluru.</h2><p>Book any trip that starts in Bengaluru — an airport run across town, or out of the city to Mysuru and beyond.</p></div>
-      <div class="cities"><span class="city">Bengaluru</span></div>
-      <p class="city-note">More cities soon. Driving from another city? Register now and you'll get requests as soon as riders there can book.</p>
+      <div class="sec-head"><div class="eyebrow">Where we run</div><h2>Intercity travel from Bengaluru.</h2><p>Book any trip that starts in Bengaluru, from an airport run across town to an outstation trip to Mysuru and beyond. These are the most popular routes.</p></div>
+      <div class="cities">
+        <a class="route-link" href="/bangalore-to-mysore-taxi/">Bangalore → Mysore</a>
+        <a class="route-link" href="/bangalore-to-coorg-taxi/">Bangalore → Coorg</a>
+        <a class="route-link" href="/bangalore-to-ooty-taxi/">Bangalore → Ooty</a>
+        <a class="route-link" href="/bangalore-to-chikmagalur-taxi/">Bangalore → Chikmagalur</a>
+        <a class="route-link" href="/bangalore-to-tirupati-taxi/">Bangalore → Tirupati</a>
+        <a class="route-link" href="/bangalore-to-chennai-taxi/">Bangalore → Chennai</a>
+        <a class="route-link" href="/bangalore-to-pondicherry-taxi/">Bangalore → Pondicherry</a>
+        <a class="route-link" href="/bangalore-to-wayanad-taxi/">Bangalore → Wayanad</a>
+        <a class="route-link" href="/bangalore-to-hampi-taxi/">Bangalore → Hampi</a>
+        <a class="route-link" href="/bangalore-to-mangalore-taxi/">Bangalore → Mangalore</a>
+        <a class="route-link" href="/bangalore-to-coimbatore-taxi/">Bangalore → Coimbatore</a>
+        <a class="route-link" href="/bangalore-to-hyderabad-taxi/">Bangalore → Hyderabad</a>
+        <a class="route-link" href="/bangalore-to-goa-taxi/">Bangalore → Goa</a>
+        <a class="route-link" href="/bangalore-to-kochi-taxi/">Bangalore → Kochi</a>
+      </div>
+      <p class="city-note"><a href="/outstation-cabs-bangalore/">See all outstation routes from Bangalore →</a></p>
+      <p class="city-note">More starting cities soon. Driving from another city? Register now and you'll get requests as soon as riders there can book.</p>
+
+      <div class="sec-head" style="margin-top:56px"><div class="eyebrow">Questions</div><h2>Intercity taxis from Bangalore, answered.</h2></div>
+      <div class="faq">
+        <details><summary>Can I book an intercity taxi from Bangalore on TaxiYaar?</summary><p>Yes. Any trip that starts in Bengaluru, whether that's Mysuru, Coorg, Ooty, Chennai, Tirupati, Hyderabad or Goa. Post your trip in the app and verified drivers on your route bid for it.</p></details>
+        <details><summary>How much does an outstation cab from Bangalore cost?</summary><p>There's no fixed fare. Drivers set their own price in their bid and say whether toll and parking are included. You compare bids, pick one and pay the driver directly in cash or by UPI. TaxiYaar takes no commission or booking fee.</p></details>
+        <details><summary>How are TaxiYaar drivers verified?</summary><p>A person on our team checks every driver's Aadhaar, driving licence and vehicle RC before they go live. You also see photos of the actual car and reviews from riders who travelled with them.</p></details>
+      </div>
     </div>
   </section>
 
@@ -647,6 +697,7 @@ p { margin: 0; }
     <nav aria-label="Footer">
       <a href="#how">How it works</a>
       <a href="#drivers">For drivers</a>
+      <a href="/outstation-cabs-bangalore/">Outstation cabs from Bangalore</a>
       <a href="/privacy/">Privacy</a>
       <a href="/terms/">Terms</a>
       <a href="/delete/">Delete account</a>
