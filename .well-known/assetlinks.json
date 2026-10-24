@@ -1,0 +1,18 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.taxiyaar",
+      "sha256_cert_fingerprints": ["3D:F1:BC:60:24:D7:83:08:5C:DF:E5:1F:71:92:12:13:AB:2C:45:5E:B9:87:6F:83:EF:21:21:9E:90:E6:EE:28"]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.taxiyaar.driver",
+      "sha256_cert_fingerprints": ["8A:E3:B2:71:6F:93:27:12:15:77:3B:1A:25:CB:03:0C:54:EC:05:27:BE:17:15:0C:B4:9E:ED:FC:22:ED:96:E7"]
+    }
+  }
+]

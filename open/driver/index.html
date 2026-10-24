@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Open TaxiYaar Driver</title>
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<script>
+  // Only reached when the app is not installed: installed apps open this link themselves.
+  var ua = navigator.userAgent;
+  if (/Android/i.test(ua)) location.replace('https://play.google.com/store/apps/details?id=com.taxiyaar.driver');
+  else if (!/iPhone|iPad|iPod/i.test(ua)) location.replace('/');
+</script>
+<style>
+  body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+         font-family: 'DM Sans', sans-serif; background: #F5F7F5; color: #1a1a1a; text-align: center; padding: 24px; box-sizing: border-box; }
+  .logo { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 32px; margin-bottom: 16px; }
+  .yaar { color: #0F6E6E; }
+  a.btn { display: inline-block; margin-top: 20px; padding: 12px 22px; border-radius: 10px; background: #0F6E6E; color: #fff; text-decoration: none; font-weight: 500; }
+</style>
+</head>
+<body>
+  <main>
+    <div class="logo">Taxi<span class="yaar">Yaar</span> Driver</div>
+    <p>The TaxiYaar Driver app is on Android.<br>Get it from Google Play.</p>
+    <a class="btn" href="https://play.google.com/store/apps/details?id=com.taxiyaar.driver">Get it on Google Play</a>
+  </main>
+</body>
+</html>
