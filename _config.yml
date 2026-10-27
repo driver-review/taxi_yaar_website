@@ -1,2 +1,2 @@
-# GitHub Pages skips dot-folders by default; Android reads app links from /.well-known/
+# GitHub Pages skips dot-folders by default; Android and iPhone read app links from /.well-known/
 include: [".well-known"]

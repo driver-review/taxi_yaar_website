@@ -1,0 +1,12 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["VAKWN32547.com.taxiyaar"],
+        "components": [{ "/": "/open/rider*" }],
+        "appID": "VAKWN32547.com.taxiyaar",
+        "paths": ["/open/rider*"]
+      }
+    ]
+  }
+}
