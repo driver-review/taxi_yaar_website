@@ -312,6 +312,24 @@
     .card { padding: 32px 24px; }
   }
 </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18545757710"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18545757710');
+
+  // Report a conversion when someone heads to the Play Store.
+  // Delegated so it covers every store link on the page, now and later.
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href*="play.google.com"]');
+    if (!a) return;
+    gtag('event', 'conversion', {
+      'send_to': 'AW-18545757710/iV2CCLXohK8dEI6cp4tF'
+    });
+  });
+</script>
 </head>
 <body>
 

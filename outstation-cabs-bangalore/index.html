@@ -199,6 +199,24 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=IBM+Plex+Mono:wght@500&display=swap">
 <link rel="stylesheet" href="/assets/routes.css">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18545757710"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18545757710');
+
+  // Report a conversion when someone heads to the Play Store.
+  // Delegated so it covers every store link on the page, now and later.
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href*="play.google.com"]');
+    if (!a) return;
+    gtag('event', 'conversion', {
+      'send_to': 'AW-18545757710/iV2CCLXohK8dEI6cp4tF'
+    });
+  });
+</script>
 </head>
 <body>
 

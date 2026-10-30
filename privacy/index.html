@@ -229,6 +229,24 @@
     h1 { font-size: 32px; }
   }
 </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18545757710"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18545757710');
+
+  // Report a conversion when someone heads to the Play Store.
+  // Delegated so it covers every store link on the page, now and later.
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href*="play.google.com"]');
+    if (!a) return;
+    gtag('event', 'conversion', {
+      'send_to': 'AW-18545757710/iV2CCLXohK8dEI6cp4tF'
+    });
+  });
+</script>
 </head>
 <body>
 
@@ -359,6 +377,7 @@
     <li><strong>Supabase</strong> — our database and file storage provider where your trip data and documents are securely stored</li>
     <li><strong>WhatsApp Business API</strong> — used to send ride requests, trip updates, and review reminders. No marketing messages.</li>
     <li><strong>Google Maps Platform</strong> — maps, place search, and turning your pickup point into an address</li>
+    <li><strong>Google Ads</strong> — on our website only, to measure which of our ads lead people to download the app. We use it for this counting alone: we do not build advertising audiences from your visit and we do not run remarketing</li>
     <li><strong>Render</strong> — hosts the servers that run the TaxiYaar service</li>
   </ul>
   <p>All of these providers are GDPR-compliant and operate under strict data processing agreements. We do not share your data with any other party.</p>

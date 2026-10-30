@@ -231,6 +231,24 @@
 
   h3 { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 16px; color: #0F6E6E; margin: 22px 0 8px; }
 </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18545757710"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18545757710');
+
+  // Report a conversion when someone heads to the Play Store.
+  // Delegated so it covers every store link on the page, now and later.
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href*="play.google.com"]');
+    if (!a) return;
+    gtag('event', 'conversion', {
+      'send_to': 'AW-18545757710/iV2CCLXohK8dEI6cp4tF'
+    });
+  });
+</script>
 </head>
 <body>
 
