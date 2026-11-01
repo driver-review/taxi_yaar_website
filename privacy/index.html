@@ -247,6 +247,31 @@
     });
   });
 </script>
+<!-- Meta Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1657672062809786');
+  fbq('track', 'PageView');
+
+  // Same Play Store tracking as the Google tag above, so Meta and Google
+  // can be compared on downloads instead of raw visits.
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href*="play.google.com"]');
+    if (!a) return;
+    fbq('track', 'Lead');
+  });
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1657672062809786&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -378,6 +403,7 @@
     <li><strong>WhatsApp Business API</strong> — used to send ride requests, trip updates, and review reminders. No marketing messages.</li>
     <li><strong>Google Maps Platform</strong> — maps, place search, and turning your pickup point into an address</li>
     <li><strong>Google Ads</strong> — on our website only, to measure which of our ads lead people to download the app. We use it for this counting alone: we do not build advertising audiences from your visit and we do not run remarketing</li>
+    <li><strong>Meta (Facebook and Instagram)</strong> — on our website only, for the same purpose and on the same terms as Google Ads above: to count which of our ads lead people to download the app, nothing more</li>
     <li><strong>Render</strong> — hosts the servers that run the TaxiYaar service</li>
   </ul>
   <p>All of these providers are GDPR-compliant and operate under strict data processing agreements. We do not share your data with any other party.</p>
