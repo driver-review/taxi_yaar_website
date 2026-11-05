@@ -248,6 +248,23 @@ p { margin: 0; }
 .sec-head h2 { font-weight: 800; font-size: clamp(30px, 4vw, 46px); line-height: 1.05; letter-spacing: -.03em; margin-top: 12px; }
 .sec-head p { margin-top: 14px; color: var(--muted); font-size: 17px; max-width: 34em; }
 
+/* ── what you won't get ── */
+.nots-sec { padding-bottom: 0; }
+.nots-sec .eyebrow { color: var(--fare); }
+.nots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 40px; }
+.not { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 22px 22px 20px; }
+.not-bad {
+  display: flex; align-items: flex-start; gap: 10px; font: 600 15px/1.35 var(--body); color: var(--muted);
+}
+.not-bad .t { text-decoration: line-through; text-decoration-color: var(--fare); text-decoration-thickness: 2px; }
+.not-bad .x {
+  flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%; background: var(--fare-soft); color: var(--fare);
+  display: inline-grid; place-items: center; font: 700 14px/1 var(--body);
+}
+.not h3 { margin-top: 18px; padding-top: 16px; border-top: 1px dashed var(--line); font-size: 20px; line-height: 1.2; letter-spacing: -.01em; color: var(--teal); }
+.not p { margin-top: 8px; font-size: 15px; color: var(--muted); line-height: 1.5; }
+@media (max-width: 760px) { .nots { grid-template-columns: 1fr; } }
+
 /* ── route: how a trip works ── */
 .route { list-style: none; margin: 48px 0 0; padding: 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px; position: relative; }
 .route::before {
@@ -495,7 +512,7 @@ src="https://www.facebook.com/tr?id=1657672062809786&ev=PageView&noscript=1"
 <header class="nav">
   <div class="wrap nav-row">
     <a class="brand" href="#top" aria-label="TaxiYaar home">
-      <svg viewBox="0 0 500 500" aria-hidden="true"><rect width="500" height="500" rx="110" fill="#0F6E6E"/><rect x="60" y="268" width="380" height="148" rx="30" fill="#fff"/><path d="M100 268 L138 158 L362 158 L400 268Z" fill="#fff"/><rect x="148" y="100" width="204" height="68" rx="18" fill="#fff"/><circle cx="134" cy="418" r="52" fill="#fff" stroke="#0F6E6E" stroke-width="14"/><circle cx="134" cy="418" r="20" fill="#0F6E6E"/><circle cx="366" cy="418" r="52" fill="#fff" stroke="#0F6E6E" stroke-width="14"/><circle cx="366" cy="418" r="20" fill="#0F6E6E"/></svg>
+      <svg viewBox="0 0 500 500" aria-hidden="true"><image href="/icon-192.png" width="500" height="500"/></svg>
       <b>Taxi<span>Yaar</span></b>
     </a>
     <nav class="nav-links" aria-label="Sections">
@@ -582,6 +599,34 @@ src="https://www.facebook.com/tr?id=1657672062809786&ev=PageView&noscript=1"
       <div class="proof-item"><b>1 by 1</b><span>every driver checked by a person before going live</span></div>
     </div>
   </div>
+
+  <!-- WHAT YOU WON'T GET -->
+  <section class="section nots-sec" id="no-surprises">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">What you won't get with TaxiYaar</div>
+        <h2>No surprises at your doorstep.</h2>
+        <p>With most cab apps you find out who is coming only after you book. Here you choose before you book.</p>
+      </div>
+      <div class="nots">
+        <div class="not">
+          <div class="not-bad"><span class="x" aria-hidden="true">✕</span><span class="t">A random cab assigned to you</span></div>
+          <h3>You choose the driver</h3>
+          <p>Drivers on your route bid for your trip. You compare them and pick the one you trust.</p>
+        </div>
+        <div class="not">
+          <div class="not-bad"><span class="x" aria-hidden="true">✕</span><span class="t">Booked a sedan, a hatchback shows up</span></div>
+          <h3>You see the exact car</h3>
+          <p>Every bid shows the car model and four photos of that car. That car comes for you.</p>
+        </div>
+        <div class="not">
+          <div class="not-bad"><span class="x" aria-hidden="true">✕</span><span class="t">A stranger at your door</span></div>
+          <h3>You know who is coming</h3>
+          <p>Name, face, reviews from real trips, and a call before you confirm. The trip starts only with your OTP.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- HOW -->
   <section class="section" id="how">
@@ -723,10 +768,10 @@ src="https://www.facebook.com/tr?id=1657672062809786&ev=PageView&noscript=1"
   <section class="section" id="download" style="padding-top:0">
     <div class="wrap">
       <div class="download">
-        <div><svg class="dl-mark" viewBox="0 0 500 500" aria-hidden="true"><rect width="500" height="500" rx="110" fill="#fff"/><rect x="60" y="268" width="380" height="148" rx="30" fill="#0F6E6E"/><path d="M100 268 L138 158 L362 158 L400 268Z" fill="#0F6E6E"/><rect x="148" y="100" width="204" height="68" rx="18" fill="#0F6E6E"/><text x="250" y="150" text-anchor="middle" font-size="42" font-weight="900" fill="#fff" font-family="sans-serif" letter-spacing="6">TAXI</text><rect x="118" y="168" width="90" height="80" rx="14" fill="#fff" opacity="0.9"/><rect x="292" y="168" width="90" height="80" rx="14" fill="#fff" opacity="0.9"/><circle cx="134" cy="418" r="52" fill="#0F6E6E" stroke="#fff" stroke-width="14"/><circle cx="134" cy="418" r="20" fill="#fff"/><circle cx="366" cy="418" r="52" fill="#0F6E6E" stroke="#fff" stroke-width="14"/><circle cx="366" cy="418" r="20" fill="#fff"/></svg><h2>Don't book a cab. Book a driver you know.</h2><p>Both apps are free. No booking fee, no commission, no in-app payments.</p></div>
+        <div><svg class="dl-mark" viewBox="0 0 500 500" aria-hidden="true"><image href="/icon-192.png" width="500" height="500"/></svg><h2>Don't book a cab. Book a driver you know.</h2><p>Both apps are free. No booking fee, no commission, no in-app payments.</p></div>
         <div class="apps">
-          <a class="app" href="https://play.google.com/store/apps/details?id=com.taxiyaar"><svg class="app-icon" viewBox="0 0 500 500" aria-hidden="true"><rect width="500" height="500" rx="110" fill="#0F6E6E"/><rect x="60" y="268" width="380" height="148" rx="30" fill="#fff"/><path d="M100 268 L138 158 L362 158 L400 268Z" fill="#fff"/><rect x="148" y="100" width="204" height="68" rx="18" fill="#fff"/><circle cx="134" cy="418" r="52" fill="#fff" stroke="#0F6E6E" stroke-width="14"/><circle cx="134" cy="418" r="20" fill="#0F6E6E"/><circle cx="366" cy="418" r="52" fill="#fff" stroke="#0F6E6E" stroke-width="14"/><circle cx="366" cy="418" r="20" fill="#0F6E6E"/></svg><span><b>TaxiYaar</b><small>For riders · find and book a driver</small></span><span class="get"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2 13 12 3 22Z" fill="#00A0FF"/><path d="M3 2 16.5 8.5 13 12Z" fill="#00D46A"/><path d="M3 22 13 12 16.5 15.5Z" fill="#FF3A44"/><path d="M16.5 8.5 21 11q1.4 1 0 2l-4.5 2.5L13 12Z" fill="#FFC400"/></svg>Google Play</span></a>
-          <a class="app" href="https://play.google.com/store/apps/details?id=com.taxiyaar.driver"><svg class="app-icon" viewBox="0 0 500 500" aria-hidden="true"><rect width="500" height="500" rx="110" fill="#EE6A2F"/><rect x="60" y="268" width="380" height="148" rx="30" fill="#fff"/><path d="M100 268 L138 158 L362 158 L400 268Z" fill="#fff"/><rect x="148" y="100" width="204" height="68" rx="18" fill="#fff"/><circle cx="134" cy="418" r="52" fill="#fff" stroke="#EE6A2F" stroke-width="14"/><circle cx="134" cy="418" r="20" fill="#EE6A2F"/><circle cx="366" cy="418" r="52" fill="#fff" stroke="#EE6A2F" stroke-width="14"/><circle cx="366" cy="418" r="20" fill="#EE6A2F"/></svg><span><b>TaxiYaar Driver</b><small>For drivers · get trip requests</small></span><span class="get"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2 13 12 3 22Z" fill="#00A0FF"/><path d="M3 2 16.5 8.5 13 12Z" fill="#00D46A"/><path d="M3 22 13 12 16.5 15.5Z" fill="#FF3A44"/><path d="M16.5 8.5 21 11q1.4 1 0 2l-4.5 2.5L13 12Z" fill="#FFC400"/></svg>Google Play</span></a>
+          <a class="app" href="https://play.google.com/store/apps/details?id=com.taxiyaar"><svg class="app-icon" viewBox="0 0 500 500" aria-hidden="true"><image href="/icon-192.png" width="500" height="500"/></svg><span><b>TaxiYaar</b><small>For riders · find and book a driver</small></span><span class="get"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2 13 12 3 22Z" fill="#00A0FF"/><path d="M3 2 16.5 8.5 13 12Z" fill="#00D46A"/><path d="M3 22 13 12 16.5 15.5Z" fill="#FF3A44"/><path d="M16.5 8.5 21 11q1.4 1 0 2l-4.5 2.5L13 12Z" fill="#FFC400"/></svg>Google Play</span></a>
+          <a class="app" href="https://play.google.com/store/apps/details?id=com.taxiyaar.driver"><svg class="app-icon" viewBox="0 0 500 500" aria-hidden="true"><image href="/icon-driver-192.png" width="500" height="500"/></svg><span><b>TaxiYaar Driver</b><small>For drivers · get trip requests</small></span><span class="get"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2 13 12 3 22Z" fill="#00A0FF"/><path d="M3 2 16.5 8.5 13 12Z" fill="#00D46A"/><path d="M3 22 13 12 16.5 15.5Z" fill="#FF3A44"/><path d="M16.5 8.5 21 11q1.4 1 0 2l-4.5 2.5L13 12Z" fill="#FFC400"/></svg>Google Play</span></a>
           <p class="ios"><span class="pill">Coming soon</span>iPhone apps on the App Store</p>
         </div>
       </div>

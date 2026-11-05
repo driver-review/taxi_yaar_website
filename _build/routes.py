@@ -186,11 +186,7 @@ ROUTES = [
          car="An SUV is more comfortable over ten hours, and needed for a full load of luggage."),
 ]
 
-LOGO = ('<svg viewBox="0 0 500 500" aria-hidden="true"><rect width="500" height="500" rx="110" fill="#0F6E6E"/>'
-        '<rect x="60" y="268" width="380" height="148" rx="30" fill="#fff"/><path d="M100 268 L138 158 L362 158 L400 268Z" fill="#fff"/>'
-        '<rect x="148" y="100" width="204" height="68" rx="18" fill="#fff"/>'
-        '<circle cx="134" cy="418" r="52" fill="#fff" stroke="#0F6E6E" stroke-width="14"/><circle cx="134" cy="418" r="20" fill="#0F6E6E"/>'
-        '<circle cx="366" cy="418" r="52" fill="#fff" stroke="#0F6E6E" stroke-width="14"/><circle cx="366" cy="418" r="20" fill="#0F6E6E"/></svg>')
+LOGO = '<svg viewBox="0 0 500 500" aria-hidden="true"><image href="/icon-192.png" width="500" height="500"/></svg>'
 
 STEPS = """<ol class="steps">
         <li><b>Post your trip</b>Route, date, time, passengers and car type. Drivers on your route are notified straight away.</li>
