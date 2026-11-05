@@ -129,6 +129,7 @@ p { margin: 0; }
 .download h2 { font-weight: 800; font-size: clamp(24px, 3vw, 34px); letter-spacing: -.03em; line-height: 1.1; }
 .download p { margin-top: 8px; color: #CBE6E2; }
 .download .btn { background: #fff; color: var(--teal-deep); }
+.download .btns { display: flex; flex-wrap: wrap; gap: 10px; }
 
 /* footer */
 .foot { padding-block: 40px 48px; color: var(--muted); font-size: 14px; }

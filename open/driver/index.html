@@ -29,10 +29,10 @@
   gtag('js', new Date());
   gtag('config', 'AW-18545757710');
 
-  // Report a conversion when someone heads to the Play Store.
+  // Report a conversion when someone heads to Google Play or the App Store.
   // Delegated so it covers every store link on the page, now and later.
   document.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('a[href*="play.google.com"]');
+    var a = e.target.closest && e.target.closest('a[href*="play.google.com"], a[href*="apps.apple.com"]');
     if (!a) return;
     gtag('event', 'conversion', {
       'send_to': 'AW-18545757710/iV2CCLXohK8dEI6cp4tF'
@@ -52,10 +52,10 @@
   fbq('init', '1657672062809786');
   fbq('track', 'PageView');
 
-  // Same Play Store tracking as the Google tag above, so Meta and Google
+  // Same store-click tracking as the Google tag above, so Meta and Google
   // can be compared on downloads instead of raw visits.
   document.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('a[href*="play.google.com"]');
+    var a = e.target.closest && e.target.closest('a[href*="play.google.com"], a[href*="apps.apple.com"]');
     if (!a) return;
     fbq('track', 'Lead');
   });

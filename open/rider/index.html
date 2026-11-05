@@ -12,7 +12,8 @@
   // Only reached when the app is not installed: installed apps open this link themselves.
   var ua = navigator.userAgent;
   if (/Android/i.test(ua)) location.replace('https://play.google.com/store/apps/details?id=com.taxiyaar');
-  else if (!/iPhone|iPad|iPod/i.test(ua)) location.replace('/');
+  else if (/iPhone|iPad|iPod/i.test(ua)) location.replace('https://apps.apple.com/in/app/taxiyaar/id6826521290');
+  else location.replace('/');
 </script>
 <style>
   body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
@@ -29,10 +30,10 @@
   gtag('js', new Date());
   gtag('config', 'AW-18545757710');
 
-  // Report a conversion when someone heads to the Play Store.
+  // Report a conversion when someone heads to Google Play or the App Store.
   // Delegated so it covers every store link on the page, now and later.
   document.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('a[href*="play.google.com"]');
+    var a = e.target.closest && e.target.closest('a[href*="play.google.com"], a[href*="apps.apple.com"]');
     if (!a) return;
     gtag('event', 'conversion', {
       'send_to': 'AW-18545757710/iV2CCLXohK8dEI6cp4tF'
@@ -52,10 +53,10 @@
   fbq('init', '1657672062809786');
   fbq('track', 'PageView');
 
-  // Same Play Store tracking as the Google tag above, so Meta and Google
+  // Same store-click tracking as the Google tag above, so Meta and Google
   // can be compared on downloads instead of raw visits.
   document.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('a[href*="play.google.com"]');
+    var a = e.target.closest && e.target.closest('a[href*="play.google.com"], a[href*="apps.apple.com"]');
     if (!a) return;
     fbq('track', 'Lead');
   });
@@ -68,8 +69,9 @@ src="https://www.facebook.com/tr?id=1657672062809786&ev=PageView&noscript=1"
 <body>
   <main>
     <div class="logo">Taxi<span class="yaar">Yaar</span></div>
-    <p>The TaxiYaar iPhone app is coming soon.<br>On Android, get the app from Google Play.</p>
+    <p>Get the TaxiYaar app to continue.</p>
     <a class="btn" href="https://play.google.com/store/apps/details?id=com.taxiyaar">Get it on Google Play</a>
+    <a class="btn" href="https://apps.apple.com/in/app/taxiyaar/id6826521290">Download on the App Store</a>
   </main>
 </body>
 </html>

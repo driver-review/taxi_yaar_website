@@ -109,7 +109,7 @@
           "name": "How do I know the driver is safe?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Every driver's Aadhaar, driving licence and vehicle RC are checked by a person before they go live. You see photos of the actual car and reviews from riders who travelled with them. The trip only starts with your OTP."
+            "text": "Every driver's Aadhaar, licence and RC are cross-checked before they go live: the face must match the ID, and the number plate in the car photos must match the RC. You see photos of the actual car and reviews from riders who travelled with them. The trip only starts with your OTP."
           }
         }
       ]
@@ -129,10 +129,10 @@
   gtag('js', new Date());
   gtag('config', 'AW-18545757710');
 
-  // Report a conversion when someone heads to the Play Store.
+  // Report a conversion when someone heads to Google Play or the App Store.
   // Delegated so it covers every store link on the page, now and later.
   document.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('a[href*="play.google.com"]');
+    var a = e.target.closest && e.target.closest('a[href*="play.google.com"], a[href*="apps.apple.com"]');
     if (!a) return;
     gtag('event', 'conversion', {
       'send_to': 'AW-18545757710/iV2CCLXohK8dEI6cp4tF'
@@ -152,10 +152,10 @@
   fbq('init', '1657672062809786');
   fbq('track', 'PageView');
 
-  // Same Play Store tracking as the Google tag above, so Meta and Google
+  // Same store-click tracking as the Google tag above, so Meta and Google
   // can be compared on downloads instead of raw visits.
   document.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('a[href*="play.google.com"]');
+    var a = e.target.closest && e.target.closest('a[href*="play.google.com"], a[href*="apps.apple.com"]');
     if (!a) return;
     fbq('track', 'Lead');
   });
@@ -248,7 +248,7 @@ src="https://www.facebook.com/tr?id=1657672062809786&ev=PageView&noscript=1"
         <details><summary>What is the taxi fare from Bangalore to Ooty?</summary><p>There&#x27;s no fixed fare. Post your trip in the TaxiYaar app and drivers on the route send you their price, saying whether toll and parking are included. You compare bids and pick one. You pay the driver directly in cash or by UPI, and TaxiYaar takes no commission or booking fee.</p></details>
         <details><summary>Which car should I book for Bangalore to Ooty?</summary><p>An SUV is the comfortable choice for the ghat climb, especially with a full car. You choose the car type when you post your trip.</p></details>
         <details><summary>Can I book a round trip or keep the driver for a few days?</summary><p>Yes, if the driver agrees. Call them before you accept and agree the return, the waiting and the price. Any extra charges have to be agreed before the trip starts, not during or after.</p></details>
-        <details><summary>How do I know the driver is safe?</summary><p>Every driver&#x27;s Aadhaar, driving licence and vehicle RC are checked by a person before they go live. You see photos of the actual car and reviews from riders who travelled with them. The trip only starts with your OTP.</p></details>
+        <details><summary>How do I know the driver is safe?</summary><p>Every driver&#x27;s Aadhaar, licence and RC are cross-checked before they go live: the face must match the ID, and the number plate in the car photos must match the RC. You see photos of the actual car and reviews from riders who travelled with them. The trip only starts with your OTP.</p></details>
       </div>
     </div>
   </section>
@@ -277,8 +277,8 @@ src="https://www.facebook.com/tr?id=1657672062809786&ev=PageView&noscript=1"
   <section class="section">
     <div class="wrap">
       <div class="download">
-        <div><h2>Post your trip. See who wants to drive you.</h2><p>Free on Android. No booking fee, no commission. iPhone app coming soon.</p></div>
-        <a class="btn" href="https://play.google.com/store/apps/details?id=com.taxiyaar">Get TaxiYaar on Google Play</a>
+        <div><h2>Post your trip. See who wants to drive you.</h2><p>Free on Android and iPhone. No booking fee, no commission.</p></div>
+        <div class="btns"><a class="btn" href="https://play.google.com/store/apps/details?id=com.taxiyaar">Get TaxiYaar on Google Play</a><a class="btn" href="https://apps.apple.com/in/app/taxiyaar/id6826521290">Get TaxiYaar on the App Store</a></div>
       </div>
     </div>
   </section>

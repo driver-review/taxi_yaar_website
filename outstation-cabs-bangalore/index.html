@@ -187,7 +187,7 @@
           "name": "Are TaxiYaar drivers verified?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. Our team checks every driver's Aadhaar, driving licence and vehicle RC by hand before they can take trips. Riders can only review a driver after travelling with them."
+            "text": "Yes. Every driver's Aadhaar, licence and RC are cross-checked before they can take trips: the face must match the ID, and the number plate in the car photos must match the RC. Riders can only review a driver after travelling with them."
           }
         }
       ]
@@ -207,10 +207,10 @@
   gtag('js', new Date());
   gtag('config', 'AW-18545757710');
 
-  // Report a conversion when someone heads to the Play Store.
+  // Report a conversion when someone heads to Google Play or the App Store.
   // Delegated so it covers every store link on the page, now and later.
   document.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('a[href*="play.google.com"]');
+    var a = e.target.closest && e.target.closest('a[href*="play.google.com"], a[href*="apps.apple.com"]');
     if (!a) return;
     gtag('event', 'conversion', {
       'send_to': 'AW-18545757710/iV2CCLXohK8dEI6cp4tF'
@@ -230,10 +230,10 @@
   fbq('init', '1657672062809786');
   fbq('track', 'PageView');
 
-  // Same Play Store tracking as the Google tag above, so Meta and Google
+  // Same store-click tracking as the Google tag above, so Meta and Google
   // can be compared on downloads instead of raw visits.
   document.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('a[href*="play.google.com"]');
+    var a = e.target.closest && e.target.closest('a[href*="play.google.com"], a[href*="apps.apple.com"]');
     if (!a) return;
     fbq('track', 'Lead');
   });
@@ -318,7 +318,7 @@ src="https://www.facebook.com/tr?id=1657672062809786&ev=PageView&noscript=1"
         <details><summary>How much does an intercity taxi from Bangalore cost?</summary><p>Drivers set their own price for each trip, so there&#x27;s no fixed fare. Every bid shows the price and whether toll and parking are included. You pay the driver directly in cash or by UPI, and TaxiYaar takes no commission.</p></details>
         <details><summary>Can I book a one-way drop?</summary><p>Yes. Post the trip as you need it. If you want a round trip, or want the driver to wait, agree it with them on the call before you accept.</p></details>
         <details><summary>Where can I travel from Bangalore?</summary><p>Any trip that starts in Bengaluru, from Mysuru and Coorg to Chennai, Hyderabad, Goa and beyond. The routes on this page are the most popular ones.</p></details>
-        <details><summary>Are TaxiYaar drivers verified?</summary><p>Yes. Our team checks every driver&#x27;s Aadhaar, driving licence and vehicle RC by hand before they can take trips. Riders can only review a driver after travelling with them.</p></details>
+        <details><summary>Are TaxiYaar drivers verified?</summary><p>Yes. Every driver&#x27;s Aadhaar, licence and RC are cross-checked before they can take trips: the face must match the ID, and the number plate in the car photos must match the RC. Riders can only review a driver after travelling with them.</p></details>
       </div>
     </div>
   </section>
@@ -326,8 +326,8 @@ src="https://www.facebook.com/tr?id=1657672062809786&ev=PageView&noscript=1"
   <section class="section">
     <div class="wrap">
       <div class="download">
-        <div><h2>Post your trip. See who wants to drive you.</h2><p>Free on Android. No booking fee, no commission. iPhone app coming soon.</p></div>
-        <a class="btn" href="https://play.google.com/store/apps/details?id=com.taxiyaar">Get TaxiYaar on Google Play</a>
+        <div><h2>Post your trip. See who wants to drive you.</h2><p>Free on Android and iPhone. No booking fee, no commission.</p></div>
+        <div class="btns"><a class="btn" href="https://play.google.com/store/apps/details?id=com.taxiyaar">Get TaxiYaar on Google Play</a><a class="btn" href="https://apps.apple.com/in/app/taxiyaar/id6826521290">Get TaxiYaar on the App Store</a></div>
       </div>
     </div>
   </section>

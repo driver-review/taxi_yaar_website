@@ -17,6 +17,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = "https://taxiyaar.com"
 HUB = "outstation-cabs-bangalore"
 RIDER_APP = "https://play.google.com/store/apps/details?id=com.taxiyaar"
+RIDER_IOS = "https://apps.apple.com/in/app/taxiyaar/id6826521290"
 TODAY = datetime.date.today().isoformat()
 # Pages this script doesn't touch keep their real last-modified date in the sitemap.
 LASTMOD = {"privacy/": "2026-09-12", "terms/": "2026-09-12", "delete/": "2026-09-12", "": "2026-09-23"}
@@ -304,8 +305,8 @@ def page(*, path, title, description, schema, body):
 DOWNLOAD = f"""  <section class="section">
     <div class="wrap">
       <div class="download">
-        <div><h2>Post your trip. See who wants to drive you.</h2><p>Free on Android. No booking fee, no commission. iPhone app coming soon.</p></div>
-        <a class="btn" href="{RIDER_APP}">Get TaxiYaar on Google Play</a>
+        <div><h2>Post your trip. See who wants to drive you.</h2><p>Free on Android and iPhone. No booking fee, no commission.</p></div>
+        <div class="btns"><a class="btn" href="{RIDER_APP}">Get TaxiYaar on Google Play</a><a class="btn" href="{RIDER_IOS}">Get TaxiYaar on the App Store</a></div>
       </div>
     </div>
   </section>"""
@@ -327,8 +328,8 @@ def route_page(r):
          "Yes, if the driver agrees. Call them before you accept and agree the return, the waiting and the price. "
          "Any extra charges have to be agreed before the trip starts, not during or after."),
         ("How do I know the driver is safe?",
-         "Every driver's Aadhaar, driving licence and vehicle RC are checked by a person before they go live. You see photos "
-         "of the actual car and reviews from riders who travelled with them. The trip only starts with your OTP."),
+         "Every driver's Aadhaar, licence and RC are cross-checked before they go live: the face must match the ID, "
+         "and the number plate in the car photos must match the RC. You see photos of the actual car and reviews from riders who travelled with them. The trip only starts with your OTP."),
     ]
     others = [o for o in ROUTES if o is not r]
     stops = "\n".join(f"        <li><b>{escape(s)}</b><span>{escape(d)}</span></li>" for s, d in r["stops"])
@@ -430,7 +431,8 @@ def hub_page():
          "Any trip that starts in Bengaluru, from Mysuru and Coorg to Chennai, Hyderabad, Goa and beyond. "
          "The routes on this page are the most popular ones."),
         ("Are TaxiYaar drivers verified?",
-         "Yes. Our team checks every driver's Aadhaar, driving licence and vehicle RC by hand before they can take trips. "
+         "Yes. Every driver's Aadhaar, licence and RC are cross-checked before they can take trips: the face must match "
+         "the ID, and the number plate in the car photos must match the RC. "
          "Riders can only review a driver after travelling with them."),
     ]
     near = sorted(ROUTES, key=lambda r: r["km"])

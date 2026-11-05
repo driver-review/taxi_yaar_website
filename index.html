@@ -60,7 +60,7 @@
       "mainEntity": [
         { "@type": "Question", "name": "Can I book an intercity taxi from Bangalore on TaxiYaar?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Any trip that starts in Bengaluru, whether that's Mysuru, Coorg, Ooty, Chennai, Tirupati, Hyderabad or Goa. Post your trip in the app and verified drivers on your route bid for it." } },
         { "@type": "Question", "name": "How much does an outstation cab from Bangalore cost?", "acceptedAnswer": { "@type": "Answer", "text": "There's no fixed fare. Drivers set their own price in their bid and say whether toll and parking are included. You compare bids, pick one and pay the driver directly in cash or by UPI. TaxiYaar takes no commission or booking fee." } },
-        { "@type": "Question", "name": "How are TaxiYaar drivers verified?", "acceptedAnswer": { "@type": "Answer", "text": "A person on our team checks every driver's Aadhaar, driving licence and vehicle RC before they go live. You also see photos of the actual car and reviews from riders who travelled with them." } },
+        { "@type": "Question", "name": "How are TaxiYaar drivers verified?", "acceptedAnswer": { "@type": "Answer", "text": "Every driver's Aadhaar, licence and RC are cross-checked before they go live: the name and date of birth must match, the face must match the ID, and the number plate in the car photos must match the RC. You also see photos of the actual car and reviews from riders who travelled with them." } },
         { "@type": "Question", "name": "Will a different car turn up than the one I booked?", "acceptedAnswer": { "@type": "Answer", "text": "No. Every bid shows the car model and photos of that exact car, so you know which car is coming before you book. And the trip starts only when you share your OTP with the driver." } }
       ]
     }
@@ -168,6 +168,20 @@ p { margin: 0; }
 .hero-sub { margin-top: 20px; max-width: 34em; font-size: clamp(16px, 1.6vw, 18px); color: var(--muted); }
 .hero-sub strong { color: var(--ink); font-weight: 600; }
 
+/* hero worries: one at a time, all stacked in one cell so the height never jumps */
+.worries { display: grid; }
+.worry { grid-area: 1 / 1; visibility: hidden; }
+.worry.on { visibility: visible; animation: win .5s cubic-bezier(.2, .8, .2, 1); }
+@keyframes win { from { opacity: 0; transform: translateX(48px); } to { opacity: 1; transform: none; } }
+.hero .big { font: 800 clamp(40px, 6.2vw, 72px)/.98 var(--display); letter-spacing: -.035em; margin-top: 18px; text-wrap: balance; }
+.hero .big em { font-style: normal; color: var(--teal); }
+.worry .q { display: block; margin-bottom: .25em; font-size: .5em; line-height: 1.15; letter-spacing: -.02em; color: var(--fare); }
+.wdots { display: flex; gap: 8px; margin-top: 20px; }
+.wdots button { width: 26px; height: 6px; border-radius: 3px; border: 0; padding: 0; background: var(--line); cursor: pointer; position: relative; overflow: hidden; }
+.wdots button.on::after { content: ""; position: absolute; inset: 0; background: var(--teal); transform-origin: left; animation: wfill 2s linear forwards; }
+@keyframes wfill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@media (prefers-reduced-motion: reduce) { .worry.on, .wdots button.on::after { animation: none; } }
+
 /* ticket entry points */
 .tickets { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 32px; }
 .ticket {
@@ -176,21 +190,22 @@ p { margin: 0; }
   padding: 18px 18px 16px; text-decoration: none;
   transition: border-color .2s ease, transform .15s ease;
 }
-.ticket:hover { border-color: var(--teal); transform: translateY(-2px); }
-.ticket::before, .ticket::after {
-  content: ""; position: absolute; top: 62%; width: 16px; height: 16px;
-  background: var(--paper); border: 1px solid var(--line); border-radius: 50%;
-}
-.ticket::before { left: -9px; clip-path: inset(0 0 0 50%); }
-.ticket::after { right: -9px; clip-path: inset(0 50% 0 0); }
 .ticket-who { font: 700 18px/1.2 var(--display); letter-spacing: -.01em; }
 .ticket-what { font-size: 14px; color: var(--muted); line-height: 1.45; }
-.ticket-cta {
-  margin-top: 10px; padding-top: 12px; border-top: 1px dashed var(--line);
-  display: flex; align-items: center; gap: 8px; font: 600 14px/1 var(--body); color: var(--teal);
+.ticket-cta { position: relative; margin-top: auto; padding-top: 12px; border-top: 1px dashed var(--line); display: flex; flex-wrap: wrap; gap: 8px; }
+/* ticket notches sit on the dashed line, whatever the card's height */
+.ticket-cta::before, .ticket-cta::after {
+  content: ""; position: absolute; top: -9px; width: 16px; height: 16px;
+  background: var(--paper); border: 1px solid var(--line); border-radius: 50%;
 }
-.ticket-cta svg { width: 14px; height: 14px; }
-.ticket.driver .ticket-cta { color: var(--fare); }
+.ticket-cta::before { left: -28px; clip-path: inset(0 0 0 50%); }
+.ticket-cta::after { right: -28px; clip-path: inset(0 50% 0 0); }
+.store {
+  display: inline-flex; align-items: center; gap: 7px; background: var(--ink); color: #fff; text-decoration: none;
+  border-radius: 9px; padding: 7px 10px 7px 8px; font: 600 13px/1 var(--body); white-space: nowrap; transition: background-color .2s ease;
+}
+.store:hover { background: var(--teal-deep); }
+.store svg { width: 16px; height: 16px; flex-shrink: 0; }
 .soon { margin-top: 14px; font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
 .soon .pill {
   font: 500 11px/1 var(--mono); letter-spacing: .04em; text-transform: uppercase;
@@ -219,10 +234,21 @@ p { margin: 0; }
 .bid {
   display: grid; grid-template-columns: 34px 1fr auto; gap: 10px; align-items: center;
   background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 10px;
-  transition: border-color .4s ease, box-shadow .4s ease;
+  position: relative; transition: border-color .4s ease, box-shadow .4s ease;
 }
 .bid.lowest { border-color: var(--fare); }
-.bid.ping { box-shadow: 0 0 0 3px var(--teal-soft); border-color: var(--teal); }
+/* a bid "arriving": slides in, bumps, glows, and gets a New bid tag */
+.bid.ping {
+  border-color: var(--teal); box-shadow: 0 0 0 4px rgba(15, 110, 110, .22), 0 12px 24px -12px rgba(15, 110, 110, .55);
+  animation: bidpop .9s cubic-bezier(.2, .8, .2, 1);
+}
+.bid.ping::after {
+  content: "New bid"; position: absolute; top: -9px; right: 10px; background: var(--teal); color: #fff;
+  font: 600 10px/1 var(--body); padding: 4px 7px; border-radius: 6px; animation: tagin .3s ease .25s both;
+}
+@keyframes bidpop { 0% { opacity: 0; transform: translateX(32px); } 55% { opacity: 1; transform: none; } 75% { transform: scale(1.035); } 100% { transform: none; } }
+@keyframes tagin { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .bid.ping, .bid.ping::after { animation: none; } }
 .av { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font: 700 12px/1 var(--display); background: var(--teal-soft); color: var(--teal); }
 .bid .nm { font-size: 13px; font-weight: 600; line-height: 1.2; }
 .bid .rt { font-size: 11px; color: var(--muted); }
@@ -234,6 +260,39 @@ p { margin: 0; }
 .price { font: 700 16px/1 var(--display); color: var(--fare); font-variant-numeric: tabular-nums; text-align: right; }
 .price small { display: block; margin-top: 4px; font: 500 10px/1 var(--body); color: var(--fare); }
 .tapnote { text-align: center; font-size: 11px; color: var(--muted); padding: 0 12px 16px; }
+
+/* tap a bid: the driver's profile slides over the bids, inside the phone */
+.screen { position: relative; }
+.bid { cursor: pointer; }
+.pv {
+  position: absolute; inset: 0; z-index: 2; background: var(--paper); display: flex; flex-direction: column; gap: 9px;
+  padding: 12px 12px 14px; transform: translateX(100%); transition: transform .4s cubic-bezier(.2, .8, .2, 1); overflow: hidden;
+}
+.pv.open { transform: none; }
+.pv-top { display: flex; align-items: center; gap: 8px; font: 600 12px/1 var(--body); padding: 2px 4px 0; }
+.pv-back { border: 0; background: var(--card); width: 26px; height: 26px; border-radius: 50%; cursor: pointer; font: 600 14px/1 var(--body); color: var(--ink); box-shadow: 0 0 0 1px var(--line); }
+.pv-card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 10px; display: flex; flex-direction: column; gap: 8px; }
+.pv-head { display: flex; gap: 10px; align-items: center; }
+.pv-head .p-av { width: 40px; height: 40px; font-size: 14px; }
+.pv-name { font: 700 14px/1.2 var(--display); }
+.pv-car { font-size: 10.5px; color: var(--muted); line-height: 1.3; }
+.pv-head .plate { font-size: 10px; padding: 3px 5px; margin-top: 4px; }
+.pv .verified { display: flex; flex-wrap: wrap; gap: 4px; }
+.pv .photos { margin-top: 0; gap: 4px; }
+.pv .ph span { font-size: 8px; left: 3px; bottom: 3px; padding: 2px 4px; }
+.pv .cats { margin-top: 0; gap: 6px 12px; }
+.pv .cat { font-size: 10px; gap: 2px 6px; }
+.pv .bar { height: 3px; }
+.pv-quote { font-size: 10.5px; line-height: 1.35; color: var(--ink); background: var(--paper); border-radius: 8px; padding: 7px 8px; }
+.pv-quote cite { display: block; font-style: normal; color: var(--muted); margin-top: 2px; }
+.pv-act { margin-top: auto; display: grid; grid-template-columns: 1fr 1.4fr; gap: 8px; }
+.pv-act span { text-align: center; border-radius: 10px; padding: 10px 6px; font: 600 12px/1 var(--body); }
+.pv-call { background: var(--card); color: var(--teal); box-shadow: inset 0 0 0 1.5px var(--teal); }
+.pv-accept { background: var(--teal); color: #fff; }
+/* the "tap" shown once by itself so visitors know bids open */
+.tapdot { position: absolute; z-index: 3; width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 50%; background: rgba(15, 110, 110, .35); pointer-events: none; animation: tapdot .9s ease-out forwards; }
+@keyframes tapdot { 0% { transform: scale(.4); opacity: 1; } 60% { transform: scale(1); opacity: .9; } 100% { transform: scale(1.6); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .pv { transition: none; } .tapdot { animation: none; opacity: 0; } }
 
 /* ── proof line ── */
 .proof { border-block: 1px solid var(--line); background: var(--card); }
@@ -264,6 +323,7 @@ p { margin: 0; }
 }
 .not h3 { margin-top: 18px; padding-top: 16px; border-top: 1px dashed var(--line); font-size: 20px; line-height: 1.2; letter-spacing: -.01em; color: var(--teal); }
 .not p { margin-top: 8px; font-size: 15px; color: var(--muted); line-height: 1.5; }
+@media (min-width: 761px) and (max-width: 1100px) { .not-bad { min-height: 2.7em; } }
 @media (max-width: 760px) { .nots { grid-template-columns: 1fr; } }
 
 /* ── route: how a trip works ── */
@@ -472,10 +532,10 @@ p { margin: 0; }
   gtag('js', new Date());
   gtag('config', 'AW-18545757710');
 
-  // Report a conversion when someone heads to the Play Store.
+  // Report a conversion when someone heads to Google Play or the App Store.
   // Delegated so it covers every store link on the page, now and later.
   document.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('a[href*="play.google.com"]');
+    var a = e.target.closest && e.target.closest('a[href*="play.google.com"], a[href*="apps.apple.com"]');
     if (!a) return;
     gtag('event', 'conversion', {
       'send_to': 'AW-18545757710/iV2CCLXohK8dEI6cp4tF'
@@ -495,10 +555,10 @@ p { margin: 0; }
   fbq('init', '1657672062809786');
   fbq('track', 'PageView');
 
-  // Same Play Store tracking as the Google tag above, so Meta and Google
+  // Same store-click tracking as the Google tag above, so Meta and Google
   // can be compared on downloads instead of raw visits.
   document.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('a[href*="play.google.com"]');
+    var a = e.target.closest && e.target.closest('a[href*="play.google.com"], a[href*="apps.apple.com"]');
     if (!a) return;
     fbq('track', 'Lead');
   });
@@ -538,27 +598,39 @@ src="https://www.facebook.com/tr?id=1657672062809786&ev=PageView&noscript=1"
     <div class="wrap hero-grid">
       <div>
         <div class="eyebrow">Intercity &amp; outstation taxis from Bengaluru</div>
-        <h1>Know your <em>driver</em> before you ride.</h1>
-        <p class="hero-sub">Not a random cab. <strong>A verified person</strong> — with a name, a face, photos of their car and reviews from real trips. You pick them, you call them, you pay them directly.</p>
+        <div class="worries" id="worries">
+          <div class="worry on"><h1 class="big"><span class="q">Random cab at your door?</span>Not here. <em>You pick</em> the car that comes.</h1>
+            <p class="hero-sub">Verified drivers send you their price. You see the driver and <strong>photos of the exact car</strong> before you book.</p></div>
+          <div class="worry"><div class="big"><span class="q">Booked a sedan, a hatchback turns up?</span>The car you see is <em>the car you get.</em></div>
+            <p class="hero-sub">Every bid shows the <strong>car model and four photos</strong> of that exact car.</p></div>
+          <div class="worry"><div class="big"><span class="q">Travelling alone as a woman?</span><em>Know who is coming</em> before you book.</div>
+            <p class="hero-sub">See the driver's <strong>name, face and reviews</strong> from real trips, and call them before you confirm.</p></div>
+          <div class="worry"><div class="big"><span class="q">Worried the driver turns up drunk?</span>Pick one with <em>a record you trust.</em></div>
+            <p class="hero-sub">Riders rate every driver on <strong>Safety and Behaviour</strong> after the trip. You read it all before you choose.</p></div>
+          <div class="worry"><div class="big"><span class="q">A night ride with a stranger?</span>Your driver <em>isn't a stranger.</em></div>
+            <p class="hero-sub">You have spoken to them before the trip, and it starts <strong>only with your OTP</strong>.</p></div>
+          <div class="worry"><div class="big"><span class="q">Hours on the road with someone you don't know?</span>Choose the driver <em>for a long ride.</em></div>
+            <p class="hero-sub">Read reviews from <strong>real long trips</strong> and talk to the driver first. Pay them directly.</p></div>
+        </div>
+        <div class="wdots" id="wdots" aria-hidden="true"><button tabindex="-1"></button><button tabindex="-1"></button><button tabindex="-1"></button><button tabindex="-1"></button><button tabindex="-1"></button><button tabindex="-1"></button></div>
 
         <div class="tickets">
-          <a class="ticket" href="https://play.google.com/store/apps/details?id=com.taxiyaar">
+          <div class="ticket">
             <span class="ticket-who">I'm travelling</span>
             <span class="ticket-what">Post your trip, compare bids from verified drivers, pick the one you trust.</span>
-            <span class="ticket-cta"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 1.5v11l10-5.5z" fill="currentColor"/></svg>Rider app · Google Play</span>
-          </a>
-          <a class="ticket driver" href="https://play.google.com/store/apps/details?id=com.taxiyaar.driver">
+            <span class="ticket-cta"><a class="store" href="https://play.google.com/store/apps/details?id=com.taxiyaar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2 13 12 3 22Z" fill="#00A0FF"/><path d="M3 2 16.5 8.5 13 12Z" fill="#00D46A"/><path d="M3 22 13 12 16.5 15.5Z" fill="#FF3A44"/><path d="M16.5 8.5 21 11q1.4 1 0 2l-4.5 2.5L13 12Z" fill="#FFC400"/></svg>Google Play</a><a class="store" href="https://apps.apple.com/in/app/taxiyaar/id6826521290"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.1-1.2 2.9-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.4-.9-2.4-3.9zM14 5.5c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.6 2.8-1.4z"/></svg>App Store</a></span>
+          </div>
+          <div class="ticket driver">
             <span class="ticket-who">I drive a taxi</span>
             <span class="ticket-what">Get trip requests on your route. Set your own price. No commission on your trips.</span>
-            <span class="ticket-cta"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 1.5v11l10-5.5z" fill="currentColor"/></svg>Driver app · Google Play</span>
-          </a>
+            <span class="ticket-cta"><a class="store" href="https://play.google.com/store/apps/details?id=com.taxiyaar.driver"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2 13 12 3 22Z" fill="#00A0FF"/><path d="M3 2 16.5 8.5 13 12Z" fill="#00D46A"/><path d="M3 22 13 12 16.5 15.5Z" fill="#FF3A44"/><path d="M16.5 8.5 21 11q1.4 1 0 2l-4.5 2.5L13 12Z" fill="#FFC400"/></svg>Google Play</a></span>
+          </div>
         </div>
-        <div class="soon"><span class="pill">Coming soon</span>iPhone apps on the App Store</div>
       </div>
 
       <div class="phone-col">
-        <div class="phone" role="img" aria-label="The rider app showing a live Bengaluru to Mysuru request with three driver bids">
-          <div class="screen">
+        <div class="phone" aria-label="The rider app showing a live Bengaluru to Mysuru request with three driver bids">
+          <div class="screen" id="screen">
             <div class="sb"><span>6:12</span><span>Your request</span></div>
             <div class="req">
               <div class="req-route">Bengaluru <i>→</i> Mysuru</div>
@@ -586,6 +658,7 @@ src="https://www.facebook.com/tr?id=1657672062809786&ev=PageView&noscript=1"
               </div>
             </div>
             <div class="tapnote">Tap a bid to see the driver's full profile</div>
+            <div class="pv" id="pv" aria-hidden="true"></div>
           </div>
         </div>
       </div>
@@ -597,7 +670,7 @@ src="https://www.facebook.com/tr?id=1657672062809786&ev=PageView&noscript=1"
     <div class="wrap proof-row" style="padding-inline:0">
       <div class="proof-item"><b>₹0</b><span>commission — riders pay drivers directly, cash or UPI</span></div>
       <div class="proof-item"><b>8</b><span>rating categories on every driver, not one star average</span></div>
-      <div class="proof-item"><b>1 by 1</b><span>every driver checked by a person before going live</span></div>
+      <div class="proof-item"><b>3</b><span>documents cross-checked for every driver: Aadhaar, licence and RC</span></div>
     </div>
   </div>
 
@@ -616,7 +689,7 @@ src="https://www.facebook.com/tr?id=1657672062809786&ev=PageView&noscript=1"
           <p>Drivers on your route bid for your trip. You compare them and pick the one you trust.</p>
         </div>
         <div class="not">
-          <div class="not-bad"><span class="x" aria-hidden="true">✕</span><span class="t">Booked a sedan, a hatchback shows up</span></div>
+          <div class="not-bad"><span class="x" aria-hidden="true">✕</span><span class="t">Booked a sedan, got a hatchback</span></div>
           <h3>You see the exact car</h3>
           <p>Every bid shows the car model and four photos of that car. That car comes for you.</p>
         </div>
@@ -658,7 +731,7 @@ src="https://www.facebook.com/tr?id=1657672062809786&ev=PageView&noscript=1"
         <div class="eyebrow">The driver profile</div>
         <div class="sec-head"><h2>A star average tells you nothing.</h2><p>You'll spend hours in this car. So every driver is rated on eight things that matter on a long road — and you see all of them before you call.</p></div>
         <ul class="facts">
-          <li><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="12" r="2.5"/><path d="M14 10h4M14 14h4"/></svg></div><div><b>Documents checked by a person</b><span>Aadhaar, driving licence and RC reviewed by our team. No automatic approvals.</span></div></li>
+          <li><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="12" r="2.5"/><path d="M14 10h4M14 14h4"/></svg></div><div><b>Documents cross-checked</b><span>Aadhaar, licence and RC must agree with each other, and the driver's face must match the ID.</span></div></li>
           <li><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></div><div><b>The actual car, four ways</b><span>Front, side, interior and boot — so the car that arrives is the car you chose.</span></div></li>
           <li><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></div><div><b>Reviews only after a trip</b><span>Nobody can review a driver they haven't travelled with.</span></div></li>
         </ul>
@@ -669,7 +742,7 @@ src="https://www.facebook.com/tr?id=1657672062809786&ev=PageView&noscript=1"
           <div>
             <div class="p-name">Manjunath K.</div>
             <div class="p-car">Toyota Innova Crysta · White · 2021 · 9 yrs driving</div>
-            <span class="plate">KA 05 MN 4821</span>
+            <span class="plate">KA 00 TY 2345</span>
           </div>
         </div>
         <div class="verified"><span class="tag">✓ Aadhaar</span><span class="tag">✓ Licence</span><span class="tag">✓ RC</span><span class="tag off">142 reviews · 4.9</span></div>
@@ -723,9 +796,9 @@ src="https://www.facebook.com/tr?id=1657672062809786&ev=PageView&noscript=1"
   <!-- TRUST -->
   <section class="section">
     <div class="wrap">
-      <div class="sec-head"><div class="eyebrow">If something goes wrong</div><h2>Built so you can trust a stranger.</h2></div>
+      <div class="sec-head"><div class="eyebrow">Safety</div><h2>Safe from booking to drop-off.</h2></div>
       <div class="trust">
-        <div><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></div><b>Approved by hand</b><span>No driver goes live until our team has checked their documents and car.</span></div>
+        <div><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></div><b>Checked before going live</b><span>No driver goes live until their documents and car photos pass every check.</span></div>
         <div><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M10 7h4M10 11h4"/><path d="M9.5 16.5h5"/></svg></div><b>A code to start</b><span>The trip only starts with your OTP, so no one else can claim your ride.</span></div>
         <div><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 21V4h11l-2 4 2 4H5"/></svg></div><b>Report a driver</b><span>Report from the driver's profile in the app. Every report is reviewed by our team.</span></div>
         <div><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.8 7L4 20l1.1-4.6A8 8 0 1 1 21 12z"/></svg></div><b>Support on WhatsApp</b><span>Help, documents and complaints each reach a real person on WhatsApp.</span></div>
@@ -760,7 +833,7 @@ src="https://www.facebook.com/tr?id=1657672062809786&ev=PageView&noscript=1"
       <div class="faq">
         <details><summary>Can I book an intercity taxi from Bangalore on TaxiYaar?</summary><p>Yes. Any trip that starts in Bengaluru, whether that's Mysuru, Coorg, Ooty, Chennai, Tirupati, Hyderabad or Goa. Post your trip in the app and verified drivers on your route bid for it.</p></details>
         <details><summary>How much does an outstation cab from Bangalore cost?</summary><p>There's no fixed fare. Drivers set their own price in their bid and say whether toll and parking are included. You compare bids, pick one and pay the driver directly in cash or by UPI. TaxiYaar takes no commission or booking fee.</p></details>
-        <details><summary>How are TaxiYaar drivers verified?</summary><p>A person on our team checks every driver's Aadhaar, driving licence and vehicle RC before they go live. You also see photos of the actual car and reviews from riders who travelled with them.</p></details>
+        <details><summary>How are TaxiYaar drivers verified?</summary><p>Every driver's Aadhaar, licence and RC are cross-checked before they go live: the name and date of birth must match, the face must match the ID, and the number plate in the car photos must match the RC. You also see photos of the actual car and reviews from riders who travelled with them.</p></details>
         <details><summary>Will a different car turn up than the one I booked?</summary><p>No. Every bid shows the car model and photos of that exact car, so you know which car is coming before you book. And the trip starts only when you share your OTP with the driver.</p></details>
       </div>
     </div>
@@ -770,11 +843,12 @@ src="https://www.facebook.com/tr?id=1657672062809786&ev=PageView&noscript=1"
   <section class="section" id="download" style="padding-top:0">
     <div class="wrap">
       <div class="download">
-        <div><svg class="dl-mark" viewBox="0 0 500 500" aria-hidden="true"><image href="/icon-192.png" width="500" height="500"/></svg><h2>Don't book a cab. Book a driver you know.</h2><p>Both apps are free. No booking fee, no commission, no in-app payments.</p></div>
+        <div><svg class="dl-mark" viewBox="0 0 500 500" aria-hidden="true"><image href="/icon-192.png" width="500" height="500"/></svg><h2>Book your taxi. Choose the car that comes.</h2><p>Both apps are free. No booking fee, no commission, no in-app payments.</p></div>
         <div class="apps">
-          <a class="app" href="https://play.google.com/store/apps/details?id=com.taxiyaar"><svg class="app-icon" viewBox="0 0 500 500" aria-hidden="true"><image href="/icon-192.png" width="500" height="500"/></svg><span><b>TaxiYaar</b><small>For riders · find and book a driver</small></span><span class="get"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2 13 12 3 22Z" fill="#00A0FF"/><path d="M3 2 16.5 8.5 13 12Z" fill="#00D46A"/><path d="M3 22 13 12 16.5 15.5Z" fill="#FF3A44"/><path d="M16.5 8.5 21 11q1.4 1 0 2l-4.5 2.5L13 12Z" fill="#FFC400"/></svg>Google Play</span></a>
+          <a class="app" href="https://play.google.com/store/apps/details?id=com.taxiyaar"><svg class="app-icon" viewBox="0 0 500 500" aria-hidden="true"><image href="/icon-192.png" width="500" height="500"/></svg><span><b>TaxiYaar</b><small>For riders · on Android</small></span><span class="get"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2 13 12 3 22Z" fill="#00A0FF"/><path d="M3 2 16.5 8.5 13 12Z" fill="#00D46A"/><path d="M3 22 13 12 16.5 15.5Z" fill="#FF3A44"/><path d="M16.5 8.5 21 11q1.4 1 0 2l-4.5 2.5L13 12Z" fill="#FFC400"/></svg>Google Play</span></a>
+          <a class="app" href="https://apps.apple.com/in/app/taxiyaar/id6826521290"><svg class="app-icon" viewBox="0 0 500 500" aria-hidden="true"><image href="/icon-192.png" width="500" height="500"/></svg><span><b>TaxiYaar</b><small>For riders · on iPhone</small></span><span class="get"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.1-1.2 2.9-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.4-.9-2.4-3.9zM14 5.5c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.6 2.8-1.4z"/></svg>App Store</span></a>
           <a class="app" href="https://play.google.com/store/apps/details?id=com.taxiyaar.driver"><svg class="app-icon" viewBox="0 0 500 500" aria-hidden="true"><image href="/icon-driver-192.png" width="500" height="500"/></svg><span><b>TaxiYaar Driver</b><small>For drivers · get trip requests</small></span><span class="get"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2 13 12 3 22Z" fill="#00A0FF"/><path d="M3 2 16.5 8.5 13 12Z" fill="#00D46A"/><path d="M3 22 13 12 16.5 15.5Z" fill="#FF3A44"/><path d="M16.5 8.5 21 11q1.4 1 0 2l-4.5 2.5L13 12Z" fill="#FFC400"/></svg>Google Play</span></a>
-          <p class="ios"><span class="pill">Coming soon</span>iPhone apps on the App Store</p>
+          <p class="ios"><span class="pill">Coming soon</span>Driver app on iPhone</p>
         </div>
       </div>
     </div>
@@ -798,7 +872,7 @@ src="https://www.facebook.com/tr?id=1657672062809786&ev=PageView&noscript=1"
 </footer>
 
 <div class="dock" aria-label="Get the app">
-  <a class="btn btn-teal" href="https://play.google.com/store/apps/details?id=com.taxiyaar">Rider app</a>
+  <a class="btn btn-teal" id="dockRider" href="https://play.google.com/store/apps/details?id=com.taxiyaar">Rider app</a>
   <a class="btn btn-fare" href="https://play.google.com/store/apps/details?id=com.taxiyaar.driver">Driver app</a>
 </div>
 
@@ -822,6 +896,83 @@ src="https://www.facebook.com/tr?id=1657672062809786&ev=PageView&noscript=1"
     var m = Math.floor(left / 60), s = left % 60;
     out.textContent = (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s;
   }, 1000);
+
+  // Hero worries: next one every 2 s
+  var ws = document.querySelectorAll(".worry"),
+      ds = document.querySelectorAll("#wdots button"), cur = 0, wt;
+  function showWorry(n) {
+    cur = (n + ws.length) % ws.length;
+    ws.forEach(function (w, k) { w.classList.toggle("on", k === cur); w.setAttribute("aria-hidden", String(k !== cur)); });
+    ds.forEach(function (d, k) { d.classList.remove("on"); void d.offsetWidth; d.classList.toggle("on", k === cur); });
+  }
+  function runWorries() {
+    clearInterval(wt);
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+      wt = setInterval(function () { showWorry(cur + 1); }, 2000);
+  }
+  ds.forEach(function (d, k) { d.addEventListener("click", function () { showWorry(k); runWorries(); }); });
+  showWorry(0);
+  runWorries();
+
+  // iPhones get the App Store from the phone bar; everyone else keeps Google Play
+  if (/iPhone|iPad|iPod/i.test(navigator.userAgent))
+    document.getElementById("dockRider").href = "https://apps.apple.com/in/app/taxiyaar/id6826521290";
+
+  // Tap a bid: that driver's profile slides in over the bids
+  var DRIVERS = [
+    { av: "SR", name: "Suresh R.", car: "Maruti Ertiga · Silver · 2022 · 6 yrs driving", plate: "KA 00 TY 1234", rating: "4.6", reviews: 51, price: "₹2,300",
+      cats: [4.7, 4.8, 4.6, 4.4, 4.5, 4.6, 4.7, 4.5],
+      quote: "Polite and careful on the ghat roads. Stopped wherever we asked.", by: "Ananya S. · after a trip to Coorg" },
+    { av: "MK", name: "Manjunath K.", car: "Toyota Innova Crysta · White · 2021 · 9 yrs driving", plate: "KA 00 TY 2345", rating: "4.9", reviews: 142, price: "₹2,700",
+      cats: [4.9, 4.9, 5.0, 4.7, 4.6, 4.8, 4.5, 4.8],
+      quote: "Left Bengaluru at 5:30 sharp, no toll surprises, car spotless the whole way.", by: "Priya M. · after a trip to Mysuru" },
+    { av: "IP", name: "Imran P.", car: "Toyota Rumion · Grey · 2023 · 5 yrs driving", plate: "KA 00 TY 3456", rating: "4.7", reviews: 89, price: "₹2,500",
+      cats: [4.8, 4.7, 4.8, 4.8, 4.6, 4.9, 4.4, 4.7],
+      quote: "Clean car, AC worked all the way, and he knew every good breakfast stop.", by: "Rahul D. · after a trip to Ooty" }
+  ];
+  var CATS = ["Behaviour", "Safety", "Honesty", "Cleanliness", "Timeliness", "Car condition", "Navigation", "Friendliness"];
+  var pv = document.getElementById("pv"), photos = document.querySelector(".pcard .photos");
+  function openProfile(i) {
+    var d = DRIVERS[i];
+    pv.innerHTML = '<div class="pv-top"><button class="pv-back" aria-label="Back to bids">←</button>Driver profile</div>'
+      + '<div class="pv-card"><div class="pv-head"><div class="p-av">' + d.av + '</div><div><div class="pv-name">' + d.name + '</div>'
+      + '<div class="pv-car">' + d.car + '</div><span class="plate">' + d.plate + '</span></div></div>'
+      + '<div class="verified"><span class="tag">✓ Aadhaar</span><span class="tag">✓ Licence</span><span class="tag">✓ RC</span><span class="tag off">'
+      + d.reviews + ' reviews · ' + d.rating + '</span></div>'
+      + (photos ? photos.outerHTML : "")
+      + '<div class="cats">' + CATS.map(function (c, k) {
+          return '<div class="cat">' + c + '<b>' + d.cats[k].toFixed(1) + '</b><div class="bar"><i style="width:' + d.cats[k] * 20 + '%"></i></div></div>';
+        }).join("") + '</div>'
+      + '<div class="pv-quote">"' + d.quote + '"<cite>' + d.by + '</cite></div></div>'
+      + '<div class="pv-act"><span class="pv-call">Call</span><span class="pv-accept">Accept ' + d.price + '</span></div>';
+    pv.classList.add("open"); pv.setAttribute("aria-hidden", "false");
+  }
+  function closeProfile() { pv.classList.remove("open"); pv.setAttribute("aria-hidden", "true"); }
+  var bidEls = document.querySelectorAll(".bid");
+  bidEls.forEach(function (b, k) { b.addEventListener("click", function () { demoOn = false; openProfile(k); }); });
+  pv.addEventListener("click", function (e) { if (e.target.closest(".pv-back")) closeProfile(); });
+
+  // Demo on a loop: tap a bid, show that profile, go back, then the next driver.
+  // Holds off while a visitor has a profile open themselves.
+  var demoNext = 1, demoOn = false;
+  function demo() {
+    if (pv.classList.contains("open")) { setTimeout(demo, 3000); return; }
+    var screen = document.getElementById("screen"), b = bidEls[demoNext];
+    var sr = screen.getBoundingClientRect(), br = b.getBoundingClientRect();
+    var dot = document.createElement("span");
+    dot.className = "tapdot";
+    dot.style.left = (br.left - sr.left + br.width * .45) + "px";
+    dot.style.top = (br.top - sr.top + br.height / 2) + "px";
+    screen.appendChild(dot);
+    setTimeout(function () { dot.remove(); demoOn = true; openProfile(demoNext); }, 600);
+    setTimeout(function () {
+      if (demoOn) closeProfile();
+      demoOn = false;
+      demoNext = (demoNext + 1) % bidEls.length;
+      setTimeout(demo, 5000);
+    }, 4200);
+  }
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) setTimeout(demo, 4000);
 
   // A bid lights up now and then, like a fresh one arriving.
   if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
