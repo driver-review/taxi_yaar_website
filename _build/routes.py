@@ -192,7 +192,7 @@ LOGO = '<svg viewBox="0 0 500 500" aria-hidden="true"><image href="/icon-192.png
 STEPS = """<ol class="steps">
         <li><b>Post your trip</b>Route, date, time, passengers and car type. Drivers on your route are notified straight away.</li>
         <li><b>Drivers bid</b>Each bid has a price, a note, and whether toll and parking are included.</li>
-        <li><b>Pick on trust</b>Open each driver's profile: ratings in 8 categories, photos of the car, reviews from real trips.</li>
+        <li><b>See the exact car</b>Open each bid: photos of the actual car, the driver's ratings in 8 categories and reviews from real trips.</li>
         <li><b>Call, accept, go</b>Talk to the driver, accept the bid, and start the ride with your OTP. Pay the driver in cash or by UPI.</li>
       </ol>"""
 
@@ -305,7 +305,7 @@ def page(*, path, title, description, schema, body):
 DOWNLOAD = f"""  <section class="section">
     <div class="wrap">
       <div class="download">
-        <div><h2>Post your trip. See who wants to drive you.</h2><p>Free on Android and iPhone. No booking fee, no commission.</p></div>
+        <div><h2>Post your trip. Choose the car that comes.</h2><p>Free on Android and iPhone. No booking fee, no commission.</p></div>
         <div class="btns"><a class="btn" href="{RIDER_APP}">Get TaxiYaar on Google Play</a><a class="btn" href="{RIDER_IOS}">Get TaxiYaar on the App Store</a></div>
       </div>
     </div>
@@ -330,6 +330,9 @@ def route_page(r):
         ("How do I know the driver is safe?",
          "Every driver's Aadhaar, licence and RC are cross-checked before they go live: the face must match the ID, "
          "and the number plate in the car photos must match the RC. You see photos of the actual car and reviews from riders who travelled with them. The trip only starts with your OTP."),
+        ("Will a different car turn up than the one I booked?",
+         "No. Every bid shows the car model and photos of that exact car, so you know which car is coming before you boo"
+         "k. And the trip starts only when you share your OTP with the driver."),
     ]
     others = [o for o in ROUTES if o is not r]
     stops = "\n".join(f"        <li><b>{escape(s)}</b><span>{escape(d)}</span></li>" for s, d in r["stops"])
@@ -353,8 +356,8 @@ def route_page(r):
   <section class="hero">
     <div class="wrap">
       <div class="eyebrow">Outstation taxi · Bengaluru</div>
-      <h1>Bangalore to {escape(city)} taxi, <em>with a driver you choose</em>.</h1>
-      <p class="lede">{escape(r["pitch"])} On TaxiYaar you <strong>pick a verified driver by name</strong>: see their car, their ratings and reviews from real trips, then call them and pay them directly.</p>
+      <h1>Bangalore to {escape(city)} taxi. <em>No random cab.</em></h1>
+      <p class="lede">{escape(r["pitch"])} On TaxiYaar <strong>no cab is assigned to you at random</strong>. You see the driver and photos of the exact car before you book, then call them and pay them directly.</p>
       <div class="cta-row">
         <a class="btn btn-teal" href="{RIDER_APP}">Post your {escape(city)} trip</a>
         <a class="btn btn-ghost" href="/{HUB}/">All routes from Bangalore</a>
@@ -389,7 +392,7 @@ def route_page(r):
 
   <section class="section">
     <div class="wrap">
-      <div class="sec-head"><div class="eyebrow">How booking works</div><h2>Book a driver, not a cab</h2><p>No fixed fares and no middleman. Drivers on the route bid for your trip and you pick.</p></div>
+      <div class="sec-head"><div class="eyebrow">How booking works</div><h2>No random cab, no surprise car</h2><p>No fixed fares and no middleman. Drivers on the route bid for your trip and you pick.</p></div>
       {STEPS}
     </div>
   </section>
@@ -456,8 +459,8 @@ def hub_page():
   <section class="hero">
     <div class="wrap">
       <div class="eyebrow">Intercity travel from Bengaluru</div>
-      <h1>Outstation cabs from Bangalore, <em>from drivers you can see</em>.</h1>
-      <p class="lede">No random cab, no surprise car at your door. Going out of the city for a weekend, a wedding or a move? Post your trip and verified drivers bid for it. You see <strong>each driver's name, car and reviews</strong> before you choose. You pay them directly, and TaxiYaar takes no commission.</p>
+      <h1>Outstation cabs from Bangalore. <em>No random cab.</em></h1>
+      <p class="lede">No surprise car at your door. Going out of the city for a weekend, a wedding or a move? Post your trip and verified drivers bid for it. You see <strong>each driver's name, car and reviews</strong> before you choose. You pay them directly, and TaxiYaar takes no commission.</p>
       <div class="cta-row">
         <a class="btn btn-teal" href="{RIDER_APP}">Post your trip</a>
         <a class="btn btn-ghost" href="/#how">How it works</a>
@@ -477,7 +480,7 @@ def hub_page():
 
   <section class="section">
     <div class="wrap">
-      <div class="sec-head"><div class="eyebrow">How booking works</div><h2>Book a driver, not a cab</h2><p>No fixed fares and no middleman. Drivers on the route bid for your trip and you pick.</p></div>
+      <div class="sec-head"><div class="eyebrow">How booking works</div><h2>No random cab, no surprise car</h2><p>No fixed fares and no middleman. Drivers on the route bid for your trip and you pick.</p></div>
       {STEPS}
     </div>
   </section>
