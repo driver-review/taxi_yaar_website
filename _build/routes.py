@@ -334,8 +334,8 @@ def route_page(r):
     stops = "\n".join(f"        <li><b>{escape(s)}</b><span>{escape(d)}</span></li>" for s, d in r["stops"])
     tips = "\n".join(f"        <li><b>{escape(t)}</b><span>{escape(d)}</span></li>" for t, d in r["tips"])
     title = f"Bangalore to {city} Taxi — Verified Drivers | TaxiYaar"
-    description = (f"Bangalore to {city}{also} taxi from verified drivers. {km} km, about {time}. "
-                   "Compare bids, see car photos and reviews, pay the driver directly.")
+    description = (f"Bangalore to {city}{also} taxi with no random cab. {km} km, about {time}. "
+                   "See the exact driver and car before you book, and pay the driver directly.")
     schema = [
         {"@type": "Service", "@id": f'{SITE}/{r["slug"]}/#service',
          "serviceType": "Outstation taxi", "name": f"Bangalore to {city} taxi",
@@ -435,8 +435,8 @@ def hub_page():
     ]
     near = sorted(ROUTES, key=lambda r: r["km"])
     title = "Outstation Cabs from Bangalore | Intercity Taxi — TaxiYaar"
-    description = ("Outstation and intercity taxis from Bangalore to Mysore, Coorg, Ooty, Tirupati, Chennai, Goa and more. "
-                   "Compare bids from verified drivers. Zero commission.")
+    description = ("No random cab. Outstation taxis from Bangalore to Mysore, Coorg, Ooty, Tirupati, Chennai, Goa and more. "
+                   "See the exact driver and car before you book.")
     schema = [
         {"@type": "Service", "@id": f"{SITE}/{HUB}/#service", "serviceType": "Outstation taxi",
          "name": "Outstation and intercity taxis from Bangalore", "description": description,
@@ -455,7 +455,7 @@ def hub_page():
     <div class="wrap">
       <div class="eyebrow">Intercity travel from Bengaluru</div>
       <h1>Outstation cabs from Bangalore, <em>from drivers you can see</em>.</h1>
-      <p class="lede">Going out of the city for a weekend, a wedding or a move? Post your trip and verified drivers bid for it. You see <strong>each driver's name, car and reviews</strong> before you choose. You pay them directly, and TaxiYaar takes no commission.</p>
+      <p class="lede">No random cab, no surprise car at your door. Going out of the city for a weekend, a wedding or a move? Post your trip and verified drivers bid for it. You see <strong>each driver's name, car and reviews</strong> before you choose. You pay them directly, and TaxiYaar takes no commission.</p>
       <div class="cta-row">
         <a class="btn btn-teal" href="{RIDER_APP}">Post your trip</a>
         <a class="btn btn-ghost" href="/#how">How it works</a>
