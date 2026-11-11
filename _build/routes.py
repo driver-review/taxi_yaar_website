@@ -254,7 +254,7 @@ def page(*, path, title, description, schema, body):
 <meta property="og:title" content="{escape(title)}">
 <meta property="og:description" content="{escape(description)}">
 <meta property="og:url" content="{url}">
-<meta property="og:image" content="{SITE}/og-image.png">
+<meta property="og:image" content="{SITE}/og-image-v2.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="en_IN">
