@@ -178,9 +178,33 @@ p { margin: 0; }
 .worry .q { display: block; margin-bottom: .25em; font-size: .5em; line-height: 1.15; letter-spacing: -.02em; color: var(--fare); }
 .wdots { display: flex; gap: 8px; margin-top: 20px; }
 .wdots button { width: 26px; height: 6px; border-radius: 3px; border: 0; padding: 0; background: var(--line); cursor: pointer; position: relative; overflow: hidden; }
-.wdots button.on::after { content: ""; position: absolute; inset: 0; background: var(--teal); transform-origin: left; animation: wfill 2s linear forwards; }
+.wdots button.on::after { content: ""; position: absolute; inset: 0; background: var(--teal); transform-origin: left; animation: wfill 4s linear forwards; }
 @keyframes wfill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 @media (prefers-reduced-motion: reduce) { .worry.on, .worry.out { transition: none; } .wdots button.on::after { animation: none; } }
+
+/* hero photo pairs: usual cab vs TaxiYaar side by side; photos get the wider column */
+.hero-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 32px clamp(28px, 4vw, 48px); align-items: stretch; }
+.hero-tickets { grid-column: 1 / -1; margin-top: 8px; }
+.hero-media { display: grid; }
+.pair { grid-area: 1 / 1; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; opacity: 0; transition: opacity .5s ease; }
+.pair.on { opacity: 1; }
+.pair figure { position: relative; margin: 0; height: 100%; min-height: 360px; border-radius: 22px; overflow: hidden; background: var(--line); }
+.pair img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pair figure:first-child img { filter: saturate(.7); }
+.pair figure + figure { box-shadow: 0 30px 60px -30px rgba(9, 63, 64, .5); }
+.pair figcaption { position: absolute; left: 12px; top: 12px; font: 600 13px/1 var(--body); padding: 8px 12px; border-radius: 999px; background: rgba(15, 30, 29, .75); color: #fff; }
+.pair figure + figure figcaption { background: var(--teal); }
+.photo-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); gap: clamp(32px, 5vw, 64px); align-items: center; }
+.photo-grid img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: 50% 75%; border-radius: 26px; display: block; }
+.bid-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(32px, 5vw, 64px); align-items: center; }
+@media (max-width: 960px) {
+  .hero-media { order: -1; }
+  .pair { gap: 10px; }
+  .pair figure { height: auto; min-height: 0; aspect-ratio: 4 / 5; border-radius: 16px; }
+  .hero-tickets { margin-top: 0; }
+  .photo-grid, .bid-grid { grid-template-columns: 1fr; }
+  .photo-grid img { aspect-ratio: 4 / 3; }
+}
 
 /* ticket entry points */
 .tickets { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 32px; }
@@ -303,7 +327,7 @@ p { margin: 0; }
 .proof-item span { flex: 0 1 30ch; font-size: 14px; color: var(--muted); line-height: 1.35; }
 
 /* ── section shells ── */
-.section { padding-block: clamp(56px, 8vw, 104px); }
+.section { padding-block: clamp(44px, 6vw, 76px); }
 .sec-head { max-width: 640px; }
 .sec-head h2 { font-weight: 800; font-size: clamp(30px, 4vw, 46px); line-height: 1.05; letter-spacing: -.03em; margin-top: 12px; }
 .sec-head p { margin-top: 14px; color: var(--muted); font-size: 17px; max-width: 34em; }
@@ -523,6 +547,11 @@ p { margin: 0; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
 }
+@media (max-width: 560px) {
+  .cities { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .route-link { justify-content: center; border-radius: 12px; padding: 11px 6px; font-size: 13px; line-height: 1.25; letter-spacing: -.01em; text-align: center; }
+  .route-link::before { display: none; }
+}
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18545757710"></script>
@@ -614,7 +643,35 @@ src="https://www.facebook.com/tr?id=1657672062809786&ev=PageView&noscript=1"
         </div>
         <div class="wdots" id="wdots" aria-hidden="true"><button tabindex="-1"></button><button tabindex="-1"></button><button tabindex="-1"></button><button tabindex="-1"></button><button tabindex="-1"></button><button tabindex="-1"></button></div>
 
-        <div class="tickets">
+      </div>
+
+      <div class="hero-media" aria-hidden="true">
+        <div class="pair on">
+          <figure><img src="/img/1a.jpg" alt="" width="600" height="750"><figcaption>Usual cab</figcaption></figure>
+          <figure><img src="/img/1b.jpg" alt="" width="600" height="750"><figcaption>TaxiYaar</figcaption></figure>
+        </div>
+        <div class="pair">
+          <figure><img src="/img/2a.jpg" alt="" loading="lazy" width="600" height="750"><figcaption>Usual cab</figcaption></figure>
+          <figure><img src="/img/2b.jpg" alt="" loading="lazy" width="600" height="750"><figcaption>TaxiYaar</figcaption></figure>
+        </div>
+        <div class="pair">
+          <figure><img src="/img/3a.jpg" alt="" loading="lazy" width="600" height="750"><figcaption>Usual cab</figcaption></figure>
+          <figure><img src="/img/3b.jpg" alt="" loading="lazy" width="600" height="750"><figcaption>TaxiYaar</figcaption></figure>
+        </div>
+        <div class="pair">
+          <figure><img src="/img/4a.jpg" alt="" loading="lazy" width="600" height="750"><figcaption>Usual cab</figcaption></figure>
+          <figure><img src="/img/4b.jpg" alt="" loading="lazy" width="600" height="750"><figcaption>TaxiYaar</figcaption></figure>
+        </div>
+        <div class="pair">
+          <figure><img src="/img/5a.jpg" alt="" loading="lazy" width="600" height="750"><figcaption>Usual cab</figcaption></figure>
+          <figure><img src="/img/5b.jpg" alt="" loading="lazy" width="600" height="750"><figcaption>TaxiYaar</figcaption></figure>
+        </div>
+        <div class="pair">
+          <figure><img src="/img/6a.jpg" alt="" loading="lazy" width="600" height="750"><figcaption>Usual cab</figcaption></figure>
+          <figure><img src="/img/6b.jpg" alt="" loading="lazy" width="600" height="750"><figcaption>TaxiYaar</figcaption></figure>
+        </div>
+      </div>
+        <div class="tickets hero-tickets">
           <div class="ticket">
             <span class="ticket-who">I'm travelling</span>
             <span class="ticket-what">Post your trip, compare bids from verified drivers, pick the one you trust.</span>
@@ -626,8 +683,31 @@ src="https://www.facebook.com/tr?id=1657672062809786&ev=PageView&noscript=1"
             <span class="ticket-cta"><a class="store" href="https://play.google.com/store/apps/details?id=com.taxiyaar.driver"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2 13 12 3 22Z" fill="#00A0FF"/><path d="M3 2 16.5 8.5 13 12Z" fill="#00D46A"/><path d="M3 22 13 12 16.5 15.5Z" fill="#FF3A44"/><path d="M16.5 8.5 21 11q1.4 1 0 2l-4.5 2.5L13 12Z" fill="#FFC400"/></svg>Google Play</a></span>
           </div>
         </div>
-      </div>
+    </div>
+  </section>
 
+  <!-- PROOF -->
+  <div class="proof">
+    <div class="wrap proof-row" style="padding-inline:0">
+      <div class="proof-item"><b>₹0</b><span>commission — riders pay drivers directly, cash or UPI</span></div>
+      <div class="proof-item"><b>8</b><span>rating categories on every driver, not one star average</span></div>
+      <div class="proof-item"><b>3</b><span>documents cross-checked for every driver: Aadhaar, licence and RC</span></div>
+    </div>
+  </div>
+
+
+  <!-- BIDDING -->
+  <section class="section" id="bidding">
+    <div class="wrap bid-grid">
+      <div>
+        <div class="eyebrow">Live bidding</div>
+        <div class="sec-head"><h2>Drivers bid. You compare. You choose.</h2><p>Post your trip and verified drivers on your route send their price within minutes. Nobody is assigned to you.</p></div>
+        <ul class="facts">
+          <li><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div><b>A clear price</b><span>Each bid says if toll and parking are included or extra.</span></div></li>
+          <li><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></div><div><b>Tap a bid, see everything</b><span>The driver's face, reviews and four photos of the exact car.</span></div></li>
+          <li><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 4h4l2 5-3 2a11 11 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></div><div><b>Call, then accept</b><span>Talk to the driver first. Book only when you are happy.</span></div></li>
+        </ul>
+      </div>
       <div class="phone-col">
         <div class="phone" aria-label="The rider app showing a live Bengaluru to Mysuru request with three driver bids">
           <div class="screen" id="screen">
@@ -664,15 +744,6 @@ src="https://www.facebook.com/tr?id=1657672062809786&ev=PageView&noscript=1"
       </div>
     </div>
   </section>
-
-  <!-- PROOF -->
-  <div class="proof">
-    <div class="wrap proof-row" style="padding-inline:0">
-      <div class="proof-item"><b>₹0</b><span>commission — riders pay drivers directly, cash or UPI</span></div>
-      <div class="proof-item"><b>8</b><span>rating categories on every driver, not one star average</span></div>
-      <div class="proof-item"><b>3</b><span>documents cross-checked for every driver: Aadhaar, licence and RC</span></div>
-    </div>
-  </div>
 
   <!-- WHAT YOU WON'T GET -->
   <section class="section nots-sec" id="no-surprises">
@@ -758,6 +829,17 @@ src="https://www.facebook.com/tr?id=1657672062809786&ev=PageView&noscript=1"
           <div class="cat">Friendliness<b>4.8</b><div class="bar"><i style="width:96%"></i></div></div>
         </div>
         <div class="quote">"Left Bengaluru at 5:30 sharp, no toll surprises, car spotless the whole way."<cite>Priya M. · after a trip to Mysuru</cite></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAMILY PHOTO -->
+  <section class="section" style="padding-top:0">
+    <div class="wrap photo-grid">
+      <img src="/img/family.jpg" alt="A family at their gate in Bengaluru while their driver loads the bags" loading="lazy" width="800" height="1000">
+      <div>
+        <div class="eyebrow">Family trips</div>
+        <div class="sec-head"><h2>The whole family, with a driver you chose.</h2><p>You saw his face, his car and his reviews before you booked, and you spoke to him on the phone. On the morning of the trip, nobody is a stranger.</p></div>
       </div>
     </div>
   </section>
@@ -897,9 +979,9 @@ src="https://www.facebook.com/tr?id=1657672062809786&ev=PageView&noscript=1"
     out.textContent = (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s;
   }, 1000);
 
-  // Hero worries: next one every 2 s
+  // Hero worries: next one every 4 s
   var ws = document.querySelectorAll(".worry"),
-      ds = document.querySelectorAll("#wdots button"), cur = 0, wt;
+      ds = document.querySelectorAll("#wdots button"), ps = document.querySelectorAll(".pair"), cur = 0, wt;
   function showWorry(n) {
     var prev = cur;
     cur = (n + ws.length) % ws.length;
@@ -908,12 +990,13 @@ src="https://www.facebook.com/tr?id=1657672062809786&ev=PageView&noscript=1"
       w.classList.toggle("on", k === cur);
       w.setAttribute("aria-hidden", String(k !== cur));
     });
+    ps.forEach(function (p, k) { p.classList.toggle("on", k === cur); });
     ds.forEach(function (d, k) { d.classList.remove("on"); void d.offsetWidth; d.classList.toggle("on", k === cur); });
   }
   function runWorries() {
     clearInterval(wt);
     if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches)
-      wt = setInterval(function () { showWorry(cur + 1); }, 2000);
+      wt = setInterval(function () { showWorry(cur + 1); }, 4000);
   }
   ds.forEach(function (d, k) { d.addEventListener("click", function () { showWorry(k); runWorries(); }); });
   showWorry(0);
