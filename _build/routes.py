@@ -361,6 +361,7 @@ def page(*, path, title, description, schema, body):
       <a href="/terms/">Terms</a>
       <a href="/delete/">Delete account</a>
       <a href="mailto:support@taxiyaar.com">Contact</a>
+      <a href="https://www.linkedin.com/company/taxiyaar/" rel="me">LinkedIn</a>
     </nav>
     <span>© 2026 TaxiYaar · taxiyaar.com</span>
   </div>
