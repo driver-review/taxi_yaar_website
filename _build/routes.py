@@ -29,6 +29,10 @@ def interstate(state):
             "Ask on the call whether the driver's price covers it.")
 
 
+AGREE = ("Agree everything on the call",
+         "Before you accept, ask the driver: Is toll included? Parking? Night driving? If you keep the driver for "
+         "a few days, who pays for the driver's food and stay? Agree it all before the trip starts.")
+
 BANDIPUR = ("Cross Bandipur in daylight",
             "The forest roads through Bandipur are closed to traffic from 9 PM to 6 AM. "
             "Leave Bengaluru early enough to clear them before dark.")
@@ -56,9 +60,14 @@ ROUTES = [
                 ("Bylakuppe", "The Namdroling 'Golden Temple' in the Tibetan settlement, a short detour."),
                 ("Kushalnagar", "Gateway to Coorg. Dubare elephant camp is nearby."),
                 ("Madikeri", "Raja's Seat, Abbey Falls and the estates around town.")],
-         tips=[("Share your exact pin", "Many homestays sit down unmarked estate roads. Send the driver the location pin on the call."),
+         tips=[("Leave early", "Leave Bengaluru before 6 AM. You miss the city traffic and drive the hill roads in daylight."),
+               ("Share your exact pin", "Many homestays sit down unmarked estate roads. Send the driver the location pin on the call."),
                ("Monsoon driving", "From June to September the ghat roads are wet and slow. Allow extra time.")],
-         car="An SUV handles steep estate roads and luggage better. A sedan is fine if you're staying in Madikeri town."),
+         car="An SUV handles steep estate roads and luggage better. A sedan is fine if you're staying in Madikeri town.",
+         areas=[("Kushalnagar", "The first town in Coorg. Close to Dubare elephant camp and the Golden Temple at Bylakuppe."),
+                ("Madikeri", "The main town, about 1 hour after Kushalnagar. Raja's Seat and Abbey Falls."),
+                ("Virajpet and Gonikoppal", "South Coorg, close to Nagarhole. About 1 hour past Madikeri."),
+                ("Bhagamandala and Talakaveri", "West of Madikeri, on a narrow hill road.")]),
     dict(slug="bangalore-to-ooty-taxi", city="Ooty", local="Udhagamandalam", km=265, time="6–7 hours",
          road="via Mysuru, Gundlupet and Bandipur",
          pitch="Through two tiger reserves and up into the Nilgiris. It's one of the prettiest drives from Bengaluru, and it has rules worth planning around.",
@@ -197,6 +206,52 @@ STEPS = """<ol class="steps">
       </ol>"""
 
 
+# Google Ads tag + Meta Pixel, identical on every page of the site. Keep in sync with index.html.
+TRACKING = """<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18545757710"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18545757710');
+
+  // Report a conversion when someone heads to Google Play or the App Store.
+  // Delegated so it covers every store link on the page, now and later.
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href*="play.google.com"], a[href*="apps.apple.com"]');
+    if (!a) return;
+    gtag('event', 'conversion', {
+      'send_to': 'AW-18545757710/iV2CCLXohK8dEI6cp4tF'
+    });
+  });
+</script>
+<!-- Meta Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1657672062809786');
+  fbq('track', 'PageView');
+
+  // Same store-click tracking as the Google tag above, so Meta and Google
+  // can be compared on downloads instead of raw visits.
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href*="play.google.com"], a[href*="apps.apple.com"]');
+    if (!a) return;
+    fbq('track', 'Lead');
+  });
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1657672062809786&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->"""
+
+
 def name(r):
     """'Mysore (Mysuru)' when the local name differs, else just the city."""
     return r["city"] if r["local"] == r["city"] else f'{r["city"]} ({r["local"]})'
@@ -264,6 +319,7 @@ def page(*, path, title, description, schema, body):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=IBM+Plex+Mono:wght@500&display=swap">
 <link rel="stylesheet" href="/assets/routes.css">
+{TRACKING}
 </head>
 <body>
 
@@ -306,10 +362,27 @@ DOWNLOAD = f"""  <section class="section">
     <div class="wrap">
       <div class="download">
         <div><h2>Post your trip. Choose the car that comes.</h2><p>Free on Android and iPhone. No booking fee, no commission.</p></div>
-        <div class="btns"><a class="btn" href="{RIDER_APP}">Get TaxiYaar on Google Play</a><a class="btn" href="{RIDER_IOS}">Get TaxiYaar on the App Store</a></div>
+        <div class="btns"><a class="btn" href="{RIDER_APP}">Get it on Android (Google Play)</a><a class="btn" href="{RIDER_IOS}">Get it on iPhone (App Store)</a></div>
       </div>
     </div>
   </section>"""
+
+
+def areas_section(r):
+    """'Where in X are you going?' block, for routes whose destination is a region with several drop towns."""
+    if not r.get("areas"):
+        return ""
+    items = "\n".join(f"        <li><b>{escape(a)}</b><span>{escape(d)}</span></li>" for a, d in r["areas"])
+    return f"""
+  <section class="section">
+    <div class="wrap">
+      <div class="sec-head"><div class="eyebrow">Drop towns</div><h2>Where in {escape(r["city"])} are you going?</h2><p>Tell drivers your exact drop town when you post. It changes the time and the price.</p></div>
+      <ul class="tips">
+{items}
+      </ul>
+    </div>
+  </section>
+"""
 
 
 def route_page(r):
@@ -324,6 +397,15 @@ def route_page(r):
          "saying whether toll and parking are included. You compare bids and pick one. You pay the driver directly "
          "in cash or by UPI, and TaxiYaar takes no commission or booking fee."),
         (f"Which car should I book for Bangalore to {city}?", r["car"] + " You choose the car type when you post your trip."),
+        ("How long does it take to get prices?",
+         "Drivers on the route usually send the first price within 1–2 minutes. Wait a few minutes to see more prices, "
+         "then choose."),
+        ("Is TaxiYaar on Android and iPhone?",
+         "Yes. TaxiYaar is free on Google Play for Android and on the App Store for iPhone."),
+        ("How is TaxiYaar different from Savaari, MakeMyTrip or Uber Intercity?",
+         "On most cab apps, the company gives you a cab and a driver after you book. On TaxiYaar, drivers send you "
+         "their price, and you choose the driver after seeing their reviews and photos of the real car. You pay the "
+         "driver directly. TaxiYaar takes no commission."),
         ("Can I book a round trip or keep the driver for a few days?",
          "Yes, if the driver agrees. Call them before you accept and agree the return, the waiting and the price. "
          "Any extra charges have to be agreed before the trip starts, not during or after."),
@@ -336,10 +418,11 @@ def route_page(r):
     ]
     others = [o for o in ROUTES if o is not r]
     stops = "\n".join(f"        <li><b>{escape(s)}</b><span>{escape(d)}</span></li>" for s, d in r["stops"])
-    tips = "\n".join(f"        <li><b>{escape(t)}</b><span>{escape(d)}</span></li>" for t, d in r["tips"])
-    title = f"Bangalore to {city} Taxi — Verified Drivers | TaxiYaar"
+    tips = "\n".join(f"        <li><b>{escape(t)}</b><span>{escape(d)}</span></li>" for t, d in r["tips"] + [AGREE])
+    title = f"Bangalore to {city} Taxi — Choose Your Driver and Car | TaxiYaar"
     description = (f"Bangalore to {city}{also} taxi with no random cab. {km} km, about {time}. "
-                   "See the exact driver and car before you book, and pay the driver directly.")
+                   "See the exact driver and car before you book, and pay the driver directly. "
+                   "Free app for Android and iPhone.")
     schema = [
         {"@type": "Service", "@id": f'{SITE}/{r["slug"]}/#service',
          "serviceType": "Outstation taxi", "name": f"Bangalore to {city} taxi",
@@ -379,7 +462,7 @@ def route_page(r):
       </ol>
     </div>
   </section>
-
+{areas_section(r)}
   <section class="section">
     <div class="wrap">
       <div class="sec-head"><div class="eyebrow">Good to know</div><h2>Before you book</h2></div>
