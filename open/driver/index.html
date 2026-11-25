@@ -2,24 +2,39 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Open TaxiYaar Driver</title>
+<title>TaxiYaar Driver — Set your own price. No commission.</title>
+<meta name="description" content="Get trip requests on your routes, send your own price and keep every rupee. The TaxiYaar Driver app is free on Android.">
+<meta name="theme-color" content="#0F6E6E">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TaxiYaar">
+<meta property="og:title" content="TaxiYaar Driver — Set your own price. No commission.">
+<meta property="og:description" content="Get trip requests on your routes, send your own price and keep every rupee. The TaxiYaar Driver app is free on Android.">
+<meta property="og:url" content="https://taxiyaar.com/open/driver">
+<meta property="og:image" content="https://taxiyaar.com/og-image-v2.png">
+<meta property="og:locale" content="en_IN">
 <script>
   // Only reached when the app is not installed: installed apps open this link themselves.
-  var ua = navigator.userAgent;
-  if (/Android/i.test(ua)) location.replace('https://play.google.com/store/apps/details?id=com.taxiyaar.driver');
-  else if (!/iPhone|iPad|iPod/i.test(ua)) location.replace('/');
+  // Android goes straight to Google Play. Everyone else stays here (the driver app is Android only).
+  if (/Android/i.test(navigator.userAgent)) location.replace('https://play.google.com/store/apps/details?id=com.taxiyaar.driver');
 </script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="/assets/routes.css">
 <style>
-  body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
-         font-family: 'DM Sans', sans-serif; background: #F5F7F5; color: #1a1a1a; text-align: center; padding: 24px; box-sizing: border-box; }
-  .logo { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 32px; margin-bottom: 16px; }
-  .yaar { color: #0F6E6E; }
-  a.btn { display: inline-block; margin-top: 20px; padding: 12px 22px; border-radius: 10px; background: #0F6E6E; color: #fff; text-decoration: none; font-weight: 500; }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: center; }
+  .qr-card { background: var(--card); border: 1px solid var(--line); border-radius: 24px; padding: 28px 24px; text-align: center; box-shadow: 0 10px 30px rgba(15, 30, 29, .06); }
+  .qr-card h2 { font-weight: 800; font-size: 22px; letter-spacing: -.02em; }
+  .qr-card p { color: var(--muted); font-size: 14px; margin-top: 6px; }
+  .qr-card img { display: block; width: 190px; height: 190px; margin: 18px auto 14px; }
+  .qr-card .btn { width: 100%; box-sizing: border-box; }
+  .tips.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  @media (max-width: 860px) { .hero-grid, .tips.three { grid-template-columns: 1fr; } }
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18545757710"></script>
@@ -66,10 +81,61 @@ src="https://www.facebook.com/tr?id=1657672062809786&ev=PageView&noscript=1"
 <!-- End Meta Pixel Code -->
 </head>
 <body>
-  <main>
-    <div class="logo">Taxi<span class="yaar">Yaar</span> Driver</div>
-    <p>The TaxiYaar Driver app is on Android.<br>Get it from Google Play.</p>
-    <a class="btn" href="https://play.google.com/store/apps/details?id=com.taxiyaar.driver">Get it on Google Play</a>
-  </main>
+
+<header class="nav">
+  <div class="wrap nav-row">
+    <a class="brand" href="/" aria-label="TaxiYaar home">
+      <svg viewBox="0 0 500 500" aria-hidden="true"><image href="/icon-192.png" width="500" height="500"/></svg>
+      <b>Taxi<span>Yaar</span></b>
+    </a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="/#drivers">For drivers</a>
+    </nav>
+    <a class="btn btn-teal" href="https://play.google.com/store/apps/details?id=com.taxiyaar.driver">Get the driver app</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">For drivers · Bengaluru</div>
+        <h1>Set your own price. <em>Keep every rupee.</em></h1>
+        <p class="lede">Get trip requests on your routes. Send your price. If the rider picks you, you drive and they pay you directly. <strong>TaxiYaar takes no commission.</strong></p>
+      </div>
+      <div class="qr-card">
+        <h2>Get the TaxiYaar Driver app</h2>
+        <p>Scan with your Android phone camera.</p>
+        <img src="/open/driver/qr.png" width="190" height="190" alt="QR code to get the TaxiYaar Driver app">
+        <a class="btn btn-teal" href="https://play.google.com/store/apps/details?id=com.taxiyaar.driver">Get it on Android (Google Play)</a>
+        <p>The driver app is on Android only.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="sec-head"><div class="eyebrow">Why drive with TaxiYaar</div><h2>Your car. Your price. Your riders.</h2></div>
+      <ul class="tips three">
+        <li><b>You set the price</b><span>Send your own price for each trip. Say if toll and parking are included.</span></li>
+        <li><b>No commission</b><span>The rider pays you directly by cash or UPI. You keep all of it.</span></li>
+        <li><b>Your rating is your name</b><span>Good trips bring good reviews, and riders choose drivers with good reviews.</span></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap foot">
+  <div class="foot-row">
+    <a class="brand" href="/"><b>Taxi<span>Yaar</span></b></a>
+    <nav aria-label="Footer">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms/">Terms</a>
+      <a href="mailto:support@taxiyaar.com">Contact</a>
+      <a href="https://www.linkedin.com/company/taxiyaar/" rel="me">LinkedIn</a>
+    </nav>
+    <span>© 2026 TaxiYaar · taxiyaar.com</span>
+  </div>
+</footer>
 </body>
 </html>
